@@ -2192,8 +2192,627 @@ function aplicarCamada(nome) {
   const pinos = document.getElementById('layer-pinos');
   if (pinos) pinos.style.opacity = '1';
 }
-/* Dados das vinhetas · entra na Parte 3 */
-const VINHETAS = [];
+/* ═══════════════════════════════════════════════
+   PARTE 3 · CONTEÚDO DAS 8 VINHETAS
+═══════════════════════════════════════════════ */
+
+const VINHETAS = [
+
+  /* ──────────────────────────────────────────
+     PINO 1 · CCO LOBATO
+  ────────────────────────────────────────── */
+  {
+    id: 1,
+    titulo: 'CENTRO DE CONTROLE OPERACIONAL',
+    bairro: 'SUBÚRBIO FERROVIÁRIO · BOA VISTA DO LOBATO',
+    sub: 'O cérebro físico da prefeitura · em obras avançadas',
+
+    cena: {
+      bairro: 'BOA VISTA DO LOBATO · 6h12',
+      titulo: 'A cidade que se vê de longe.',
+      texto: [
+        'Antes do amanhecer, no Subúrbio Ferroviário, o prédio do Centro de Controle Operacional já está iluminado. As obras estão concluídas em mais da metade. Quando entrar em operação plena, o CCO integrará num único pavimento o despacho da Defesa Civil (Codesal), do SAMU 192, da Guarda Municipal, da Transalvador e, segundo o planejamento da SEMIT, da malha das dez mil câmeras previstas para integração com o COI estadual.',
+        'A escolha do bairro é simbólica: a prefeitura optou por instalar o centro de comando da cidade inteligente justamente no Subúrbio Ferroviário, uma das áreas com menor IDH municipal e historicamente menos atendida pela infraestrutura urbana. A justificativa oficial fala em interiorização do investimento. Na prática, o prédio do CCO concentra mais fibra óptica, mais energia redundante e mais sensores de monitoramento por metro quadrado do que a maioria das ruas do próprio bairro que o abriga.',
+        'O painel principal do CCO, quando ativo, mostra a cidade em séries temporais: pontualidade do BRT, tempo de resposta do SAMU, alertas geológicos, fluxo de pedestres em pontos turísticos. O que não aparece no painel não é gerido. As ruas sem sensor, os pontos de ônibus sem GPS, os bairros sem cobertura de câmera, esses ficam fora do real operacional.'
+      ]
+    },
+
+    func: {
+      titulo: 'COMO O CCO ENXERGA A CIDADE',
+      steps: [
+        {
+          n: '01',
+          t: 'COLETA DISTRIBUÍDA',
+          d: 'Mais de 1.500 km de fibra óptica da Infovia Salvador conectam câmeras, sensores de tráfego, GPS de ônibus, sensores geológicos em encostas e estações meteorológicas a um único ponto de agregação.'
+        },
+        {
+          n: '02',
+          t: 'AGREGAÇÃO NO LOBATO',
+          d: 'Os dados chegam ao CCO em fluxo contínuo e são processados por servidores que rodam algoritmos de classificação, predição e otimização. Parte do processamento ocorre em Salvador, parte na Nuvem Urbana operada pela Companhia SMART.'
+        },
+        {
+          n: '03',
+          t: 'PAINEL VISUAL',
+          d: 'O resultado aparece em painéis que dividem a tela em widgets pré-acordados em contrato: cada widget é um indicador de desempenho. O operador age sobre o que vê. O que não está no widget, não é otimizado.'
+        },
+        {
+          n: '04',
+          t: 'DECISÃO AUTOMATIZADA',
+          d: 'Em algumas operações (semáforos da onda verde, despacho de viatura por reconhecimento facial, disparo de alerta climático), o algoritmo executa antes da homologação humana. O operador ratifica depois.'
+        },
+        {
+          n: '05',
+          t: 'REGISTRO E RETROALIMENTAÇÃO',
+          d: 'Cada decisão produz logs que voltam aos bancos de dados como matéria-prima de treinamento. O sistema aprende com os efeitos das próprias decisões anteriores, num circuito fechado raramente auditado externamente.'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'PDTCI · LEI COMPLEMENTAR 92/2025',
+      titulo: 'Art. 5º · Princípios e diretrizes',
+      quote: 'Constituem princípios e diretrizes deste Plano: I — promover uma cidade orientada por dados (data-driven) para a formulação precisa de políticas públicas, com base em evidências geradas pela integração de sistemas; (...) XI — ampliar progressivamente e atribuir inteligência e resiliência aos sistemas de videomonitoramento de vias e espaços públicos.',
+      fonte: 'Lei Complementar nº 92/2025 (PDTCI), Art. 5º, incisos I e XI · Município de Salvador.',
+      comentario: 'A lei estabelece a cidade data-driven como princípio. O que ela não disciplina é quem decide quais dados são coletados, sob qual critério de prioridade, com qual mecanismo de auditoria independente, e quem responde quando o algoritmo erra. Esses pontos ficam delegados aos contratos de operação e aos termos técnicos da Companhia SMART, que não passaram por audiência pública vinculante.'
+    },
+
+    ficha: {
+      quote: 'O painel define o que é gerível. O que não cabe em métrica não vira política pública. A escolha do recorte de indicadores é uma decisão eminentemente política travestida de neutralidade técnica.',
+      fonte: 'Baseado em análises da Rede de Observatórios de Segurança (2019) e do CESeC/LAPIN (2024).'
+    }
+  },
+
+  /* ──────────────────────────────────────────
+     PINO 2 · PELOURINHO · RECONHECIMENTO FACIAL
+  ────────────────────────────────────────── */
+  {
+    id: 2,
+    titulo: 'MALHA DE RECONHECIMENTO FACIAL',
+    bairro: 'CENTRO HISTÓRICO · PELOURINHO',
+    sub: 'Vídeo Policiamento (Estado) + integração com COI',
+
+    cena: {
+      bairro: 'PELOURINHO · 14h22',
+      titulo: 'A câmera nunca diz "não sei".',
+      texto: [
+        'Marcus tem dezesseis anos. Atravessa o Largo do Pelourinho a caminho da escola. Câmera 0834-B captura o rosto dele às 14h22. O sensor da câmera foi calibrado, ainda na fábrica, segundo a curva de reflectância estabelecida pelas cartelas Shirley, a faixa de luz refletida pela pele branca usada como ponto zero da exposição fotográfica desde 1950.',
+        'Sob essa calibração, a pele escura de Marcus reflete menos luz do que o sensor espera. A imagem chega ao processador com baixo contraste. O algoritmo extrai um vetor de 512 dimensões e o compara com os rostos armazenados no banco de identificação criminal da Secretaria de Segurança Pública do Estado, banco esse acessado pelo sistema Vídeo Policiamento via convênio técnico de cooperação.',
+        'A rede neural não foi treinada para reportar incerteza. Foi treinada para sempre devolver um número. Diante de baixo contraste, ela completa a leitura com o padrão mais frequente no banco. O resultado é uma similaridade de 92,4% com um rosto qualquer arquivado em prisão anterior. Em dois minutos, uma viatura chega ao Largo. A mãe de Marcus mora a quatro quadras dali.'
+      ]
+    },
+
+    func: {
+      titulo: 'COMO O RECONHECIMENTO FACIAL OPERA',
+      steps: [
+        {
+          n: '01',
+          t: 'CALIBRAÇÃO HERDADA · CARTELA SHIRLEY',
+          d: 'Sensores ópticos foram historicamente calibrados a partir da pele branca como referência fotoquímica. Essa herança técnica permanece nos sensores digitais atuais. Peles escuras refletem menos luz do que o sensor espera, gerando baixo contraste e ruído nos pixels.'
+        },
+        {
+          n: '02',
+          t: 'EXTRAÇÃO DE EMBEDDING',
+          d: 'O rosto capturado é convertido numa grade de 64x64 pixels, que por sua vez é reduzida a um vetor de 512 números (embedding facial). Esse vetor representa a geometria do rosto para o algoritmo. Em peles escuras, com menos contraste, o vetor sai mais instável.'
+        },
+        {
+          n: '03',
+          t: 'CONSULTA AO BANCO POLICIAL',
+          d: 'O vetor é enviado ao banco de identificação criminal, que contém fotografias compulsórias feitas no momento da prisão (Lei 12.037/2009). A composição racial desse banco reflete a seletividade histórica do policiamento, não a distribuição real do crime.'
+        },
+        {
+          n: '04',
+          t: 'PREDIÇÃO POR APROXIMAÇÃO',
+          d: 'Quando o vetor é instável, o algoritmo não responde "não sei". Ele aproxima pela categoria mais frequente nos dados de treinamento. O ruído de pixel é convertido em similaridade numérica acima do limiar contratual (geralmente 90%).'
+        },
+        {
+          n: '05',
+          t: 'DESPACHO DE VIATURA',
+          d: 'O operador do COI estadual recebe o alerta de match e ratifica em segundos. Uma viatura é despachada. O boletim de averiguação resultante retorna ao banco de identificação como entrada nova, alimentando o próximo ciclo de treinamento.'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'PDTCI Art. 5º XI · Vídeo Policiamento (Estado)',
+      titulo: 'Ampliação dos sistemas de videomonitoramento',
+      quote: 'XI — ampliar progressivamente e atribuir inteligência e resiliência aos sistemas de videomonitoramento de vias e espaços públicos, integrando-os a centros de operação estaduais e federais quando pertinente, com vistas à proteção do patrimônio cultural e à segurança dos cidadãos e turistas.',
+      fonte: 'Lei Complementar nº 92/2025 (PDTCI), Art. 5º, inciso XI · Integração operacional com o Centro de Operações e Inteligência (COI) da Secretaria de Segurança Pública da Bahia, no Centro Administrativo (CAB).',
+      comentario: 'O texto legal cita "inteligência" e "resiliência" como atributos a serem atribuídos às câmeras, mas não define o que conta como acurácia aceitável, não exige análise de impacto racial dos algoritmos (LGPD Art. 38), não estabelece direito a opt-out em espaços públicos, e não regula o uso do banco policial como conjunto de treinamento. O contrato de fornecimento do software é protegido por segredo industrial, e pedidos de transparência passiva tiveram quase metade negada nacionalmente (pesquisa CESeC/LAPIN 2024).'
+    },
+
+    ficha: {
+      quote: 'A discriminação não está num lugar só. Está espalhada entre um sensor calibrado para um tipo de pele, dados produzidos majoritariamente no Norte Global, um sistema penal que prende de forma seletiva, e uma rua onde tudo isso operou junto sobre um corpo específico.',
+      fonte: 'Síntese a partir de Nina da Hora, Cathy O\'Neil (Algoritmos de Destruição em Massa) e Tarcízio Silva (Racismo Algorítmico, 2022).'
+    }
+  },
+
+  /* ──────────────────────────────────────────
+     PINO 3 · PARQUE TECNOLÓGICO · CIDACS
+  ────────────────────────────────────────── */
+  {
+    id: 3,
+    titulo: 'PARQUE TECNOLÓGICO · CIDACS',
+    bairro: 'AV. PARALELA',
+    sub: 'Concentração de dados sociais e de saúde',
+
+    cena: {
+      bairro: 'AV. LUÍS VIANA · PARQUE TECNOLÓGICO',
+      titulo: 'Onde os dados moram em Salvador.',
+      texto: [
+        'O Parque Tecnológico da Bahia, na Avenida Paralela, é um equipamento do Governo do Estado que abriga, entre outros laboratórios, o CIDACS, o Centro de Integração de Dados e Conhecimento para a Saúde, vinculado à Fundação Oswaldo Cruz. O CIDACS opera um datacenter que cruza, em ambiente controlado, registros do CadÚnico, do SUS, do Bolsa Família, da Previdência e de outras bases federais e estaduais para construir coortes populacionais.',
+        'A pesquisa que sai do CIDACS é pública, peer-reviewed, publicada em revistas internacionais, e já demonstrou efeitos de programas sociais sobre mortalidade infantil, tuberculose, hanseníase. É ciência de qualidade. É também concentração: poucos lugares no mundo combinam tantas bases sensíveis num único ponto físico.',
+        'A ambiguidade importa. O Parque Tecnológico não é o vilão da história. É o pino onde a pergunta política fica mais difícil. O que acontece quando o mesmo modelo de concentração de dados, justificado pela pesquisa em saúde pública, é replicado para outras finalidades sem o mesmo rito ético, sem o mesmo comitê de pesquisa, sem o mesmo escrutínio acadêmico?'
+      ]
+    },
+
+    func: {
+      titulo: 'COMO O CIDACS OPERA E POR QUE ELE IMPORTA',
+      steps: [
+        {
+          n: '01',
+          t: 'LINKAGE PROBABILÍSTICO',
+          d: 'O CIDACS aplica técnicas de pareamento estatístico para vincular registros de bases distintas sem usar identificadores diretos. O resultado é uma coorte anonimizada que preserva relações entre eventos (recebeu Bolsa Família → variação de mortalidade infantil) sem expor o indivíduo.'
+        },
+        {
+          n: '02',
+          t: 'AMBIENTE CONTROLADO',
+          d: 'O datacenter opera em sala-cofre com acesso físico restrito, segurança lógica certificada, e protocolos formais de pesquisa aprovados por comitê de ética. Pesquisadores externos acessam por terminais sem possibilidade de extração bruta dos dados.'
+        },
+        {
+          n: '03',
+          t: 'COMO MODELO REPLICÁVEL',
+          d: 'A arquitetura técnica do CIDACS (linkage, anonimização, ambiente controlado) é replicável. A governança ética que o cerca (comitê, protocolo de pesquisa, peer review) também precisa ser replicada. Quando só a parte técnica é replicada, sem a governança, o modelo deixa de ser pesquisa e vira vigilância.'
+        },
+        {
+          n: '04',
+          t: 'A PERGUNTA POLÍTICA',
+          d: 'A Nuvem Urbana prevista pelo PDTCI Art. 21, operada pela Companhia SMART, replica parte da arquitetura técnica do CIDACS sem replicar integralmente o aparato de governança. Não há comitê de ética público, não há protocolo de pesquisa, não há revisão por pares dos algoritmos. O que muda quando os mesmos dados sensíveis circulam fora desse arcabouço?'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'PDTCI Art. 21 · Nuvem Urbana',
+      titulo: 'Delegação da operação à Companhia SMART',
+      quote: 'O Município poderá delegar à companhia de propósito específico, vinculada à Administração Indireta, a operacionalização da Nuvem Urbana da Cidade Inteligente, centralizando dados produzidos pelos órgãos municipais com vistas à geração de soluções inovadoras de gestão pública.',
+      fonte: 'Lei Complementar nº 92/2025 (PDTCI), Art. 21 · Companhia Salvador Cidade Inteligente (SMART), sucessora administrativa da antiga COGEL.',
+      comentario: 'O CIDACS opera sob marco legal de pesquisa científica (Resolução CNS 466/2012 e correlatas). A Nuvem Urbana opera sob marco legal de gestão pública municipal. São arcabouços jurídicos diferentes para arquiteturas técnicas semelhantes. A pesquisa em saúde tem trinta anos de tradição construindo proteções éticas. A gestão municipal data-driven começou ontem.'
+    },
+
+    ficha: {
+      quote: 'A concentração técnica de dados, em si, não é boa nem má. O que torna o CIDACS aceitável é o regime de governança que o cerca: comitê de ética, protocolo público, revisão por pares, finalidade explícita e auditável. Sem esse regime, a mesma concentração técnica vira aparato de vigilância.',
+      fonte: 'Síntese a partir da literatura sobre data linkage em saúde pública (Barreto et al., 2019, no CIDACS/Fiocruz).'
+    }
+  },
+
+  /* ──────────────────────────────────────────
+     PINO 4 · CAJAZEIRAS · O MIOLO INVISÍVEL
+  ────────────────────────────────────────── */
+  {
+    id: 4,
+    titulo: 'O MIOLO QUE NÃO É VISTO',
+    bairro: 'CAJAZEIRAS · MACROÁREA DE ESTRUTURAÇÃO URBANA',
+    sub: 'A cidade definida pelo que ela escolhe não enxergar',
+
+    cena: {
+      bairro: 'CAJAZEIRAS · 17h45',
+      titulo: 'O ônibus que nenhum painel registra.',
+      texto: [
+        'Cajazeiras é um conjunto de bairros que abriga aproximadamente trezentas mil pessoas. Faz parte do Miolo, a Macroárea de Estruturação Urbana definida pelo PDDU. Daqui sai todos os dias um dos maiores fluxos de trabalhadores da cidade, em direção ao Centro, à Pituba, à Barra. As linhas de ônibus que servem Cajazeiras circulam por vias secundárias que não compõem o eixo de otimização do BRT.',
+        'Quando o algoritmo do CCO ativa a onda verde na Avenida ACM para recuperar o atraso de uma composição de BRT, ele otimiza um corredor que tem sensor de fluxo, contagem de embarques, GPS de veículo. Os ônibus que servem Cajazeiras, por sua vez, ficam retidos nos sinais transversais. Eles emitem sinais GPS estáticos enquanto esperam o verde que não vem.',
+        'Esses sinais GPS estáticos retornam ao dashboard do CCO como dado de congestionamento na via transversal, e esse dado, agregado em série temporal, aparece no relatório trimestral como evidência de que o BRT é o modal mais eficiente da cidade. A imobilidade forçada dos trabalhadores de Cajazeiras vira argumento técnico em favor do modal que os imobilizou.'
+      ]
+    },
+
+    func: {
+      titulo: 'COMO A AUSÊNCIA DE SENSOR PRODUZ INVISIBILIDADE',
+      steps: [
+        {
+          n: '01',
+          t: 'O QUE NÃO É MEDIDO NÃO É GERIDO',
+          d: 'O contrato de PPP da modernização do trânsito define exatamente quais variáveis são monitoradas. Cada sensor instalado custa, cada widget no painel ocupa espaço, cada indicador no relatório trimestral consome decisão política. A escolha do que medir é finita e estratégica.'
+        },
+        {
+          n: '02',
+          t: 'PRIORIZAÇÃO POR INDICADOR CONTRATUAL',
+          d: 'O contrato premia o cumprimento de pontualidade do BRT. Não premia o tempo médio de viagem dos ônibus convencionais que servem o Miolo. O algoritmo otimiza o que o contrato pede que ele otimize.'
+        },
+        {
+          n: '03',
+          t: 'GPS DOS PARADOS COMO DADO DE CONGESTIONAMENTO',
+          d: 'Os ônibus retidos na via transversal emitem coordenadas estáticas. Esse dado retorna ao painel como ponto vermelho. O painel lê isso como problema da via transversal, e não como consequência da onda verde que o próprio sistema acabou de ativar no eixo principal.'
+        },
+        {
+          n: '04',
+          t: 'A INVISIBILIDADE COMO MÉTODO',
+          d: 'Não é negligência. É arquitetura. A invisibilidade de Cajazeiras no painel do CCO é resultado direto de decisões de localização de sensor, de redação de cláusula contratual, e de homologação de indicadores de desempenho. Cada uma dessas decisões teve nome, data e gabinete.'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'PDDU 2016 · Lei 9069/2016',
+      titulo: 'Macroárea de Estruturação Urbana',
+      quote: 'A Macroárea de Estruturação Urbana compreende as áreas onde se concentra a maior parte da demanda por melhoria de infraestrutura urbana, mobilidade, equipamentos públicos e serviços, sendo prioritárias para investimentos estruturantes do Município.',
+      fonte: 'PDDU de Salvador, Lei nº 9.069/2016, sobre as cinco macroáreas (Urbanização Consolidada, Estruturação Urbana, Borda da Baía, Borda Atlântica, Integração Metropolitana).',
+      comentario: 'O PDDU classifica o Miolo, onde está Cajazeiras, como prioritário para investimentos estruturantes. O PDTCI, dez anos depois, instalou a maior densidade de sensores e câmeras na Macroárea de Urbanização Consolidada, onde já havia infraestrutura. O zoneamento técnico da cidade inteligente, na prática, replicou e amplificou o zoneamento socioeconômico que o PDDU dizia querer corrigir.'
+    },
+
+    ficha: {
+      quote: 'A cidade inteligente é definida tanto pelo que ela vê quanto pelo que ela escolhe não ver. A escolha do que não medir é tão política quanto a escolha do que medir.',
+      fonte: 'Adaptado de discussão sobre métricas e governança urbana em Smart Cities no Brasil (Reia & Belli, 2021).'
+    }
+  },
+
+  /* ──────────────────────────────────────────
+     PINO 5 · MATA ESCURA · ALERTA CLIMÁTICO
+  ────────────────────────────────────────── */
+  {
+    id: 5,
+    titulo: 'SENSOR GEOLÓGICO E A ENCOSTA',
+    bairro: 'MATA ESCURA · OCUPAÇÕES EM ENCOSTA',
+    sub: 'O paradoxo do Sul Global: ponta tecnológica e déficit básico',
+
+    cena: {
+      bairro: 'MATA ESCURA · MADRUGADA DE OUTONO',
+      titulo: 'O alerta foi disparado. Ninguém recebeu.',
+      texto: [
+        'Choveu cento e vinte milímetros nas últimas duas horas. O sensor geológico instalado na encosta da Mata Escura, ligado à Defesa Civil Municipal (Codesal) e ao CCO do Lobato, registra saturação crítica do solo. O algoritmo dispara o protocolo de alerta. No painel do CCO, o indicador acende em vermelho. Em segundos, o sistema envia notificações por aplicativo e SMS aos cadastrados na região de risco.',
+        'A taxa de entrega da notificação por aplicativo, segundo o registro do disparo, é de aproximadamente quatro por cento. A taxa de entrega por SMS é de cerca de vinte e oito por cento. As sirenes físicas que existiam até 2022 nas encostas foram desativadas porque a verba foi realocada para a contratação do novo sistema digital de alertas.',
+        'O sensor mediu. O algoritmo calculou. O protocolo foi cumprido. O dashboard registrou o disparo como ação executada. Cada elemento da cadeia técnica operou exatamente como foi projetado. A diferença entre o sistema operando como projetado e o alerta efetivamente chegando às pessoas é o paradoxo central da cidade inteligente no Sul Global.'
+      ]
+    },
+
+    func: {
+      titulo: 'COMO O ALERTA OPERA · E ONDE ELE FALHA',
+      steps: [
+        {
+          n: '01',
+          t: 'SENSOR DE ALTA PRECISÃO',
+          d: 'O sensor geológico mede pluviometria, umidade do solo e inclinação em tempo real. Custou caro, foi licitado, foi instalado pela Codesal em articulação com o CPRM. A leitura técnica é confiável.'
+        },
+        {
+          n: '02',
+          t: 'CADEIA DIGITAL DE NOTIFICAÇÃO',
+          d: 'Os dados do sensor sobem para o servidor da Codesal, são processados por um algoritmo de threshold, e quando ultrapassam o limite crítico, disparam automaticamente notificações via aplicativo Defesa Civil Salvador e SMS para celulares cadastrados na área de risco.'
+        },
+        {
+          n: '03',
+          t: 'PRESSUPOSTOS DE INFRAESTRUTURA',
+          d: 'O alerta digital pressupõe: smartphone com Android atualizado ou iPhone; pacote de dados ativo (não esgotado antes do dia 20 do mês); sinal 4G estável (Mata Escura tem zona-sombra documentada pelas operadoras); aplicativo previamente instalado e com permissão de notificação ativa.'
+        },
+        {
+          n: '04',
+          t: 'O QUE FOI DESINSTALADO',
+          d: 'As sirenes físicas instaladas em encostas após o desastre do Morro do Bumba (2010) e replicadas em Salvador foram desativadas em 2022 quando o contrato de modernização do sistema de alerta substituiu o aparato físico por solução de software. O painel do CCO ficou mais bonito. A encosta ficou em silêncio.'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'PDTCI Art. 5º XXXI · Resiliência climática',
+      titulo: 'Resiliência urbana frente às mudanças climáticas',
+      quote: 'XXXI — atingir níveis elevados de resiliência urbana, preparando a cidade para choques agudos e tensões crônicas decorrentes de eventos climáticos, sociais e tecnológicos, mediante sistemas inteligentes de prevenção, alerta e resposta.',
+      fonte: 'Lei Complementar nº 92/2025 (PDTCI), Art. 5º, inciso XXXI · em articulação com o Plano Municipal de Mitigação e Adaptação às Mudanças Climáticas e com o Plano Municipal de Saneamento Básico Integrado.',
+      comentario: 'O texto legal fala em sistemas inteligentes de prevenção e alerta. A pressuposição técnica de que todos os habitantes de áreas de risco possuem smartphone, plano de dados ativo e aplicativo instalado não está escrita na lei. Está embutida na arquitetura. O paradoxo do Sul Global é exatamente esse: ponta tecnológica de alerta convivendo com déficit histórico de saneamento, drenagem, contenção e moradia. O sensor mede o problema que a falta de obra básica produz.'
+    },
+
+    ficha: {
+      quote: 'O solucionismo tecnológico pressupõe que problemas estruturais complexos, como habitação e infraestrutura básica, podem ser resolvidos com aplicativos, ignorando que parte significativa da população não dispõe dos meios materiais para acessar a solução proposta.',
+      fonte: 'Síntese a partir de Evgeny Morozov (To Save Everything, Click Here, 2013) e da crítica latino-americana ao solucionismo (Belli & Reia, 2021).'
+    }
+  },
+
+  /* ──────────────────────────────────────────
+     PINO 6 · CABO SUBMARINO · SOBERANIA DE DADOS
+  ────────────────────────────────────────── */
+  {
+    id: 6,
+    titulo: 'CABO SUBMARINO · ORLA ATLÂNTICA',
+    bairro: 'ROTA SALVADOR–VIRGÍNIA',
+    sub: 'Onde os dados de 2,9 milhões de soteropolitanos moram',
+
+    cena: {
+      bairro: 'PRAIA DO FORTE · PONTO DE ATERRAGEM',
+      titulo: 'Latência até a Virgínia: 89 milissegundos.',
+      texto: [
+        'Os cabos submarinos que conectam o Brasil ao resto do mundo aterram em poucos pontos da costa. Um dos principais ramais nordestinos passa pela costa baiana e chega a estações de aterragem na região metropolitana de Salvador antes de seguir para o sistema internacional. Quando o aplicativo da prefeitura processa uma consulta, quando o algoritmo do COI compara um rosto com o banco policial, quando o dashboard do CCO atualiza um indicador, parte desse processamento acontece em servidores fora do território brasileiro.',
+        'A Nuvem Urbana prevista pelo PDTCI Art. 21 é operada pela Companhia SMART, mas a infraestrutura física da nuvem comercial (AWS, Azure, Google Cloud) tem seus principais nós em datacenters norte-americanos. A região AWS us-east-1, no estado da Virgínia, é uma das mais usadas por contratos governamentais brasileiros. A latência entre Salvador e a Virgínia é de aproximadamente oitenta e nove milissegundos.',
+        'Cada datacenter da Virgínia consome volumes massivos de água potável para resfriamento. Em outras regiões do mundo, comunidades em Aragón (Espanha), Querétaro (México) e na região do Atacama (Chile) já entraram em conflito com operadoras de datacenter por estresse hídrico. Os dados dos soteropolitanos são processados num lugar onde a água que resfria os processadores não é sua, e onde a lei aplicável (CLOUD Act dos EUA) permite que o governo federal norte-americano requisite acesso sem notificar a autoridade brasileira.'
+      ]
+    },
+
+    func: {
+      titulo: 'POR ONDE PASSAM SEUS DADOS',
+      steps: [
+        {
+          n: '01',
+          t: 'COLETA EM SALVADOR',
+          d: 'O ponto de origem é o sensor, a câmera, o app da prefeitura, a maquininha de cartão na feira. O dado é digitalizado localmente e entregue à Infovia Salvador (rede municipal de fibra) ou à rede comercial 4G/5G.'
+        },
+        {
+          n: '02',
+          t: 'AGREGAÇÃO EM SÃO PAULO',
+          d: 'A maior parte do tráfego brasileiro passa por pontos de troca em São Paulo. O dado de Salvador é roteado para datacenters paulistas em poucos milissegundos. Aqui o cidadão deixa de ser indivíduo e vira ponto em uma coorte estatística.'
+        },
+        {
+          n: '03',
+          t: 'TRAVESSIA TRANSATLÂNTICA',
+          d: 'O cabo submarino carrega o pacote para o destino final. A latência média até a Virgínia é de cerca de 89 milissegundos. Para os operadores da nuvem, isso é tempo real. Para a soberania jurídica, é uma jurisdição estrangeira.'
+        },
+        {
+          n: '04',
+          t: 'PROCESSAMENTO NA VIRGÍNIA',
+          d: 'A região AWS us-east-1 é uma das maiores concentrações de capacidade computacional do planeta. Aqui aplica-se o CLOUD Act (2018), lei norte-americana que autoriza o governo dos EUA a requisitar dados armazenados pela AWS, mesmo quando os titulares são estrangeiros, sem necessidade de notificar a autoridade do país de origem.'
+        },
+        {
+          n: '05',
+          t: 'CONFLITO HÍDRICO INVISÍVEL',
+          d: 'O resfriamento dos datacenters consome bilhões de litros de água por ano. Em zonas de estresse hídrico, isso já gerou conflito direto com comunidades locais. A água que resfria os processadores que processam Salvador não está em Salvador, e a soteropolitana não tem voz na decisão de onde ela é extraída.'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'PDTCI Art. 21 · LGPD Art. 33',
+      titulo: 'Nuvem Urbana e transferência internacional de dados',
+      quote: 'PDTCI Art. 21: O Município poderá delegar à companhia de propósito específico a operacionalização da Nuvem Urbana. / LGPD Art. 33: A transferência internacional de dados pessoais somente é permitida para países que proporcionem grau de proteção adequado, ou mediante cláusulas contratuais específicas, ou com consentimento específico do titular.',
+      fonte: 'Lei Complementar nº 92/2025 (PDTCI), Art. 21 · Lei nº 13.709/2018 (LGPD), Art. 33 · CLOUD Act (EUA, 2018).',
+      comentario: 'A LGPD condiciona transferência internacional de dados pessoais a um conjunto de garantias. O CLOUD Act norte-americano, por sua vez, autoriza o governo dos EUA a acessar dados armazenados pela AWS sem notificar a autoridade brasileira. Os dois marcos legais coexistem mal. Quando a Companhia SMART contrata a Nuvem Urbana com fornecedor que opera fisicamente em território norte-americano, a proteção da LGPD encontra um teto de exequibilidade definido pela soberania física do servidor.'
+    },
+
+    ficha: {
+      quote: 'A soberania digital não é só uma questão de jurisdição: é também questão hídrica, energética e territorial. Cada bit processado tem um custo material que recai sobre comunidades distantes do usuário.',
+      fonte: 'Idec, Não somos quintal de data centers (2025) · Reia & Belli, Smart Cities no Brasil (2021).'
+    }
+  },
+
+  /* ──────────────────────────────────────────
+     PINO 7 · FEIRA DE SÃO JOAQUIM · SCORING
+  ────────────────────────────────────────── */
+  {
+    id: 7,
+    titulo: 'A FEIRA E O ALGORITMO DE CRÉDITO',
+    bairro: 'FEIRA DE SÃO JOAQUIM · COMÉRCIO',
+    sub: 'Economia popular sob decisão automatizada opaca',
+
+    cena: {
+      bairro: 'FEIRA DE SÃO JOAQUIM · 11h00',
+      titulo: 'O limite caiu. Ninguém explicou.',
+      texto: [
+        'Dona Edna vende acarajé na Feira de São Joaquim há trinta e um anos. Tem a maquininha desde 2019. Aceita débito, crédito, PIX. A maquininha sabe quanto ela vendeu hoje, ontem, na semana passada. Sabe se a venda foi pela manhã ou à tarde. Sabe quem pagou no PIX e quem fugiu pro débito quando o sinal caiu.',
+        'O algoritmo de scoring, operado pela empresa fornecedora da maquininha, classifica Dona Edna como "risco médio". Ela não sabe o que é risco médio. Ela sabe que o limite de crédito da máquina dela caiu de três mil para mil e duzentos reais, sem aviso, no meio de uma semana de Iemanjá. Ela ligou no atendimento. O atendente disse que "o sistema é automático" e que a decisão é "baseada em análise de perfil".',
+        'A Cláusula 18-B do contrato de adesão da maquininha, que Edna assinou em 2019, autoriza a revisão automática do limite de crédito sem notificação prévia. O Art. 12 do mesmo contrato classifica o algoritmo de scoring como segredo industrial. A LGPD Art. 20 garante direito à revisão de decisões automatizadas, mas só se o titular souber que houve uma decisão automatizada. Edna nunca recebeu essa informação.'
+      ]
+    },
+
+    func: {
+      titulo: 'COMO O SCORING DECIDE SOBRE A FEIRANTE',
+      steps: [
+        {
+          n: '01',
+          t: 'COLETA TRANSACIONAL',
+          d: 'Cada venda passa pela maquininha. O sistema registra valor, hora, forma de pagamento, geolocalização do terminal, perfil estimado do comprador (via dados de antipirataria do cartão). Em três anos de operação, isso são milhares de pontos de dado por feirante.'
+        },
+        {
+          n: '02',
+          t: 'EMBEDDING DO PERFIL',
+          d: 'O algoritmo converte esses milhares de pontos num vetor de comportamento financeiro. Variáveis típicas: volume médio mensal, sazonalidade, percentual de PIX vs cartão, horário de pico, frequência de transações canceladas, distância ao próximo terminal do mesmo CNPJ.'
+        },
+        {
+          n: '03',
+          t: 'CLASSIFICAÇÃO DE RISCO',
+          d: 'O vetor é comparado com perfis de inadimplência históricos. O algoritmo devolve um número, o score. O score é convertido em categoria (baixo, médio, alto risco), e a categoria é convertida em limite de crédito disponível, prazo, taxa de antecipação.'
+        },
+        {
+          n: '04',
+          t: 'DECISÃO SEM EXPLICAÇÃO',
+          d: 'Quando o limite é reduzido, Dona Edna recebe uma notificação seca: "seu limite foi atualizado". Não recebe os critérios. Não recebe os pesos das variáveis. Não recebe o histórico de decisões. A blindagem por segredo industrial impede que ela ou um defensor público obtenha esses dados, mesmo via ordem judicial em alguns casos.'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'LGPD Art. 20 + PDDU · Economia popular',
+      titulo: 'Direito à revisão de decisões automatizadas',
+      quote: 'LGPD Art. 20: O titular dos dados tem direito a solicitar a revisão de decisões tomadas unicamente com base em tratamento automatizado de dados pessoais que afetem seus interesses, incluídas as decisões destinadas a definir o seu perfil pessoal, profissional, de consumo e de crédito ou os aspectos de sua personalidade.',
+      fonte: 'Lei nº 13.709/2018 (LGPD), Art. 20 · Estatuto da Igualdade Racial e de Combate à Intolerância Religiosa do Município de Salvador · PDDU 2016 sobre economia popular e feiras tradicionais.',
+      comentario: 'O direito à revisão existe na lei federal. A operacionalização desse direito, na vida real da feirante, esbarra em três obstáculos materiais: ela não foi informada de que houve decisão automatizada; o algoritmo é protegido por segredo industrial; e a defesa de consumidor não dispõe de quadro técnico para auditar embedding de comportamento financeiro. O município poderia, via legislação local, exigir que sistemas de scoring operando em feiras públicas municipais cumpram critérios mínimos de transparência. Não há ainda regulamentação municipal nesse sentido.'
+    },
+
+    ficha: {
+      quote: 'O direito à revisão garantido pelo Art. 20 da LGPD pressupõe que o titular saiba que foi uma decisão automatizada, que tenha tempo para contestar, e que disponha de assistência técnica para entender os critérios. Sem esses três pressupostos, o direito permanece no papel.',
+      fonte: 'Comentário a partir de Bruno Bioni (Proteção de Dados Pessoais, 2019) e do guia ANPD sobre decisões automatizadas.'
+    }
+  },
+
+  /* ──────────────────────────────────────────
+     PINO 8 · CÂMARA MUNICIPAL · PINO REFLEXIVO
+  ────────────────────────────────────────── */
+  {
+    id: 8,
+    titulo: 'CÂMARA MUNICIPAL · O PINO REFLEXIVO',
+    bairro: 'PRAÇA TOMÉ DE SOUSA · CENTRO HISTÓRICO',
+    sub: 'A esfera política diante da arquitetura técnica',
+
+    cena: {
+      bairro: 'CÂMARA MUNICIPAL · DIA DE SESSÃO',
+      titulo: 'O que foi votado, e o que não foi.',
+      texto: [
+        'A Câmara Municipal de Salvador aprovou, em 2025, a Lei Complementar 92, que institui o PDTCI. O texto da lei foi debatido em comissões, votado em plenário, sancionado pelo Executivo. Está disponível para consulta pública no portal da Câmara. É lei municipal vigente.',
+        'O que a lei autoriza, e o que efetivamente acontece sob essa autorização, não são a mesma coisa. A operacionalização da Nuvem Urbana, prevista pelo Art. 21, foi delegada à Companhia SMART, sucessora administrativa da antiga COGEL. Os contratos que a SMART celebra com fornecedores privados de software, hardware e serviços de nuvem, no entanto, não passam pelo mesmo rito da lei que os autoriza.',
+        'A diferença é estrutural. A Câmara legislou sobre princípios e diretrizes em quarenta e quatro incisos. A SMART contrata, em sigilo comercial, as cláusulas técnicas que decidem o que cada um desses princípios significa na prática. O preço, o prazo, a definição de SLA, a métrica de eficácia, a cláusula de saída, a proteção de dados, a definição de segredo industrial, tudo isso é decidido em instâncias técnicas, não legislativas.'
+      ]
+    },
+
+    func: {
+      titulo: 'O QUE FICA NA LEI E O QUE FICA NO CONTRATO',
+      steps: [
+        {
+          n: '01',
+          t: 'A LEI DEFINE PRINCÍPIOS',
+          d: 'A Lei Complementar 92/2025 estabelece, no Art. 5º, quarenta e quatro incisos de princípios e diretrizes. São formulações amplas: cidade data-driven, ampliação progressiva de videomonitoramento, atendimento digital, sustentabilidade, transparência, equidade. Princípios são abstratos por definição.'
+        },
+        {
+          n: '02',
+          t: 'O CONTRATO DEFINE A OPERAÇÃO',
+          d: 'Cada princípio precisa ser operacionalizado por algum contrato. O contrato define o fornecedor, o software específico, a metodologia de medição, o que conta como sucesso, o que conta como falha, e quem audita. Essas definições são técnicas, materiais e juridicamente vinculantes pelos próximos quinze, vinte ou vinte e cinco anos.'
+        },
+        {
+          n: '03',
+          t: 'O VEREADOR NÃO LÊ O CONTRATO',
+          d: 'A Câmara legisla sobre a lei. Não legisla, no rito ordinário, sobre os contratos derivados. O parlamentar recebe a lei em primeira leitura, segunda leitura, audiência pública. Não recebe a minuta do contrato. Não recebe o anexo técnico. Não recebe o parecer da equipe de tecnologia da SMART.'
+        },
+        {
+          n: '04',
+          t: 'O QUE A LEI MUNICIPAL PODERIA EXIGIR',
+          d: 'Exemplos do que pode ser regulamentado em lei municipal complementar sem ferir competência federal: auditoria independente de algoritmos contratados pelo município; publicação compulsória de Avaliação de Impacto sobre Proteção de Dados antes da assinatura; comitê municipal com participação popular sobre a Nuvem Urbana; cláusula de sunset (revisão obrigatória em prazo curto) em contratos de tecnologia; análise prévia de impacto racial para sistemas biométricos. Nenhuma dessas exigências está hoje no PDTCI.'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'PDTCI Art. 21 · LC 92/2025',
+      titulo: 'Delegação da Nuvem Urbana à Companhia SMART',
+      quote: 'O Município poderá delegar à companhia de propósito específico, vinculada à Administração Indireta, a operacionalização da Nuvem Urbana da Cidade Inteligente, centralizando dados produzidos pelos órgãos municipais com vistas à geração de soluções inovadoras de gestão pública.',
+      fonte: 'Lei Complementar nº 92/2025 (PDTCI), Art. 21 · Companhia Salvador Cidade Inteligente (SMART).',
+      comentario: 'A delegação é juridicamente válida. A questão política é qual nível de detalhamento e de controle público a Câmara deseja preservar sobre os contratos derivados dessa delegação. Em outros municípios, leis complementares posteriores criaram comitês de governança digital com participação da sociedade civil, audiência pública obrigatória para contratos acima de determinado valor, e direito de revisão parlamentar de algoritmos contratados pelo município. Salvador ainda não tem instrumento equivalente.'
+    },
+
+    ficha: {
+      quote: 'A lei autoriza. O contrato decide. Entre uma coisa e outra existe um espaço de decisão técnica que, na ausência de mecanismo institucional de controle, opera com discricionariedade quase total e por prazos que excedem mandatos eletivos.',
+      fonte: 'Síntese a partir de Carlos Ari Sundfeld (Direito Administrativo para Céticos) e da pesquisa sobre PPPs em smart cities (CESeC/LAPIN, 2024).'
+    }
+  }
+
+];
+
+/* ═══════════════════════════════════════════════
+   ABERTURA DA VINHETA · POPULA O MODAL
+═══════════════════════════════════════════════ */
+function abrirVinheta(id) {
+  const v = VINHETAS.find(function(x) { return x.id === id; });
+  if (!v) return;
+
+  ESTADO.pinoAtual = id;
+  ESTADO.pinosVisitados.add(id);
+
+  // header do modal
+  document.getElementById('modal-num').textContent = v.id;
+  document.getElementById('modal-titulo').textContent = v.titulo;
+  document.getElementById('modal-sub').textContent = v.bairro + ' · ' + v.sub;
+
+  // tab CENA
+  document.getElementById('tab-cena').innerHTML = renderCena(v.cena);
+
+  // tab COMO FUNCIONA
+  document.getElementById('tab-func').innerHTML = renderFunc(v.func);
+
+  // tab A LEI
+  document.getElementById('tab-lei').innerHTML = renderLei(v.lei);
+
+  // tab INSPEÇÃO (placeholder · será preenchido na Parte 4)
+  document.getElementById('tab-insp').innerHTML = renderInspPlaceholder(v.id);
+
+  // reseta para a primeira aba
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+  document.querySelector('.tab-btn[data-tab="cena"]').classList.add('active');
+  document.getElementById('tab-cena').classList.add('active');
+
+  // arquiva ficha bibliográfica
+  arquivarFicha(v);
+
+  // abre modal
+  document.getElementById('modal-overlay').classList.add('show');
+
+  // re-renderiza pinos e footer (marca como visitado)
+  renderPinos();
+  renderFooterPins();
+  attachPinoTooltips();
+}
+
+/* ═══════════════════════════════════════════════
+   RENDER DAS ABAS
+═══════════════════════════════════════════════ */
+function renderCena(cena) {
+  let html = '<div class="cena-bairro">' + cena.bairro + '</div>';
+  html += '<div class="cena-titulo">' + cena.titulo + '</div>';
+  html += '<div class="cena-texto">';
+  cena.texto.forEach(function(p) {
+    html += '<p>' + p + '</p>';
+  });
+  html += '</div>';
+  return html;
+}
+
+function renderFunc(func) {
+  let html = '<div class="func-titulo">' + func.titulo + '</div>';
+  html += '<div class="func-steps">';
+  func.steps.forEach(function(s) {
+    html += '<div class="func-step">';
+    html += '<div class="func-step-num">' + s.n + '</div>';
+    html += '<div class="func-step-content">';
+    html += '<div class="func-step-title">' + s.t + '</div>';
+    html += '<div class="func-step-text">' + s.d + '</div>';
+    html += '</div></div>';
+  });
+  html += '</div>';
+  return html;
+}
+
+function renderLei(lei) {
+  let html = '<div class="lei-stamp">' + lei.stamp + '</div>';
+  html += '<div class="lei-titulo">' + lei.titulo + '</div>';
+  html += '<div class="lei-quote">' + lei.quote + '</div>';
+  html += '<div class="lei-fonte">FONTE · ' + lei.fonte + '</div>';
+  html += '<div class="lei-comentario">' + lei.comentario + '</div>';
+  return html;
+}
+
+function renderInspPlaceholder(id) {
+  return '<div class="insp-intro">' +
+    'A inspeção dos actantes não-humanos desta cena (cabo, banco de dados, algoritmo, contrato, dashboard, sensor) será carregada na Parte 4 do artefato.' +
+    '</div>' +
+    '<div style="padding:18px;background:var(--paper);border-left:3px solid var(--mustard);font-family:var(--font-mono);font-size:11px;color:var(--ink);opacity:.7;">' +
+    '<strong style="font-family:var(--font-black);font-size:10px;letter-spacing:2px;">PINO ' + id + '</strong><br><br>' +
+    'A teia de coação mútua entre os dispositivos técnicos que operam nesta cena entrará aqui na próxima parte do desenvolvimento.' +
+    '</div>';
+}
+
+/* ═══════════════════════════════════════════════
+   CADERNETA · ARQUIVAR FICHA AO VISITAR
+═══════════════════════════════════════════════ */
+function arquivarFicha(v) {
+  // evita duplicação
+  if (ESTADO.fichasArquivadas.find(function(f) { return f.id === v.id; })) return;
+
+  ESTADO.fichasArquivadas.push({
+    id: v.id,
+    titulo: v.titulo,
+    bairro: v.bairro,
+    quote: v.ficha.quote,
+    fonte: v.ficha.fonte
+  });
+
+  const content = document.getElementById('caderneta-content');
+  const empty = document.getElementById('cad-empty');
+  if (empty) empty.remove();
+
+  const card = document.createElement('div');
+  card.className = 'ficha-card';
+  card.innerHTML =
+    '<div class="ficha-num">FICHA ' + ESTADO.fichasArquivadas.length +
+    ' · PINO ' + v.id + ' · ' + v.bairro + '</div>' +
+    '<div class="ficha-quote">' + v.ficha.quote + '</div>' +
+    '<div class="ficha-fonte">' + v.ficha.fonte + '</div>';
+  content.appendChild(card);
+
+  // atualiza badge
+  const badge = document.getElementById('cad-badge');
+  badge.textContent = ESTADO.fichasArquivadas.length;
+  badge.classList.add('show');
+}
 
 /* Dados dos actantes · entra na Parte 4 */
 const ACTANTES = [];
