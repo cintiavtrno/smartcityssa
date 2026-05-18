@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SALVADOR · CIDADE INTELIGENTE · MAPA DE INSPEÇÃO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,700;1,400&family=Archivo+Black&family=DM+Serif+Display:ital@1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   PALETA E VARIÁVEIS
+═══════════════════════════════════════════════ */
+:root {
+  --paper: #EFE5CE;
+  --paperDark: #DDD0B0;
+  --paperLight: #F7EFD9;
+  --ink: #1A1611;
+  --brick: #A8412A;
+  --mustard: #C89339;
+  --blue: #577387;
+  --olive: #5B6B3F;
+  --bone: #F7EFD9;
+  --water: #8BA4B0;
+  --waterDark: #6B8590;
+  --beach: #E8D5A8;
+  --green-park: #7A8B5C;
+  --green-dark: #5B6B3F;
+
+  /* cores das linhas de transporte */
+  --metro-l1: #1E5BA8;
+  --metro-l2: #C8362D;
+  --brt: #D67E1F;
+  --vlt: #5B7C3F;
+
+  /* fontes */
+  --font-mono: 'Space Mono', monospace;
+  --font-sans: 'Archivo', sans-serif;
+  --font-black: 'Archivo Black', sans-serif;
+  --font-serif: 'DM Serif Display', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  font-family: var(--font-sans);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden { display: none !important; }
+
+/* ═══════════════════════════════════════════════
+   BRIEFING DE ABERTURA
+═══════════════════════════════════════════════ */
+#briefing {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.brief-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,22,17,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,22,17,.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.brief-card {
+  position: relative;
+  background: var(--bone);
+  border: 2px solid var(--ink);
+  box-shadow: 12px 12px 0 var(--ink);
+  max-width: 760px;
+  width: 100%;
+  padding: 36px 40px;
+  z-index: 1;
+}
+
+.brief-stamp {
+  font-family: var(--font-black);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--brick);
+  border: 1.5px solid var(--brick);
+  display: inline-block;
+  padding: 5px 12px;
+  margin-bottom: 22px;
+}
+
+.brief-h1 {
+  font-family: var(--font-black);
+  font-size: clamp(22px, 3.8vw, 38px);
+  letter-spacing: 3px;
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.brief-sub {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  opacity: .65;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+
+.brief-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.brief-body p {
+  margin-bottom: 12px;
+}
+
+.brief-divider {
+  height: 1px;
+  background: var(--ink);
+  opacity: .15;
+  margin: 22px 0;
+}
+
+.brief-blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.brief-block {
+  border-left: 3px solid var(--mustard);
+  padding: 6px 0 6px 12px;
+}
+
+.brief-block-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: var(--brick);
+  margin-bottom: 4px;
+}
+
+.brief-block-text {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.brief-footer {
+  border-top: 2px solid var(--ink);
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brief-source {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink);
+  opacity: .55;
+  line-height: 1.5;
+  max-width: 380px;
+}
+
+.brief-btn {
+  font-family: var(--font-black);
+  font-size: 11px;
+  letter-spacing: 3px;
+  padding: 12px 24px;
+  background: var(--ink);
+  color: var(--bone);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  transition: background .2s;
+}
+.brief-btn:hover { background: var(--brick); border-color: var(--brick); }
+
+/* ═══════════════════════════════════════════════
+   APP PRINCIPAL · LAYOUT
+═══════════════════════════════════════════════ */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HEADER ─────────────────────────────────────── */
+header {
+  background: var(--bone);
+  border-bottom: 2px solid var(--ink);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  z-index: 50;
+}
+
+.hdr-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hdr-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--brick);
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-black);
+  font-size: 18px;
+  color: var(--bone);
+}
+
+.hdr-title {
+  font-family: var(--font-black);
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--ink);
+  line-height: 1.05;
+}
+
+.hdr-sub {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  opacity: .65;
+  margin-top: 2px;
+}
+
+.hdr-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hdr-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  transition: background .15s;
+  position: relative;
+}
+.hdr-btn:hover { background: var(--paperDark); }
+
+.hdr-badge {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 17px;
+  height: 17px;
+  background: var(--brick);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  font-family: var(--font-black);
+  font-size: 8px;
+  color: var(--bone);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.hdr-badge.show { display: flex; }
+
+/* CAMADAS · TOGGLE PILLS ───────────────────── */
+.camadas {
+  display: flex;
+  gap: 4px;
+  background: var(--paperDark);
+  border: 1.5px solid var(--ink);
+  padding: 3px;
+}
+
+.camada-btn {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  padding: 6px 11px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background .15s;
+}
+.camada-btn:hover { background: var(--paperLight); }
+.camada-btn.active {
+  background: var(--ink);
+  color: var(--bone);
+}
+
+/* MAPA ─────────────────────────────────────── */
+main {
+  flex: 1;
+  position: relative;
+  background: var(--paper);
+}
+
+.map-wrap {
+  width: 100%;
+  position: relative;
+}
+
+#map-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* legenda flutuante de transportes (canto inferior esquerdo do mapa) */
+.legend-transp {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: var(--bone);
+  border: 1.5px solid var(--ink);
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1.6;
+  z-index: 10;
+}
+.legend-transp-title {
+  font-family: var(--font-black);
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+.legend-line {
+  width: 22px;
+  height: 3px;
+}
+.legend-line.metro-l1 { background: var(--metro-l1); }
+.legend-line.metro-l2 { background: var(--metro-l2); }
+.legend-line.brt { background: var(--brt); }
+.legend-line.vlt { background: var(--vlt); }
+
+/* indicador de coordenadas (canto inferior direito) */
+.coord-tag {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink);
+  opacity: .5;
+  letter-spacing: 1px;
+}
+
+/* ═══════════════════════════════════════════════
+   PINOS DAS VINHETAS
+═══════════════════════════════════════════════ */
+.pino-g { cursor: pointer; }
+.pino-num {
+  font-family: var(--font-black);
+  font-size: 13px;
+  fill: var(--bone);
+  pointer-events: none;
+  user-select: none;
+}
+.pino-num.visited { fill: var(--ink); }
+
+.pino-tooltip {
+  position: absolute;
+  background: var(--ink);
+  color: var(--bone);
+  padding: 6px 10px;
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  border: 1.5px solid var(--mustard);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+  z-index: 20;
+  white-space: nowrap;
+}
+.pino-tooltip.show { opacity: 1; }
+
+/* ═══════════════════════════════════════════════
+   MODAL DA VINHETA (sobreposição)
+═══════════════════════════════════════════════ */
+#modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,22,17,.65);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+#modal-overlay.show { display: flex; }
+
+.modal-card {
+  background: var(--bone);
+  border: 2px solid var(--ink);
+  box-shadow: 12px 12px 0 var(--ink);
+  width: 100%;
+  max-width: 780px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-head {
+  background: var(--ink);
+  color: var(--bone);
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.modal-head-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-num {
+  width: 36px;
+  height: 36px;
+  background: var(--mustard);
+  color: var(--ink);
+  font-family: var(--font-black);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-titulo {
+  font-family: var(--font-black);
+  font-size: 13px;
+  letter-spacing: 2.5px;
+  line-height: 1.1;
+}
+
+.modal-sub {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  opacity: .75;
+  margin-top: 3px;
+}
+
+.modal-close {
+  background: var(--bone);
+  color: var(--ink);
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-family: var(--font-black);
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform .15s;
+}
+.modal-close:hover { transform: rotate(90deg); }
+
+/* TABS ──────────────────────────────────────── */
+.modal-tabs {
+  display: flex;
+  background: var(--paperDark);
+  border-bottom: 1.5px solid var(--ink);
+  flex-shrink: 0;
+}
+
+.tab-btn {
+  flex: 1;
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  padding: 11px 8px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(26,22,17,.15);
+  cursor: pointer;
+  color: var(--ink);
+  transition: background .15s;
+}
+.tab-btn:last-child { border-right: none; }
+.tab-btn:hover { background: var(--paperLight); }
+.tab-btn.active {
+  background: var(--bone);
+  color: var(--brick);
+  border-bottom: 2px solid var(--brick);
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 26px;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* TAB: CENA ─────────────────────────────────── */
+.cena-bairro {
+  font-family: var(--font-black);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--brick);
+  margin-bottom: 10px;
+}
+
+.cena-titulo {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 16px;
+  padding-left: 14px;
+  border-left: 3px solid var(--brick);
+}
+
+.cena-texto p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+/* TAB: COMO FUNCIONA ────────────────────────── */
+.func-titulo {
+  font-family: var(--font-black);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.func-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.func-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  background: var(--paper);
+  border-left: 3px solid var(--mustard);
+}
+
+.func-step-num {
+  font-family: var(--font-black);
+  font-size: 14px;
+  color: var(--mustard);
+  flex-shrink: 0;
+  width: 24px;
+}
+
+.func-step-content {
+  flex: 1;
+}
+
+.func-step-title {
+  font-family: var(--font-black);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.func-step-text {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* TAB: A LEI ────────────────────────────────── */
+.lei-stamp {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--bone);
+  background: var(--olive);
+  display: inline-block;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+
+.lei-titulo {
+  font-family: var(--font-black);
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.lei-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  padding: 12px 16px;
+  background: var(--paper);
+  border-left: 3px solid var(--olive);
+  margin-bottom: 14px;
+}
+
+.lei-fonte {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink);
+  opacity: .7;
+  margin-bottom: 14px;
+}
+
+.lei-comentario {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* TAB: INSPEÇÃO ─────────────────────────────── */
+.insp-intro {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 14px;
+  opacity: .85;
+}
+
+.insp-teia-wrap {
+  position: relative;
+  background: var(--paperDark);
+  border: 1.5px solid var(--ink);
+  margin-bottom: 14px;
+}
+
+.insp-teia-svg {
+  width: 100%;
+  display: block;
+}
+
+.insp-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.insp-leg-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-black);
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--ink);
+}
+
+.insp-leg-color {
+  width: 18px;
+  height: 3px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   PAINÉIS LATERAIS (caderneta, timeline, conexões)
+═══════════════════════════════════════════════ */
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(380px, 92vw);
+  background: var(--bone);
+  border-left: 2px solid var(--ink);
+  z-index: 300;
+  transform: translateX(100%);
+  transition: transform .35s ease;
+  overflow-y: auto;
+}
+.side-panel.open { transform: translateX(0); }
+
+.panel-head {
+  background: var(--ink);
+  color: var(--bone);
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.panel-title {
+  font-family: var(--font-black);
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.panel-close {
+  width: 28px;
+  height: 28px;
+  background: var(--bone);
+  color: var(--ink);
+  border: none;
+  font-family: var(--font-black);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.panel-empty {
+  padding: 24px;
+  font-size: 12px;
+  color: var(--ink);
+  opacity: .5;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+/* timeline específica */
+#timeline-panel .tl-intro {
+  padding: 18px;
+  font-size: 11.5px;
+  color: var(--ink);
+  line-height: 1.55;
+  opacity: .8;
+  border-bottom: 1px solid var(--paperDark);
+}
+
+.tl-track {
+  padding: 14px 0 30px;
+  position: relative;
+}
+.tl-track::before {
+  content: '';
+  position: absolute;
+  left: 36px;
+  top: 0;
+  bottom: 14px;
+  width: 2px;
+  background: var(--ink);
+}
+
+.tl-event {
+  position: relative;
+  padding: 12px 18px 12px 60px;
+  border-bottom: 1px dashed var(--paperDark);
+}
+.tl-event::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: 16px;
+  width: 14px;
+  height: 14px;
+  background: var(--bone);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+.tl-event.brick::before { background: var(--brick); }
+.tl-event.olive::before { background: var(--olive); }
+.tl-event.mustard::before { background: var(--mustard); }
+.tl-event.blue::before { background: var(--blue); }
+
+.tl-year {
+  font-family: var(--font-black);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--brick);
+  margin-bottom: 3px;
+}
+
+.tl-title {
+  font-family: var(--font-black);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.tl-desc {
+  font-size: 11px;
+  color: var(--ink);
+  line-height: 1.5;
+  opacity: .85;
+}
+
+.tl-tag {
+  display: inline-block;
+  font-family: var(--font-black);
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  padding: 2px 6px;
+  background: var(--paperDark);
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+/* caderneta específica */
+.ficha-card {
+  border-bottom: 1px solid var(--paperDark);
+  padding: 14px 18px;
+  animation: fadein .25s ease;
+}
+
+.ficha-num {
+  font-family: var(--font-black);
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  color: var(--brick);
+  margin-bottom: 6px;
+}
+
+.ficha-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.ficha-fonte {
+  font-size: 9px;
+  color: var(--ink);
+  opacity: .6;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER · ÍNDICE DE PINOS
+═══════════════════════════════════════════════ */
+footer {
+  background: var(--paperDark);
+  border-top: 2px solid var(--ink);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.foot-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: var(--ink);
+}
+
+.foot-pins {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.foot-pin {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  opacity: .55;
+  transition: opacity .2s, background .15s;
+}
+.foot-pin.visited { opacity: 1; background: var(--ink); }
+.foot-pin.visited .fp-id { color: var(--bone); }
+.foot-pin.visited .fp-name { color: var(--bone); }
+.foot-pin .fp-id {
+  font-family: var(--font-black);
+  font-size: 9px;
+  color: var(--ink);
+}
+.foot-pin .fp-name {
+  font-size: 8px;
+  letter-spacing: .8px;
+  color: var(--ink);
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.foot-count {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.foot-count-label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--ink);
+  opacity: .7;
+}
+
+.foot-count-num {
+  font-family: var(--font-black);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+/* ═══════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════ */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink);
+  color: var(--bone);
+  padding: 10px 20px;
+  border: 1.5px solid var(--brick);
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  opacity: 0;
+  transition: opacity .3s, transform .3s;
+  z-index: 500;
+  pointer-events: none;
+}
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMAÇÕES DOS TRANSPORTES
+═══════════════════════════════════════════════ */
+@keyframes pulse-pin {
+  0%, 100% { opacity: .5; r: 14; }
+  50% { opacity: 0; r: 22; }
+}
+
+@keyframes move-along {
+  to { offset-distance: 100%; }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVO BÁSICO
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .brief-blocks { grid-template-columns: 1fr; }
+  .brief-card { padding: 24px; box-shadow: 6px 6px 0 var(--ink); }
+  header { padding: 8px 12px; }
+  .hdr-title { font-size: 12px; letter-spacing: 2px; }
+  .hdr-sub { font-size: 8px; }
+  .camadas { order: 3; width: 100%; }
+  .modal-card { max-height: 96vh; }
+  .modal-body { padding: 16px 18px; }
+  .legend-transp { font-size: 8px; padding: 7px 9px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     BRIEFING DE ABERTURA
+═══════════════════════════════════════════════ -->
+<section id="briefing">
+  <div class="brief-grid"></div>
+  <div class="brief-card">
+    <div class="brief-stamp">DOCUMENTO TÉCNICO · LEITURA PARA O GABINETE</div>
+    <h1 class="brief-h1">SALVADOR · CIDADE INTELIGENTE</h1>
+    <div class="brief-sub">Mapa de inspeção territorial · Inventário neomaterialista</div>
+
+    <div class="brief-body">
+      <p>Este artefato não é um relatório nem uma denúncia. É um <strong>mapa de inspeção</strong>. Ele reúne, num único território navegável, as infraestruturas técnicas que já operam em Salvador, as leis que as autorizam, e os efeitos materiais que produzem sobre o cotidiano da população.</p>
+      <p>A premissa é simples: a cidade física, governada pelo PDDU de 2016 e por décadas de luta urbana, está hoje sobreposta por uma segunda cidade, técnica, governada por contratos de longo prazo com fornecedores privados de tecnologia, por algoritmos cuja lógica é segredo comercial, e por infraestruturas físicas cuja decisão de localização não passou por audiência pública vinculante. Essa segunda cidade não foi votada na Câmara. Ela foi instalada.</p>
+    </div>
+
+    <div class="brief-divider"></div>
+
+    <div class="brief-blocks">
+      <div class="brief-block">
+        <div class="brief-block-label">JÁ INSTALADO EM SALVADOR</div>
+        <div class="brief-block-text">1.500 km de fibra óptica (Infovia Salvador). 1.100 unidades públicas conectadas. 300 câmeras do NOA da Transalvador operando há cerca de 10 anos. CCO Lobato em fase avançada de obras. Vídeo Policiamento estadual ativo em metrô, terminais e ferry-boats.</div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">PREVISTO ATÉ 2049</div>
+        <div class="brief-block-text">10.000 câmeras integradas ao COI estadual. Linha 2 do metrô até o Aeroporto. BRT pleno na ACM/Juracy/Vasco da Gama. VLT no Subúrbio Ferroviário. Nuvem Urbana delegada à Companhia SMART (PDTCI Art. 21).</div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">QUADRO LEGAL</div>
+        <div class="brief-block-text">PDDU 2016 (Lei nº 9.069/2016) · PDTCI 2025 (Lei Complementar nº 92/2025) · Plano Salvador 500 · LGPD federal (Lei 13.709/2018) · acordos estaduais para integração com o COI.</div>
+      </div>
+      <div class="brief-block">
+        <div class="brief-block-label">COMO LER ESTE MAPA</div>
+        <div class="brief-block-text">Oito pinos numerados ancorados em coordenadas reais. Três camadas alternáveis (administrativa, infraestrutura, vigilância). Linhas de transporte animadas. Cada pino abre quatro abas: cena, funcionamento técnico, lei e inspeção de actantes.</div>
+      </div>
+    </div>
+
+    <div class="brief-footer">
+      <div class="brief-source">
+        Fontes: Lei Complementar 92/2025 · PDDU Lei 9069/2016 · Plano Salvador 500 · documentação técnica de licitações da SMART e da Transalvador · pesquisa OPANÓPTICO/CESeC/LAPIN 2024 sobre transparência em reconhecimento facial · linha tecnourbana de Salvador.
+      </div>
+      <button class="brief-btn" id="brief-start">→ ABRIR O MAPA</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     APP PRINCIPAL
+═══════════════════════════════════════════════ -->
+<div id="app" class="hidden">
+
+  <!-- HEADER ─────────────────────────── -->
+  <header>
+    <div class="hdr-left">
+      <div class="hdr-icon">◉</div>
+      <div>
+        <div class="hdr-title">SALVADOR · MAPA DE INSPEÇÃO</div>
+        <div class="hdr-sub">CIDADE INTELIGENTE · PDDU 2016 + PDTCI 2025</div>
+      </div>
+    </div>
+
+    <div class="hdr-right">
+      <div class="camadas" id="camadas">
+        <button class="camada-btn active" data-camada="admin">ZONEAMENTO</button>
+        <button class="camada-btn" data-camada="infra">INFRAESTRUTURA</button>
+        <button class="camada-btn" data-camada="vigil">VIGILÂNCIA</button>
+      </div>
+
+      <button class="hdr-btn" onclick="toggleTimeline()">
+        ▶ LINHA DO TEMPO
+      </button>
+      <button class="hdr-btn" onclick="toggleCaderneta()">
+        ▤ CADERNETA
+        <span class="hdr-badge" id="cad-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAPA ─────────────────────────────── -->
+  <main>
+    <div class="map-wrap">
+      <!-- O SVG do mapa entra na Parte 2 -->
+      <svg id="map-svg" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <!-- placeholder · será preenchido na Parte 2 -->
+        <rect width="1200" height="800" fill="var(--paper)"/>
+        <text x="600" y="400" text-anchor="middle"
+              font-family="var(--font-mono)" font-size="14" fill="var(--ink)" opacity=".5">
+          ◉ MAPA DE SALVADOR · CARREGAMENTO NA PARTE 2
+        </text>
+      </svg>
+
+      <div class="legend-transp">
+        <div class="legend-transp-title">TRANSPORTE DE ALTA CAPACIDADE</div>
+        <div class="legend-row"><div class="legend-line metro-l1"></div>METRÔ · LINHA 1 (Lapa → Águas Claras)</div>
+        <div class="legend-row"><div class="legend-line metro-l2"></div>METRÔ · LINHA 2 (Acesso Norte → Aeroporto)</div>
+        <div class="legend-row"><div class="legend-line brt"></div>BRT · ACM / Juracy / Vasco da Gama</div>
+        <div class="legend-row"><div class="legend-line vlt"></div>VLT · Subúrbio Ferroviário (em obras)</div>
+      </div>
+
+      <div class="coord-tag">12°58'S · 38°30'W · ESC. INDETERMINADA</div>
+    </div>
+  </main>
+
+  <!-- FOOTER ─────────────────────────── -->
+  <footer>
+    <div class="foot-label">PINOS DE INSPEÇÃO</div>
+    <div class="foot-pins" id="foot-pins">
+      <!-- será preenchido por JS -->
+    </div>
+    <div class="foot-count">
+      <span class="foot-count-label">VISITADOS</span>
+      <span class="foot-count-num" id="foot-count">0/8</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MODAL DA VINHETA
+═══════════════════════════════════════════════ -->
+<div id="modal-overlay">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <div class="modal-num" id="modal-num">—</div>
+        <div>
+          <div class="modal-titulo" id="modal-titulo">—</div>
+          <div class="modal-sub" id="modal-sub">—</div>
+        </div>
+      </div>
+      <button class="modal-close" id="modal-close">×</button>
+    </div>
+
+    <div class="modal-tabs">
+      <button class="tab-btn active" data-tab="cena">A CENA</button>
+      <button class="tab-btn" data-tab="func">COMO FUNCIONA</button>
+      <button class="tab-btn" data-tab="lei">A LEI</button>
+      <button class="tab-btn" data-tab="insp">INSPEÇÃO</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="tab-content active" id="tab-cena"></div>
+      <div class="tab-content" id="tab-func"></div>
+      <div class="tab-content" id="tab-lei"></div>
+      <div class="tab-content" id="tab-insp"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAINEL CADERNETA
+═══════════════════════════════════════════════ -->
+<aside class="side-panel" id="caderneta-panel">
+  <div class="panel-head">
+    <div class="panel-title">▤ CADERNETA DE CAMPO</div>
+    <button class="panel-close" onclick="toggleCaderneta()">×</button>
+  </div>
+  <div id="caderneta-content">
+    <div class="panel-empty" id="cad-empty">
+      Nenhuma ficha arquivada ainda.<br><br>
+      Cada pino visitado deixará aqui uma citação técnica ou legal usada na vinheta — com autoria e referência.
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════
+     PAINEL LINHA DO TEMPO
+═══════════════════════════════════════════════ -->
+<aside class="side-panel" id="timeline-panel">
+  <div class="panel-head">
+    <div class="panel-title">▶ LINHA DO TEMPO · SALVADOR</div>
+    <button class="panel-close" onclick="toggleTimeline()">×</button>
+  </div>
+  <div class="tl-intro">
+    Três décadas de planejamento e instalação: do conceito acadêmico de smart city ao Plano Diretor de Tecnologias da Cidade Inteligente de Salvador (Lei Complementar 92/2025), passando pelo PDDU 2016, pelo COR carioca, pela LGPD e pela operação real do COI estadual.
+  </div>
+  <div class="tl-track">
+    <div class="tl-event">
+      <div class="tl-year">Anos 1990</div>
+      <div class="tl-title">CONCEITO ACADÊMICO</div>
+      <div class="tl-desc">A expressão "smart city" circula em estudos de tecnologia aplicada à gestão urbana. Ainda como utopia técnica, sem aparato comercial.</div>
+    </div>
+    <div class="tl-event blue">
+      <div class="tl-year">2008</div>
+      <div class="tl-title">IBM "SMARTER PLANET"</div>
+      <div class="tl-desc">A IBM lança a campanha global. A cidade inteligente vira produto vendável a prefeituras. Cisco, Siemens e Microsoft seguem.</div>
+    </div>
+    <div class="tl-event blue">
+      <div class="tl-year">2010</div>
+      <div class="tl-title">CENTRO DE OPERAÇÕES RIO (COR)</div>
+      <div class="tl-desc">Prefeitura do Rio inaugura, com IBM e Cisco, o primeiro grande COI da América Latina. Modelo replicado depois por dezenas de prefeituras, inclusive Salvador.</div>
+    </div>
+    <div class="tl-event mustard">
+      <div class="tl-year">2014–2016</div>
+      <div class="tl-title">COPA E LEGADO TECNOLÓGICO</div>
+      <div class="tl-desc">Megaeventos deixam infraestrutura de câmeras de alta definição, centros integrados e contratos de manutenção de longo prazo com fornecedores estrangeiros.</div>
+    </div>
+    <div class="tl-event brick">
+      <div class="tl-year">2016</div>
+      <div class="tl-title">PDDU SALVADOR · LEI 9069/2016</div>
+      <div class="tl-desc">Plano Diretor de Desenvolvimento Urbano de Salvador. Define cinco macroáreas, áreas de proteção, eixos estruturantes e o Plano Salvador 500 com horizonte em 2049.</div>
+      <span class="tl-tag">BASE LEGAL</span>
+    </div>
+    <div class="tl-event olive">
+      <div class="tl-year">2018</div>
+      <div class="tl-title">LGPD APROVADA (Lei 13.709)</div>
+      <div class="tl-desc">A Lei Geral de Proteção de Dados é sancionada. Prevê direito à revisão de decisões automatizadas (Art. 20), mas a ANPD demora 3 anos para começar a operar.</div>
+    </div>
+    <div class="tl-event blue">
+      <div class="tl-year">2019–2024</div>
+      <div class="tl-title">NOA TRANSALVADOR + COI ESTADUAL</div>
+      <div class="tl-desc">O Núcleo de Operação Assistida da Transalvador opera com cerca de 300 câmeras nas vias urbanas. O COI estadual no CAB integra Vídeo Policiamento em metrô, rodoviárias e ferry-boats com reconhecimento facial.</div>
+      <span class="tl-tag">OPERANDO HOJE</span>
+    </div>
+    <div class="tl-event olive">
+      <div class="tl-year">2021</div>
+      <div class="tl-title">ANPD COMEÇA A FISCALIZAR</div>
+      <div class="tl-desc">Autoridade Nacional de Proteção de Dados começa a operar. Multas e advertências aparecem a partir de 2022, mas as smart cities já estão instaladas.</div>
+    </div>
+    <div class="tl-event brick">
+      <div class="tl-year">2025</div>
+      <div class="tl-title">PDTCI · LEI COMPLEMENTAR 92/2025</div>
+      <div class="tl-desc">Plano Diretor de Tecnologias da Cidade Inteligente. Institui a Infovia Salvador, a Nuvem Urbana, o Observatório da Cidade. Delega à Companhia SMART a operacionalização da nuvem (Art. 21). Reorganiza administrativamente a SEMIT.</div>
+      <span class="tl-tag">MARCO ATUAL</span>
+    </div>
+    <div class="tl-event mustard">
+      <div class="tl-year">2026</div>
+      <div class="tl-title">CCO LOBATO EM CONSTRUÇÃO AVANÇADA</div>
+      <div class="tl-desc">Centro de Controle Operacional da Prefeitura no Subúrbio Ferroviário integra Defesa Civil (Codesal), SAMU, Guarda Municipal e malha de câmeras. Meta de 10.000 câmeras integradas ao COI estadual.</div>
+      <span class="tl-tag">ESTE MAPA</span>
+    </div>
+    <div class="tl-event">
+      <div class="tl-year">2049</div>
+      <div class="tl-title">HORIZONTE PLANO SALVADOR 500</div>
+      <div class="tl-desc">Marco previsto para conclusão da estruturação urbana planejada (metrô Linha 2 completa, VLT pleno, BRT integrado, Parque Tecnológico expandido, Nuvem Urbana plenamente operacional).</div>
+    </div>
+  </div>
+</aside>
+
+<div id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   PARTE 1 · BOOT MÍNIMO
+   Apenas a transição briefing → app, abertura/fechamento
+   de painéis e toast. Toda lógica do mapa, pinos e
+   modais entra nas Partes 2, 3 e 4.
+═══════════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Abertura: briefing → app
+  document.getElementById('brief-start').addEventListener('click', function() {
+    const brief = document.getElementById('briefing');
+    brief.style.opacity = '0';
+    brief.style.transition = 'opacity .5s';
+    setTimeout(function() {
+      brief.style.display = 'none';
+      document.getElementById('app').classList.remove('hidden');
+      // boot do mapa será chamado aqui na Parte 2
+      if (typeof initMapa === 'function') initMapa();
+      if (typeof renderFooterPins === 'function') renderFooterPins();
+    }, 500);
+  });
+
+  // Camadas (toggle visual, lógica de aplicar/esconder na Parte 2)
+  document.querySelectorAll('.camada-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.camada-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+      const camada = btn.getAttribute('data-camada');
+      if (typeof aplicarCamada === 'function') aplicarCamada(camada);
+    });
+  });
+
+  // Fechar modal
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Tabs do modal
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const tab = btn.getAttribute('data-tab');
+      document.querySelectorAll('.tab-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-content').forEach(function(c) {
+        c.classList.remove('active');
+      });
+      btn.classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+    });
+  });
+
+});
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('show');
+}
+
+function toggleCaderneta() {
+  document.getElementById('timeline-panel').classList.remove('open');
+  document.getElementById('caderneta-panel').classList.toggle('open');
+}
+
+function toggleTimeline() {
+  document.getElementById('caderneta-panel').classList.remove('open');
+  document.getElementById('timeline-panel').classList.toggle('open');
+}
+
+function showToast(msg, duration) {
+  duration = duration || 3000;
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(function() { el.classList.remove('show'); }, duration);
+}
+
+/* Estado global · será preenchido nas partes seguintes */
+const ESTADO = {
+  pinosVisitados: new Set(),
+  fichasArquivadas: [],
+  camadaAtiva: 'admin',
+  pinoAtual: null,
+  conexoesTracadas: new Set()
+};
+
+/* Dados das vinhetas · entra na Parte 3 */
+const VINHETAS = [];
+
+/* Dados dos actantes · entra na Parte 4 */
+const ACTANTES = [];
+
+</script>
+</body>
+</html>
