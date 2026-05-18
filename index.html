@@ -1293,438 +1293,436 @@ footer {
       <!-- O SVG do mapa entra na Parte 2 -->
       <svg id="map-svg" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
 
-  <!-- ═══════════════════════════════════════════════
-       DEFINIÇÕES (padrões de hachura, gradientes)
-  ═══════════════════════════════════════════════ -->
   <defs>
     <pattern id="grid-paper" patternUnits="userSpaceOnUse" width="24" height="24">
       <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1A1611" stroke-width=".3" opacity=".10"/>
     </pattern>
-
     <pattern id="hatch-water" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(15)">
       <line x1="0" y1="0" x2="0" y2="8" stroke="#577387" stroke-width=".6" opacity=".35"/>
     </pattern>
-
     <pattern id="hatch-beach" patternUnits="userSpaceOnUse" width="6" height="6">
       <circle cx="2" cy="2" r=".7" fill="#1A1611" opacity=".25"/>
     </pattern>
-
     <pattern id="hatch-mata" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="10" stroke="#5B6B3F" stroke-width="1" opacity=".55"/>
     </pattern>
-
-    <pattern id="hatch-admin-uc" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(-30)">
-      <line x1="0" y1="0" x2="0" y2="8" stroke="#A8412A" stroke-width=".5" opacity=".25"/>
+    <pattern id="hatch-admin-mim" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(-30)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#D67E1F" stroke-width=".6" opacity=".35"/>
+    </pattern>
+    <pattern id="hatch-admin-muc" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#C89339" stroke-width=".6" opacity=".35"/>
+    </pattern>
+    <pattern id="hatch-admin-mub" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(0)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#9B7AB8" stroke-width=".6" opacity=".35"/>
+    </pattern>
+    <pattern id="hatch-admin-mrb" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(90)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#1E5BA8" stroke-width=".6" opacity=".35"/>
+    </pattern>
+    <pattern id="hatch-admin-mrba" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(60)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#3D8B7A" stroke-width=".6" opacity=".35"/>
     </pattern>
 
-    <pattern id="hatch-admin-eu" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
-      <line x1="0" y1="0" x2="0" y2="8" stroke="#C89339" stroke-width=".5" opacity=".25"/>
-    </pattern>
-
-    <pattern id="hatch-admin-bb" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(0)">
-      <line x1="0" y1="0" x2="0" y2="8" stroke="#577387" stroke-width=".5" opacity=".25"/>
-    </pattern>
-
-    <pattern id="hatch-admin-ba" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(90)">
-      <line x1="0" y1="0" x2="0" y2="8" stroke="#5B6B3F" stroke-width=".5" opacity=".25"/>
-    </pattern>
-
-    <pattern id="hatch-admin-im" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(60)">
-      <line x1="0" y1="0" x2="0" y2="8" stroke="#1A1611" stroke-width=".5" opacity=".22"/>
-    </pattern>
-
-    <!-- TRAÇADOS para a animação (offset-path / motion path) -->
-    <!-- Metrô L1: Lapa (Centro) → Acesso Norte → Pirajá → Águas Claras -->
+    <!-- TRAÇADOS DE ANIMAÇÃO DOS TRANSPORTES -->
+    <!-- Metrô L1: Lapa (MUC) → Acesso Norte → Águas Claras (MIM) -->
     <path id="path-metro-l1"
-          d="M 415 410 L 470 360 L 545 305 L 605 248 L 670 210 L 740 175 L 820 148"
+          d="M 470 555 L 510 490 L 545 420 L 565 360 L 580 305 L 575 250"
           fill="none" stroke="none"/>
     <!-- Metrô L2: Acesso Norte → Av. Paralela → Aeroporto -->
     <path id="path-metro-l2"
-          d="M 605 248 L 700 270 L 800 305 L 905 345 L 1020 385 L 1110 425"
+          d="M 580 305 L 670 320 L 770 318 L 870 295 L 970 255 L 1060 215"
           fill="none" stroke="none"/>
-    <!-- BRT: ACM/Juracy → Vasco da Gama → Lapa -->
+    <!-- BRT: Comércio/Lapa → ACM/Vasco da Gama → Iguatemi → Pituba -->
     <path id="path-brt"
-          d="M 880 340 L 800 360 L 720 385 L 640 408 L 560 425 L 480 435 L 415 410"
+          d="M 430 525 L 520 555 L 610 580 L 700 600 L 790 610 L 870 615"
           fill="none" stroke="none"/>
-    <!-- VLT: Subúrbio Ferroviário (Calçada → Lobato → Paripe) -->
+    <!-- VLT: Calçada → Lobato → Periperi → Paripe -->
     <path id="path-vlt"
-          d="M 350 470 L 320 490 L 295 510 L 275 525 L 258 540 L 245 555"
+          d="M 250 565 L 248 490 L 246 410 L 244 330 L 248 240"
           fill="none" stroke="none"/>
   </defs>
 
-  <!-- ═══════════════════════════════════════════════
-       FUNDO E PAPEL MILIMETRADO
-  ═══════════════════════════════════════════════ -->
+  <!-- FUNDO E PAPEL MILIMETRADO -->
   <rect width="1200" height="800" fill="#EFE5CE"/>
   <rect width="1200" height="800" fill="url(#grid-paper)"/>
 
-  <!-- ═══════════════════════════════════════════════
-       BAÍA DE TODOS OS SANTOS (oeste e norte)
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ BAÍA DE TODOS OS SANTOS (oeste · reduzida) ═══ -->
   <path id="baia"
-        d="M 0 0 L 1200 0 L 1200 60
-           Q 1050 75 920 95 Q 800 115 700 140 Q 620 170 555 215
-           Q 490 270 420 330 Q 360 390 310 460 Q 270 530 240 600
-           Q 215 670 195 750 L 195 800 L 0 800 Z"
-        fill="#8BA4B0" opacity=".55"/>
-  <path id="baia-hatch"
-        d="M 0 0 L 1200 0 L 1200 60
-           Q 1050 75 920 95 Q 800 115 700 140 Q 620 170 555 215
-           Q 490 270 420 330 Q 360 390 310 460 Q 270 530 240 600
-           Q 215 670 195 750 L 195 800 L 0 800 Z"
+        d="M 0 0 L 380 0
+           Q 360 80 340 140 Q 320 200 290 260
+           Q 270 305 250 350 Q 235 410 230 470
+           Q 225 540 220 600 Q 215 680 215 800
+           L 0 800 Z"
+        fill="#8BA4B0" opacity=".58"/>
+  <path d="M 0 0 L 380 0
+           Q 360 80 340 140 Q 320 200 290 260
+           Q 270 305 250 350 Q 235 410 230 470
+           Q 225 540 220 600 Q 215 680 215 800
+           L 0 800 Z"
         fill="url(#hatch-water)"/>
-
-  <text x="120" y="380" font-family="'Archivo Black',sans-serif" font-size="13"
-        fill="#1A1611" opacity=".45" letter-spacing="3" transform="rotate(-35 120 380)">
+  <text x="100" y="430" font-family="'Archivo Black',sans-serif" font-size="13"
+        fill="#1A1611" opacity=".45" letter-spacing="3" transform="rotate(-78 100 430)">
     BAÍA DE TODOS OS SANTOS
   </text>
 
-  <!-- Ilha de Itaparica (referência geográfica do horizonte) -->
-  <ellipse cx="60" cy="500" rx="55" ry="120" fill="#1A1611" opacity=".15"/>
-  <text x="60" y="500" text-anchor="middle" font-family="'Space Mono',monospace"
-        font-size="8" fill="#1A1611" opacity=".5" letter-spacing="1">
-    ITAPARICA
-  </text>
+  <!-- Ilha de Maré (referência geográfica) -->
+  <ellipse cx="120" cy="110" rx="42" ry="28" fill="#7A8B5C" opacity=".5"/>
+  <ellipse cx="120" cy="110" rx="42" ry="28" fill="url(#hatch-mata)" opacity=".6"/>
+  <text x="120" y="113" text-anchor="middle" font-family="'Space Mono',monospace"
+        font-size="7" fill="#1A1611" opacity=".75" letter-spacing="1">ILHA DE MARÉ</text>
 
-  <!-- ═══════════════════════════════════════════════
-       OCEANO ATLÂNTICO (leste)
-  ═══════════════════════════════════════════════ -->
+  <!-- Ilha de Bom Jesus dos Passos -->
+  <ellipse cx="155" cy="385" rx="22" ry="14" fill="#7A8B5C" opacity=".5"/>
+  <ellipse cx="155" cy="385" rx="22" ry="14" fill="url(#hatch-mata)" opacity=".6"/>
+  <text x="155" y="388" text-anchor="middle" font-family="'Space Mono',monospace"
+        font-size="6" fill="#1A1611" opacity=".7" letter-spacing="1">B. JESUS</text>
+
+  <!-- ═══ OCEANO ATLÂNTICO (sul + sudeste) ═══ -->
   <path id="atlantico"
-        d="M 1200 200 Q 1150 240 1110 290 Q 1080 350 1065 420
-           Q 1055 500 1060 580 Q 1070 660 1085 740 L 1085 800 L 1200 800 Z"
-        fill="#6B8590" opacity=".55"/>
-  <path d="M 1200 200 Q 1150 240 1110 290 Q 1080 350 1065 420
-           Q 1055 500 1060 580 Q 1070 660 1085 740 L 1085 800 L 1200 800 Z"
+        d="M 1200 220 Q 1180 260 1150 290 Q 1120 330 1095 380
+           Q 1080 430 1075 490 Q 1075 560 1090 620
+           L 1200 660 L 1200 800 L 380 800
+           Q 420 760 480 740 Q 560 720 650 710
+           Q 760 700 870 695 Q 980 690 1075 685
+           L 1095 660 Z"
+        fill="#6B8590" opacity=".58"/>
+  <path d="M 1200 220 Q 1180 260 1150 290 Q 1120 330 1095 380
+           Q 1080 430 1075 490 Q 1075 560 1090 620
+           L 1200 660 L 1200 800 L 380 800
+           Q 420 760 480 740 Q 560 720 650 710
+           Q 760 700 870 695 Q 980 690 1075 685
+           L 1095 660 Z"
         fill="url(#hatch-water)"/>
-
-  <text x="1130" y="500" font-family="'Archivo Black',sans-serif" font-size="13"
-        fill="#1A1611" opacity=".45" letter-spacing="3" transform="rotate(90 1130 500)">
+  <text x="1135" y="500" font-family="'Archivo Black',sans-serif" font-size="13"
+        fill="#1A1611" opacity=".45" letter-spacing="3" transform="rotate(90 1135 500)">
     OCEANO ATLÂNTICO
   </text>
 
-  <!-- ═══════════════════════════════════════════════
-       PRAIAS (faixa bege ao longo da costa atlântica)
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ FAIXA DE PRAIAS (costa atlântica) ═══ -->
   <path id="praias"
-        d="M 1085 290 Q 1065 360 1055 430 Q 1050 510 1055 590 Q 1063 670 1078 740
-           L 1085 740 Q 1070 660 1060 580 Q 1055 500 1065 420 Q 1080 350 1110 290 Z"
-        fill="#E8D5A8"/>
-  <path d="M 1085 290 Q 1065 360 1055 430 Q 1050 510 1055 590 Q 1063 670 1078 740
-           L 1085 740 Q 1070 660 1060 580 Q 1055 500 1065 420 Q 1080 350 1110 290 Z"
-        fill="url(#hatch-beach)" opacity=".7"/>
+        d="M 1095 380 Q 1080 430 1075 490 Q 1075 560 1090 620 L 1075 625
+           Q 1060 615 1045 615 L 920 640 Q 800 660 700 670
+           Q 600 678 510 685 Q 440 698 410 712 L 425 725
+           Q 470 712 540 705 Q 640 695 750 690 Q 870 685 980 682
+           Q 1070 680 1085 685 L 1095 660 L 1095 380 Z"
+        fill="#E8D5A8" opacity=".75"/>
+  <path d="M 1095 380 Q 1080 430 1075 490 Q 1075 560 1090 620 L 1075 625
+           Q 1060 615 1045 615 L 920 640 Q 800 660 700 670
+           Q 600 678 510 685 Q 440 698 410 712 L 425 725
+           Q 470 712 540 705 Q 640 695 750 690 Q 870 685 980 682
+           Q 1070 680 1085 685 L 1095 660 L 1095 380 Z"
+        fill="url(#hatch-beach)" opacity=".5"/>
 
-  <!-- Nomes das praias -->
-  <g font-family="'Space Mono',monospace" font-size="7" fill="#1A1611" opacity=".7" letter-spacing="1">
-    <text x="1058" y="340" transform="rotate(75 1058 340)">PORTO DA BARRA</text>
-    <text x="1052" y="410" transform="rotate(80 1052 410)">ONDINA · BARRA</text>
-    <text x="1048" y="490" transform="rotate(85 1048 490)">RIO VERMELHO</text>
-    <text x="1048" y="570" transform="rotate(85 1048 570)">PITUBA · JARDIM</text>
-    <text x="1050" y="650" transform="rotate(85 1050 650)">PIATÃ · ITAPUÃ</text>
-    <text x="1056" y="725" transform="rotate(78 1056 725)">STELLA MARIS</text>
-  </g>
-
-  <!-- ═══════════════════════════════════════════════
-       PENÍNSULA DE ITAPAGIPE (norte da Cidade Baixa)
-  ═══════════════════════════════════════════════ -->
-  <path id="itapagipe"
-        d="M 280 410 Q 320 380 360 360 L 410 350 Q 440 360 460 380
-           L 455 410 L 430 435 Q 400 445 360 445 Q 320 440 290 425 Z"
-        fill="#DDD0B0" stroke="#1A1611" stroke-width=".8"/>
-  <text x="370" y="402" text-anchor="middle" font-family="'Space Mono',monospace"
-        font-size="8" fill="#1A1611" opacity=".65" letter-spacing="1.5">
-    ITAPAGIPE · BONFIM · RIBEIRA
-  </text>
-
-  <!-- ═══════════════════════════════════════════════
-       MASSA TERRESTRE DE SALVADOR
-       (silhueta principal · será preenchida por camada)
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ MASSA TERRESTRE DE SALVADOR ═══ -->
   <path id="terra-base"
-        d="M 195 750 Q 215 670 240 600 Q 270 530 310 460 Q 360 390 420 330
-           Q 490 270 555 215 Q 620 170 700 140 Q 800 115 920 95
-           Q 1050 75 1200 60 L 1200 200 Q 1150 240 1110 290
-           Q 1080 350 1065 420 Q 1055 500 1060 580 Q 1070 660 1085 740
-           L 1085 800 L 195 800 Z"
+        d="M 215 800 Q 220 700 225 600 Q 230 510 240 430
+           Q 250 360 270 290 Q 295 230 320 170
+           Q 350 110 380 60 L 1095 60
+           Q 1110 110 1130 160 Q 1145 200 1150 230
+           L 1095 380 Q 1080 430 1075 490 Q 1075 560 1090 620
+           L 1075 625 Q 1060 615 1045 615 L 920 640
+           Q 800 660 700 670 Q 600 678 510 685
+           Q 440 698 410 712 Z"
         fill="#EFE5CE" stroke="#1A1611" stroke-width="1.2"/>
+
+  <!-- Saliência da península de Itapagipe (sai um pouco pra Baía) -->
+  <path d="M 215 360 Q 195 340 178 330 L 168 345 Q 175 360 200 375 Q 215 380 235 380 Z"
+        fill="#DDD0B0" stroke="#1A1611" stroke-width=".8"/>
 
   <!-- ═══════════════════════════════════════════════
        CAMADA ADMINISTRATIVA · MACROÁREAS DO PDDU
-       (visível por padrão · controlada por #layer-admin)
   ═══════════════════════════════════════════════ -->
   <g id="layer-admin">
 
-    <!-- MUC · Urbanização Consolidada · amarelo · centro -->
+    <!-- MIM · Integração Metropolitana · faixa norte vertical (BR-324 + Av. Paralela) -->
     <g opacity=".82">
-      <path d="M 330 420 Q 370 390 440 385 Q 510 382 560 400
-               Q 610 420 620 470 Q 625 520 590 555
-               Q 555 588 500 595 Q 440 598 390 578
-               Q 345 555 330 510 Q 318 468 330 420 Z"
-            fill="url(#hatch-admin-eu)" stroke="#C89339" stroke-width=".8" stroke-dasharray="3 3"/>
-      <text x="468" y="492" text-anchor="middle"
-            font-family="'Archivo Black',sans-serif" font-size="10"
-            fill="#C89339" opacity=".9" letter-spacing="2">MUC</text>
-      <text x="468" y="506" text-anchor="middle"
+      <path d="M 460 90 Q 540 75 620 85 Q 670 100 660 165
+               Q 650 215 615 255 Q 590 285 555 305
+               Q 510 320 470 305 Q 440 280 445 230
+               Q 450 175 455 130 Q 458 105 460 90 Z"
+            fill="url(#hatch-admin-mim)" stroke="#D67E1F" stroke-width=".9" stroke-dasharray="3 3"/>
+      <text x="552" y="180" text-anchor="middle"
+            font-family="'Archivo Black',sans-serif" font-size="11"
+            fill="#D67E1F" opacity=".95" letter-spacing="2.5">MIM</text>
+      <text x="552" y="194" text-anchor="middle"
             font-family="'Archivo Black',sans-serif" font-size="7"
-            fill="#C89339" opacity=".75" letter-spacing="1.5">URBANIZAÇÃO CONSOLIDADA</text>
+            fill="#D67E1F" opacity=".8" letter-spacing="1.5">INTEGRAÇÃO METROPOLITANA</text>
     </g>
 
-    <!-- MIM · Integração Metropolitana · laranja · centro-alto -->
+    <!-- MuB · Estruturação Urbana · maior região, à direita do MIM -->
     <g opacity=".82">
-      <path d="M 460 195 Q 510 175 575 178 Q 640 182 685 215
-               Q 720 245 715 295 Q 708 345 668 372
-               Q 628 395 578 390 Q 528 382 492 350
-               Q 455 315 450 268 Q 446 225 460 195 Z"
-            fill="url(#hatch-admin-im)" stroke="#A8412A" stroke-width=".8" stroke-dasharray="3 3"/>
-      <text x="582" y="292" text-anchor="middle"
-            font-family="'Archivo Black',sans-serif" font-size="10"
-            fill="#A8412A" opacity=".9" letter-spacing="2">MIM</text>
-      <text x="582" y="306" text-anchor="middle"
+      <path d="M 660 165 Q 740 145 830 158 Q 920 175 950 240
+               Q 970 305 945 370 Q 915 430 855 458
+               Q 790 478 720 470 Q 660 458 625 415
+               Q 605 365 615 305 Q 630 240 660 195 Z"
+            fill="url(#hatch-admin-mub)" stroke="#9B7AB8" stroke-width=".9" stroke-dasharray="3 3"/>
+      <text x="790" y="310" text-anchor="middle"
+            font-family="'Archivo Black',sans-serif" font-size="11"
+            fill="#9B7AB8" opacity=".95" letter-spacing="2.5">MuB</text>
+      <text x="790" y="324" text-anchor="middle"
             font-family="'Archivo Black',sans-serif" font-size="7"
-            fill="#A8412A" opacity=".75" letter-spacing="1.5">INTEGRAÇÃO METROPOLITANA</text>
+            fill="#9B7AB8" opacity=".8" letter-spacing="1.5">ESTRUTURAÇÃO URBANA</text>
     </g>
 
-    <!-- MuB · Estruturação Urbana · roxo · centro-direita -->
+    <!-- MUC · Urbanização Consolidada · cápsula horizontal central -->
     <g opacity=".82">
-      <path d="M 575 310 Q 635 285 715 288 Q 800 292 848 338
-               Q 888 378 882 438 Q 875 498 828 535
-               Q 778 568 715 568 Q 645 565 598 525
-               Q 558 488 558 435 Q 558 365 575 310 Z"
-            fill="url(#hatch-admin-uc)" stroke="#577387" stroke-width=".8" stroke-dasharray="3 3"/>
-      <text x="722" y="432" text-anchor="middle"
-            font-family="'Archivo Black',sans-serif" font-size="10"
-            fill="#577387" opacity=".9" letter-spacing="2">MuB</text>
-      <text x="722" y="446" text-anchor="middle"
+      <path d="M 360 460 Q 420 440 480 445 Q 560 450 600 480
+               Q 625 515 615 555 Q 595 590 540 605
+               Q 470 615 410 605 Q 360 590 345 555
+               Q 335 515 345 485 Q 350 470 360 460 Z"
+            fill="url(#hatch-admin-muc)" stroke="#C89339" stroke-width=".9" stroke-dasharray="3 3"/>
+      <text x="478" y="528" text-anchor="middle"
+            font-family="'Archivo Black',sans-serif" font-size="11"
+            fill="#C89339" opacity=".95" letter-spacing="2.5">MUC</text>
+      <text x="478" y="542" text-anchor="middle"
             font-family="'Archivo Black',sans-serif" font-size="7"
-            fill="#577387" opacity=".75" letter-spacing="1.5">ESTRUTURAÇÃO URBANA</text>
+            fill="#C89339" opacity=".8" letter-spacing="1.5">URBANIZAÇÃO CONSOLIDADA</text>
     </g>
 
-    <!-- MRB · Borda da Baía · azul · esquerda -->
+    <!-- MRB · Reestruturação da Borda da Baía · faixa estreita esquerda (sobre a terra) -->
     <g opacity=".82">
-      <path d="M 218 750 Q 228 695 245 645 Q 262 592 285 548
-               Q 308 505 335 472 Q 355 450 375 438
-               L 378 458 Q 360 470 342 495
-               Q 320 525 305 568 Q 285 625 268 688
-               Q 252 725 242 762 Z"
-            fill="url(#hatch-admin-bb)" stroke="#1E5BA8" stroke-width=".8" stroke-dasharray="3 3"/>
-      <text x="295" y="575" text-anchor="middle"
-            font-family="'Archivo Black',sans-serif" font-size="9"
-            fill="#1E5BA8" opacity=".85" letter-spacing="2" transform="rotate(-60 295 575)">MRB · BORDA DA BAÍA</text>
-    </g>
-
-    <!-- MRBA · Borda Atlântica · verde-água · faixa inferior direita -->
-    <g opacity=".82">
-      <path d="M 360 658 Q 430 695 530 720 Q 640 742 760 738
-               Q 870 730 960 700 Q 1030 672 1065 635
-               Q 1058 588 1030 568 Q 975 548 890 552
-               Q 790 558 690 572 Q 590 582 500 575
-               Q 420 565 375 548 Q 348 605 360 658 Z"
-            fill="url(#hatch-admin-ba)" stroke="#5B6B3F" stroke-width=".8" stroke-dasharray="3 3"/>
-      <text x="712" y="668" text-anchor="middle"
+      <path d="M 222 200 Q 232 175 248 165 Q 270 165 280 195
+               Q 282 280 280 360 Q 278 440 280 510
+               Q 282 580 275 640 Q 250 660 232 640
+               Q 218 580 218 510 Q 220 430 222 360
+               Q 222 280 222 200 Z"
+            fill="url(#hatch-admin-mrb)" stroke="#1E5BA8" stroke-width=".9" stroke-dasharray="3 3"/>
+      <text x="252" y="410" text-anchor="middle"
             font-family="'Archivo Black',sans-serif" font-size="10"
-            fill="#5B6B3F" opacity=".9" letter-spacing="2">MRBA</text>
-      <text x="712" y="682" text-anchor="middle"
-            font-family="'Archivo Black',sans-serif" font-size="7"
-            fill="#5B6B3F" opacity=".75" letter-spacing="1.5">REQUALIFICAÇÃO DA BORDA ATLÂNTICA</text>
+            fill="#1E5BA8" opacity=".95" letter-spacing="2" transform="rotate(-90 252 410)">MRB · BORDA DA BAÍA</text>
     </g>
 
-</g>
+    <!-- MRBA · Requalificação da Borda Atlântica · faixa horizontal estreita na base -->
+    <g opacity=".82">
+      <path d="M 380 680 Q 480 660 600 655 Q 720 650 850 648
+               Q 960 648 1060 650 L 1075 685 Q 1050 695 980 698
+               Q 880 702 770 700 Q 660 698 560 695
+               Q 470 690 410 685 Z"
+            fill="url(#hatch-admin-mrba)" stroke="#3D8B7A" stroke-width=".9" stroke-dasharray="3 3"/>
+      <text x="720" y="678" text-anchor="middle"
+            font-family="'Archivo Black',sans-serif" font-size="11"
+            fill="#3D8B7A" opacity=".95" letter-spacing="2.5">MRBA</text>
+      <text x="720" y="691" text-anchor="middle"
+            font-family="'Archivo Black',sans-serif" font-size="7"
+            fill="#3D8B7A" opacity=".8" letter-spacing="1.5">REQUALIFICAÇÃO DA BORDA ATLÂNTICA</text>
+    </g>
+
+  </g>
+
   <!-- ═══════════════════════════════════════════════
-       ÁREAS VERDES (parques, mata) · sempre visíveis
+       MANCHAS VERDES · MCA + Mata Escura
   ═══════════════════════════════════════════════ -->
   <g id="layer-verde">
-    <!-- Mata Escura · encostas -->
-    <ellipse cx="420" cy="510" rx="42" ry="22" fill="#7A8B5C" opacity=".4"/>
-    <ellipse cx="420" cy="510" rx="42" ry="22" fill="url(#hatch-mata)" opacity=".7"/>
-    <text x="420" y="514" text-anchor="middle" font-family="'Space Mono',monospace"
-          font-size="6.5" fill="#1A1611" opacity=".7" letter-spacing="1">
-      MATA ESCURA
-    </text>
-    <!-- manchas verdes dispersas -->
-    <g opacity=".28">
-      <circle cx="720" cy="490" r="9" fill="#5B6B3F"/>
-      <circle cx="660" cy="450" r="7" fill="#5B6B3F"/>
-      <circle cx="600" cy="510" r="6" fill="#5B6B3F"/>
-      <circle cx="780" cy="530" r="7" fill="#5B6B3F"/>
+    <!-- Mata Escura (encostas, entre MUC e MuB) -->
+    <ellipse cx="620" cy="470" rx="36" ry="22" fill="#7A8B5C" opacity=".5"/>
+    <ellipse cx="620" cy="470" rx="36" ry="22" fill="url(#hatch-mata)" opacity=".7"/>
+    <text x="620" y="474" text-anchor="middle" font-family="'Space Mono',monospace"
+          font-size="6.5" fill="#1A1611" opacity=".7" letter-spacing="1">MATA ESCURA</text>
+
+    <!-- Dique do Tororó (dentro do MUC) -->
+    <ellipse cx="520" cy="540" rx="20" ry="11" fill="#8BA4B0" opacity=".75"/>
+    <text x="520" y="543" text-anchor="middle" font-family="'Space Mono',monospace"
+          font-size="6" fill="#1A1611" opacity=".7" letter-spacing="1">D. TORORÓ</text>
+
+    <!-- Parque Metropolitano de Pituaçu (MRBA, próximo ao Parque Tecnológico) -->
+    <ellipse cx="830" cy="630" rx="28" ry="14" fill="#7A8B5C" opacity=".45"/>
+    <ellipse cx="830" cy="630" rx="28" ry="14" fill="url(#hatch-mata)" opacity=".6"/>
+    <text x="830" y="633" text-anchor="middle" font-family="'Space Mono',monospace"
+          font-size="5.5" fill="#1A1611" opacity=".65" letter-spacing="1">PQ. PITUAÇU</text>
+
+    <!-- Parque São Bartolomeu (norte do MRB) -->
+    <ellipse cx="350" cy="240" rx="32" ry="20" fill="#7A8B5C" opacity=".45"/>
+    <ellipse cx="350" cy="240" rx="32" ry="20" fill="url(#hatch-mata)" opacity=".6"/>
+    <text x="350" y="243" text-anchor="middle" font-family="'Space Mono',monospace"
+          font-size="5.5" fill="#1A1611" opacity=".65" letter-spacing="1">PQ. S. BARTOLOMEU</text>
+
+    <!-- Manchas verdes dispersas (arborização do miolo) -->
+    <g opacity=".3">
+      <circle cx="700" cy="370" r="7" fill="#5B6B3F"/>
+      <circle cx="760" cy="420" r="6" fill="#5B6B3F"/>
+      <circle cx="660" cy="440" r="5" fill="#5B6B3F"/>
+      <circle cx="850" cy="400" r="6" fill="#5B6B3F"/>
+      <circle cx="900" cy="340" r="5" fill="#5B6B3F"/>
+      <circle cx="730" cy="245" r="6" fill="#5B6B3F"/>
+      <circle cx="450" cy="380" r="5" fill="#5B6B3F"/>
     </g>
-</g>
+  </g>
 
   <!-- ═══════════════════════════════════════════════
-       NOMES DOS BAIRROS (sempre visíveis)
+       NOMES DOS BAIRROS
   ═══════════════════════════════════════════════ -->
   <g id="layer-bairros" font-family="'Space Mono',monospace" font-size="9" fill="#1A1611" letter-spacing="1.2">
 
-    <!-- MRB · Borda da Baía -->
-    <text x="140" y="385" font-weight="700" opacity=".85">PARIPE</text>
-    <text x="165" y="445" font-weight="700" opacity=".82">PERIPERI</text>
-    <text x="192" y="505" font-size="7" opacity=".75">ITAPAGIPE</text>
-    <text x="210" y="545" font-size="7" opacity=".75">LOBATO</text>
-    <text x="215" y="580" font-size="7" opacity=".7">CALÇADA</text>
+    <!-- MRB · faixa estreita esquerda -->
+    <text x="240" y="230" text-anchor="start" font-weight="700" opacity=".88">• PARIPE</text>
+    <text x="240" y="310" text-anchor="start" font-weight="700" opacity=".85">• PERIPERI</text>
+    <text x="240" y="440" text-anchor="start" font-weight="700" opacity=".88">• LOBATO</text>
+    <text x="240" y="555" text-anchor="start" font-weight="700" opacity=".85">• CALÇADA</text>
 
-    <!-- MUC · Urbanização Consolidada -->
-    <text x="368" y="455" font-weight="700" opacity=".9">COMÉRCIO</text>
-    <text x="385" y="510" font-weight="700" opacity=".9">LAPA</text>
-    <text x="478" y="490" font-weight="700" opacity=".85">BROTAS</text>
-    <text x="388" y="565" font-size="7" opacity=".75">CANELA</text>
+    <!-- MIM · centro-norte -->
+    <text x="555" y="115" text-anchor="middle" font-weight="700" opacity=".88">• PIRAJÁ</text>
+    <text x="575" y="262" font-size="8" font-weight="700" opacity=".85">• ÁGUAS CLARAS</text>
 
-    <!-- Barra · Ondina · ponta sul -->
-    <text x="285" y="665" font-weight="700" opacity=".9">BARRA</text>
-    <text x="398" y="700" font-weight="700" opacity=".82">ONDINA</text>
+    <!-- MUC · centro -->
+    <text x="430" y="478" font-weight="700" opacity=".88">• COMÉRCIO</text>
+    <text x="540" y="500" font-weight="700" opacity=".85">• BROTAS</text>
+    <text x="425" y="565" font-weight="700" opacity=".9">• LAPA</text>
+    <text x="430" y="600" font-size="8" opacity=".8">• CANELA</text>
 
-    <!-- MRBA · Borda Atlântica -->
-    <text x="548" y="728" font-size="7" opacity=".75">RIO VERMELHO</text>
-    <text x="705" y="708" font-size="7" opacity=".7">PITUBA</text>
-    <text x="828" y="658" font-size="7" font-weight="700" opacity=".8" fill="#A8412A">PARQUE TECN.</text>
-    <text x="948" y="598" font-size="7" opacity=".75">PIATÃ</text>
-    <text x="1028" y="530" font-weight="700" opacity=".82">ITAPUÃ</text>
+    <!-- MuB · direita central -->
+    <text x="720" y="225" font-weight="700" opacity=".9">• CAJAZEIRAS</text>
+    <text x="720" y="290" font-weight="700" opacity=".88">• CABULA</text>
+    <text x="855" y="280" font-size="8" opacity=".85">• PERNAMBUÉS</text>
+    <text x="700" y="370" font-size="8" opacity=".82">• TANCREDO NEVES</text>
+    <text x="855" y="370" font-size="8" opacity=".82">• CASTELO BRANCO</text>
+    <text x="690" y="445" font-size="8" opacity=".8">• PAU DA LIMA</text>
 
-    <!-- MIM · Integração Metropolitana -->
-    <text x="478" y="268" font-size="7" opacity=".75">PIRAJÁ</text>
-    <text x="508" y="305" font-size="7" opacity=".7">ÁGUAS CLARAS</text>
-    <text x="598" y="235" font-size="7" opacity=".7">ACESSO NORTE</text>
+    <!-- MRBA · faixa horizontal inferior -->
+    <text x="420" y="675" font-size="8" font-weight="700" opacity=".88">• BARRA</text>
+    <text x="510" y="673" font-size="8" font-weight="700" opacity=".85">• ONDINA</text>
+    <text x="610" y="672" font-size="8" font-weight="700" opacity=".85">• RIO VERMELHO</text>
+    <text x="745" y="670" font-size="7" font-weight="700" opacity=".82" fill="#A8412A">• PQ. TECNOL.</text>
+    <text x="895" y="668" font-size="8" opacity=".8">• PIATÃ</text>
+    <text x="1000" y="665" font-size="8" font-weight="700" opacity=".88">• ITAPUÃ</text>
 
-    <!-- MuB · Estruturação Urbana -->
-    <text x="585" y="385" font-weight="700" opacity=".85">CABULA</text>
-    <text x="598" y="428" font-size="7" opacity=".7">TANCREDO NEVES</text>
-    <text x="575" y="468" font-size="7" opacity=".7">PAU DA LIMA</text>
-    <text x="678" y="355" font-size="7" opacity=".7">PERNAMBUÉS</text>
-    <text x="695" y="395" font-size="7" opacity=".65">CASTELO BRANCO</text>
-    <text x="715" y="298" font-weight="700" opacity=".85">CAJAZEIRAS</text>
+    <!-- Aeroporto -->
+    <text x="1085" y="195" text-anchor="end" font-size="8" font-weight="700" opacity=".85">AEROPORTO</text>
+    <text x="1085" y="207" text-anchor="end" font-size="6" opacity=".55">LUÍS E. MAGALHÃES</text>
 
-    <!-- Aeroporto · topo direito -->
-    <text x="985" y="168" font-size="8" font-weight="700" opacity=".85">AEROPORTO</text>
-    <text x="985" y="180" font-size="6" opacity=".55">LUÍS E. MAGALHÃES</text>
-
-</g>
+  </g>
 
   <!-- ═══════════════════════════════════════════════
-       MARCOS GEOGRÁFICOS (sempre visíveis · ícones pequenos)
+       MARCOS GEOGRÁFICOS · faróis e ícones
   ═══════════════════════════════════════════════ -->
   <g id="layer-marcos">
 
-    <!-- Farol da Barra · ponta sul -->
-    <g transform="translate(278 658)">
+    <!-- Farol da Barra (no mar, ponta sul-sudoeste) -->
+    <g transform="translate(395 738)">
       <rect x="-3" y="-12" width="6" height="14" fill="#1A1611"/>
       <polygon points="-5,-12 5,-12 0,-18" fill="#A8412A"/>
       <text x="0" y="14" text-anchor="middle" font-family="'Space Mono',monospace"
-            font-size="6" fill="#1A1611" opacity=".7" letter-spacing="1">FAROL DA BARRA</text>
+            font-size="6" fill="#1A1611" opacity=".75" letter-spacing="1">FAROL DA BARRA</text>
     </g>
 
-    <!-- Farol de Itapuã · canto direito -->
-    <g transform="translate(1042 522)">
+    <!-- Farol de Ondina (no mar, perto de Ondina) -->
+    <g transform="translate(525 720)">
       <rect x="-3" y="-12" width="6" height="14" fill="#1A1611"/>
       <polygon points="-5,-12 5,-12 0,-18" fill="#A8412A"/>
       <text x="0" y="14" text-anchor="middle" font-family="'Space Mono',monospace"
-            font-size="6" fill="#1A1611" opacity=".7" letter-spacing="1">FAROL DE ITAPUÃ</text>
+            font-size="6" fill="#1A1611" opacity=".75" letter-spacing="1">F. ONDINA</text>
     </g>
 
-    <!-- Elevador Lacerda -->
-    <g transform="translate(358 448)">
+    <!-- Farol de Rio Vermelho -->
+    <g transform="translate(625 720)">
+      <rect x="-3" y="-12" width="6" height="14" fill="#1A1611"/>
+      <polygon points="-5,-12 5,-12 0,-18" fill="#A8412A"/>
+      <text x="0" y="14" text-anchor="middle" font-family="'Space Mono',monospace"
+            font-size="6" fill="#1A1611" opacity=".75" letter-spacing="1">F. RIO VERMELHO</text>
+    </g>
+
+    <!-- Farol de Itapuã (canto direito, no mar) -->
+    <g transform="translate(1035 700)">
+      <rect x="-3" y="-12" width="6" height="14" fill="#1A1611"/>
+      <polygon points="-5,-12 5,-12 0,-18" fill="#A8412A"/>
+      <text x="0" y="14" text-anchor="middle" font-family="'Space Mono',monospace"
+            font-size="6" fill="#1A1611" opacity=".75" letter-spacing="1">FAROL ITAPUÃ</text>
+    </g>
+
+    <!-- Elevador Lacerda (entre Comércio e Lapa) -->
+    <g transform="translate(395 510)">
       <rect x="-2" y="-15" width="4" height="20" fill="#A8412A"/>
       <rect x="-5" y="-18" width="10" height="4" fill="#1A1611"/>
-      <text x="0" y="16" text-anchor="middle" font-family="'Space Mono',monospace"
-            font-size="6" fill="#1A1611" opacity=".7" letter-spacing="1">ELEVADOR</text>
+      <text x="0" y="13" text-anchor="middle" font-family="'Space Mono',monospace"
+            font-size="5.5" fill="#1A1611" opacity=".7" letter-spacing="1">ELEVADOR</text>
     </g>
 
-    <!-- Câmara Municipal -->
-    <g transform="translate(415 410)">
+    <!-- Câmara Municipal · Praça Tomé de Souza -->
+    <g transform="translate(415 502)">
       <rect x="-7" y="-7" width="14" height="11" fill="#F7EFD9" stroke="#1A1611" stroke-width=".8"/>
       <polygon points="-7,-7 7,-7 0,-13" fill="#1A1611"/>
       <rect x="-1" y="-3" width="2" height="6" fill="#1A1611"/>
     </g>
 
-    <!-- Aeroporto -->
-    <g transform="translate(1010 178)" opacity=".7">
-      <polygon points="0,-8 8,5 0,2 -8,5" fill="#1A1611"/>
+    <!-- Aeroporto (ícone de seta, próximo ao fim da Linha 2 do metrô) -->
+    <g transform="translate(1080 220)" opacity=".75">
+      <polygon points="0,-10 9,7 0,3 -9,7" fill="#1A1611"/>
     </g>
 
-    <!-- Terminal Aquaviário -->
-    <g transform="translate(338 468)">
+    <!-- Terminal Aquaviário / Ferry (Comércio) -->
+    <g transform="translate(380 470)">
       <path d="M -7 0 L 7 0 L 5 4 L -5 4 Z" fill="#577387"/>
       <line x1="0" y1="0" x2="0" y2="-8" stroke="#1A1611" stroke-width="1"/>
       <line x1="-3" y1="-4" x2="3" y2="-4" stroke="#1A1611" stroke-width=".7"/>
     </g>
 
-    <!-- Arena Fonte Nova -->
-    <g transform="translate(508 448)">
+    <!-- Arena Fonte Nova (entre MUC e MuB) -->
+    <g transform="translate(560 535)">
       <ellipse cx="0" cy="0" rx="11" ry="7" fill="none" stroke="#1A1611" stroke-width="1"/>
       <ellipse cx="0" cy="0" rx="6" ry="3" fill="#5B6B3F" opacity=".5"/>
     </g>
+  </g>
 
-</g>
   <!-- ═══════════════════════════════════════════════
-       CAMADA INFRAESTRUTURA (transporte + fibra)
-       Visibilidade controlada por JS · #layer-infra
+       CAMADA INFRAESTRUTURA · transportes + fibra
   ═══════════════════════════════════════════════ -->
   <g id="layer-infra" opacity="0">
 
-    <!-- Infovia Salvador (1.500 km de fibra · representação simbólica) -->
+    <!-- Infovia Salvador (1.500km de fibra · representação simbólica) -->
     <g opacity=".55" stroke="#C89339" stroke-width=".6" fill="none">
-      <path d="M 200 750 Q 280 650 350 560 Q 420 470 500 420 Q 600 380 720 365 Q 850 360 980 380 Q 1080 410 1110 460"/>
-      <path d="M 195 700 Q 280 600 370 510 Q 450 440 540 410 Q 660 390 800 390 Q 920 400 1040 430"/>
-      <path d="M 240 730 Q 320 660 400 590 Q 480 530 580 490 Q 700 460 820 455 Q 940 460 1050 490"/>
-      <path d="M 280 680 Q 360 620 450 555 Q 540 500 640 470 Q 760 450 880 460 Q 1000 475 1080 510"/>
-      <path d="M 320 640 Q 410 580 510 525 Q 610 480 720 460 Q 840 450 960 470 Q 1040 490 1090 530"/>
+      <path d="M 220 760 Q 320 660 400 580 Q 480 510 560 470 Q 660 440 780 430 Q 890 425 990 440 Q 1060 460 1080 500"/>
+      <path d="M 230 700 Q 320 600 410 510 Q 510 450 620 440 Q 740 440 860 450 Q 970 470 1060 500"/>
+      <path d="M 260 740 Q 350 650 440 580 Q 540 520 660 490 Q 780 470 900 470 Q 1000 480 1075 510"/>
+      <path d="M 290 670 Q 380 590 470 530 Q 580 490 700 470 Q 820 460 920 470 Q 1000 480 1070 510"/>
+      <path d="M 330 650 Q 420 580 530 520 Q 640 470 760 460 Q 870 460 970 480 Q 1040 500 1080 530"/>
     </g>
 
     <!-- BR-324 (eixo norte) -->
-    <path d="M 415 410 L 470 360 L 545 305 L 605 248 L 680 200 L 760 165 L 850 135 L 950 110 L 1080 90"
+    <path d="M 470 555 L 510 490 L 545 420 L 575 350 L 615 270 L 670 195 L 750 140 L 850 110 L 970 90 L 1080 80"
           stroke="#1A1611" stroke-width="3" fill="none" opacity=".55"/>
-    <text x="800" y="155" font-family="'Archivo Black',sans-serif" font-size="8"
-          fill="#1A1611" opacity=".65" letter-spacing="1.5" transform="rotate(-22 800 155)">
-      BR-324
-    </text>
+    <text x="830" y="135" font-family="'Archivo Black',sans-serif" font-size="8"
+          fill="#1A1611" opacity=".7" letter-spacing="1.5" transform="rotate(-18 830 135)">BR-324</text>
 
     <!-- Av. Paralela (eixo leste) -->
-    <path d="M 605 248 L 700 270 L 800 305 L 905 345 L 1020 385 L 1110 425"
+    <path d="M 580 305 L 670 320 L 770 318 L 870 295 L 970 255 L 1060 215"
           stroke="#1A1611" stroke-width="3" fill="none" opacity=".55"/>
-    <text x="870" y="335" font-family="'Archivo Black',sans-serif" font-size="8"
-          fill="#1A1611" opacity=".65" letter-spacing="1.5" transform="rotate(22 870 335)">
-      AV. PARALELA
-    </text>
+    <text x="870" y="310" font-family="'Archivo Black',sans-serif" font-size="8"
+          fill="#1A1611" opacity=".7" letter-spacing="1.5" transform="rotate(-12 870 310)">AV. PARALELA</text>
 
-    <!-- LINHA 1 DO METRÔ (Lapa → Águas Claras → BR-324) -->
-    <use href="#path-metro-l1" stroke="#1E5BA8" stroke-width="2.5" fill="none" opacity=".85"/>
+    <!-- METRÔ LINHA 1 (Lapa → Acesso Norte → Águas Claras) -->
+    <use href="#path-metro-l1" stroke="#1E5BA8" stroke-width="2.6" fill="none" opacity=".88"/>
 
-    <!-- LINHA 2 DO METRÔ (Acesso Norte → Aeroporto) -->
-    <use href="#path-metro-l2" stroke="#C8362D" stroke-width="2.5" fill="none" opacity=".85"/>
+    <!-- METRÔ LINHA 2 (Acesso Norte → Aeroporto) -->
+    <use href="#path-metro-l2" stroke="#C8362D" stroke-width="2.6" fill="none" opacity=".88"/>
 
-    <!-- BRT (ACM/Juracy/Vasco da Gama) -->
-    <use href="#path-brt" stroke="#D67E1F" stroke-width="2.2" stroke-dasharray="6 3"
-         fill="none" opacity=".82"/>
+    <!-- BRT -->
+    <use href="#path-brt" stroke="#D67E1F" stroke-width="2.4" stroke-dasharray="6 3" fill="none" opacity=".84"/>
 
-    <!-- VLT (Subúrbio Ferroviário · em obras) -->
-    <use href="#path-vlt" stroke="#5B7C3F" stroke-width="2.2" stroke-dasharray="3 3"
-         fill="none" opacity=".75"/>
+    <!-- VLT · Subúrbio Ferroviário -->
+    <use href="#path-vlt" stroke="#5B7C3F" stroke-width="2.4" stroke-dasharray="3 3" fill="none" opacity=".78"/>
 
-    <!-- Estações de metrô (Linha 1) -->
+    <!-- Estações Linha 1 -->
     <g fill="#1E5BA8" stroke="#F7EFD9" stroke-width="1.2">
-      <circle cx="415" cy="410" r="3.5"/>
-      <circle cx="470" cy="360" r="3"/>
-      <circle cx="545" cy="305" r="3"/>
-      <circle cx="605" cy="248" r="3.5"/>
-      <circle cx="670" cy="210" r="3"/>
-      <circle cx="740" cy="175" r="3"/>
-      <circle cx="820" cy="148" r="3.5"/>
+      <circle cx="470" cy="555" r="3.5"/>
+      <circle cx="510" cy="490" r="3"/>
+      <circle cx="545" cy="420" r="3"/>
+      <circle cx="565" cy="360" r="3"/>
+      <circle cx="580" cy="305" r="3.5"/>
+      <circle cx="575" cy="250" r="3.5"/>
     </g>
-    <text x="408" y="423" font-family="'Space Mono',monospace" font-size="6"
-          fill="#1E5BA8" opacity=".95" font-weight="700">LAPA</text>
-    <text x="613" y="244" font-family="'Space Mono',monospace" font-size="6"
-          fill="#1E5BA8" opacity=".95" font-weight="700">A. NORTE</text>
-    <text x="828" y="145" font-family="'Space Mono',monospace" font-size="6"
-          fill="#1E5BA8" opacity=".95" font-weight="700">Á. CLARAS</text>
+    <text x="445" y="568" font-family="'Space Mono',monospace" font-size="6" fill="#1E5BA8" font-weight="700">LAPA</text>
+    <text x="590" y="303" font-family="'Space Mono',monospace" font-size="6" fill="#1E5BA8" font-weight="700">A. NORTE</text>
+    <text x="535" y="247" font-family="'Space Mono',monospace" font-size="6" fill="#1E5BA8" font-weight="700" text-anchor="end">Á. CLARAS</text>
 
     <!-- Estações Linha 2 -->
     <g fill="#C8362D" stroke="#F7EFD9" stroke-width="1.2">
-      <circle cx="700" cy="270" r="3"/>
-      <circle cx="800" cy="305" r="3"/>
-      <circle cx="905" cy="345" r="3"/>
-      <circle cx="1020" cy="385" r="3"/>
-      <circle cx="1110" cy="425" r="3.5"/>
+      <circle cx="670" cy="320" r="3"/>
+      <circle cx="770" cy="318" r="3"/>
+      <circle cx="870" cy="295" r="3"/>
+      <circle cx="970" cy="255" r="3"/>
+      <circle cx="1060" cy="215" r="3.5"/>
     </g>
-    <text x="1095" y="442" font-family="'Space Mono',monospace" font-size="6"
-          fill="#C8362D" opacity=".95" font-weight="700">AEROPORTO</text>
+    <text x="1055" y="230" font-family="'Space Mono',monospace" font-size="6" fill="#C8362D" font-weight="700" text-anchor="end">AEROPORTO</text>
 
-    <!-- COMPOSIÇÕES ANIMADAS · METRÔ L1 -->
+    <!-- Composições animadas -->
     <g id="comp-metro-l1">
       <rect x="-6" y="-3" width="12" height="6" fill="#1E5BA8" stroke="#F7EFD9" stroke-width=".7" rx="1">
         <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
@@ -1732,8 +1730,6 @@ footer {
         </animateMotion>
       </rect>
     </g>
-
-    <!-- COMPOSIÇÕES ANIMADAS · METRÔ L2 -->
     <g id="comp-metro-l2">
       <rect x="-6" y="-3" width="12" height="6" fill="#C8362D" stroke="#F7EFD9" stroke-width=".7" rx="1">
         <animateMotion dur="18s" repeatCount="indefinite" rotate="auto">
@@ -1741,8 +1737,6 @@ footer {
         </animateMotion>
       </rect>
     </g>
-
-    <!-- COMPOSIÇÃO ANIMADA · BRT -->
     <g id="comp-brt">
       <rect x="-5" y="-2.5" width="10" height="5" fill="#D67E1F" stroke="#1A1611" stroke-width=".6" rx="1">
         <animateMotion dur="22s" repeatCount="indefinite" rotate="auto">
@@ -1750,9 +1744,7 @@ footer {
         </animateMotion>
       </rect>
     </g>
-
-    <!-- COMPOSIÇÃO ANIMADA · VLT (em obras · mais lenta e fantasma) -->
-    <g id="comp-vlt" opacity=".75">
+    <g id="comp-vlt" opacity=".8">
       <rect x="-5" y="-2.5" width="10" height="5" fill="#5B7C3F" stroke="#1A1611" stroke-width=".6" rx="1">
         <animateMotion dur="28s" repeatCount="indefinite" rotate="auto">
           <mpath href="#path-vlt"/>
@@ -1760,70 +1752,64 @@ footer {
       </rect>
     </g>
 
-    <!-- Cabo submarino saindo pela orla -->
-    <path d="M 1085 580 Q 1130 600 1170 620 L 1200 640"
+    <!-- Cabo submarino saindo pela orla atlântica -->
+    <path d="M 1075 660 Q 1130 680 1170 700 L 1200 720"
           stroke="#1A1611" stroke-width="1.8" stroke-dasharray="4 3" fill="none" opacity=".75"/>
-    <text x="1130" y="610" font-family="'Space Mono',monospace" font-size="7"
-          fill="#1A1611" opacity=".8" letter-spacing="1.5">
-      → CABO SUBMARINO
-    </text>
-    <text x="1130" y="622" font-family="'Space Mono',monospace" font-size="6"
-          fill="#1A1611" opacity=".55" letter-spacing="1">
-      VIRGÍNIA · 89ms
-    </text>
+    <text x="1115" y="690" font-family="'Space Mono',monospace" font-size="7" fill="#1A1611" opacity=".8" letter-spacing="1.5">→ CABO SUBMARINO</text>
+    <text x="1115" y="702" font-family="'Space Mono',monospace" font-size="6" fill="#1A1611" opacity=".55" letter-spacing="1">VIRGÍNIA · 89ms</text>
 
   </g>
 
   <!-- ═══════════════════════════════════════════════
-       CAMADA VIGILÂNCIA (câmeras NOA, COI, CCO)
-       Visibilidade controlada por JS · #layer-vigil
+       CAMADA VIGILÂNCIA · câmeras, COI, CCO
   ═══════════════════════════════════════════════ -->
   <g id="layer-vigil" opacity="0">
 
-    <!-- Densidade de câmeras NOA (300 unidades · pontos vermelhos pequenos) -->
+    <!-- Densidade de câmeras NOA -->
     <g fill="#A8412A" opacity=".8">
-      <!-- Cluster Pelourinho / Centro Histórico -->
-      <circle cx="425" cy="418" r="1.8"/><circle cx="432" cy="425" r="1.8"/>
-      <circle cx="418" cy="430" r="1.8"/><circle cx="440" cy="415" r="1.8"/>
-      <circle cx="412" cy="442" r="1.8"/><circle cx="425" cy="450" r="1.8"/>
-      <circle cx="408" cy="420" r="1.8"/><circle cx="450" cy="430" r="1.8"/>
-      <!-- Cluster Barra / Vitória -->
-      <circle cx="1015" cy="345" r="1.8"/><circle cx="1020" cy="358" r="1.8"/>
-      <circle cx="980" cy="380" r="1.8"/><circle cx="970" cy="400" r="1.8"/>
+      <!-- Cluster Pelourinho / Lapa -->
+      <circle cx="420" cy="500" r="1.8"/><circle cx="430" cy="510" r="1.8"/>
+      <circle cx="410" cy="515" r="1.8"/><circle cx="440" cy="495" r="1.8"/>
+      <circle cx="405" cy="525" r="1.8"/><circle cx="425" cy="540" r="1.8"/>
+      <circle cx="400" cy="495" r="1.8"/><circle cx="445" cy="525" r="1.8"/>
+      <!-- Cluster Comércio -->
+      <circle cx="425" cy="475" r="1.8"/><circle cx="440" cy="465" r="1.8"/>
+      <!-- Cluster Brotas/Iguatemi -->
+      <circle cx="540" cy="500" r="1.8"/><circle cx="560" cy="510" r="1.8"/>
+      <circle cx="575" cy="535" r="1.8"/>
       <!-- Cluster Av. Paralela -->
-      <circle cx="700" cy="280" r="1.8"/><circle cx="780" cy="310" r="1.8"/>
-      <circle cx="870" cy="335" r="1.8"/><circle cx="940" cy="365" r="1.8"/>
-      <!-- Cluster Iguatemi / Pituba -->
-      <circle cx="945" cy="540" r="1.8"/><circle cx="960" cy="555" r="1.8"/>
-      <circle cx="930" cy="560" r="1.8"/>
-      <!-- Cluster Rodoviária -->
-      <circle cx="900" cy="395" r="1.8"/><circle cx="910" cy="408" r="1.8"/>
-      <!-- Cluster Lapa / Comércio -->
-      <circle cx="395" cy="425" r="1.8"/><circle cx="385" cy="445" r="1.8"/>
-      <circle cx="365" cy="455" r="1.8"/>
-      <!-- Dispersão geral pela cidade consolidada -->
-      <circle cx="560" cy="420" r="1.6"/><circle cx="640" cy="430" r="1.6"/>
-      <circle cx="730" cy="440" r="1.6"/><circle cx="820" cy="445" r="1.6"/>
-      <circle cx="595" cy="455" r="1.6"/><circle cx="675" cy="460" r="1.6"/>
-      <circle cx="755" cy="465" r="1.6"/><circle cx="850" cy="470" r="1.6"/>
-      <circle cx="985" cy="465" r="1.6"/><circle cx="1010" cy="495" r="1.6"/>
-      <circle cx="985" cy="595" r="1.6"/><circle cx="960" cy="625" r="1.6"/>
-      <!-- Cluster terminais (rodoviária, ferry, metrô) -->
-      <circle cx="368" cy="462" r="2.2"/>
-      <circle cx="908" cy="402" r="2.2"/>
+      <circle cx="700" cy="318" r="1.8"/><circle cx="790" cy="315" r="1.8"/>
+      <circle cx="880" cy="290" r="1.8"/><circle cx="970" cy="255" r="1.8"/>
+      <!-- Cluster Barra/Ondina/Rio Vermelho (MRBA) -->
+      <circle cx="430" cy="670" r="1.8"/><circle cx="520" cy="668" r="1.8"/>
+      <circle cx="620" cy="666" r="1.8"/><circle cx="710" cy="665" r="1.8"/>
+      <!-- Cluster Pituba/Iguatemi (entre MUC e MRBA) -->
+      <circle cx="615" cy="600" r="1.8"/><circle cx="660" cy="615" r="1.8"/>
+      <circle cx="720" cy="625" r="1.8"/>
+      <!-- Cluster Pq Tecnológico -->
+      <circle cx="775" cy="660" r="2"/>
+      <!-- Terminais (rodoviária, ferry, estações) -->
+      <circle cx="380" cy="470" r="2.2"/>
+      <circle cx="580" cy="305" r="2.2"/>
+      <circle cx="470" cy="555" r="2.2"/>
+      <!-- Dispersão geral -->
+      <circle cx="500" cy="470" r="1.6"/><circle cx="490" cy="540" r="1.6"/>
+      <circle cx="555" cy="465" r="1.6"/><circle cx="620" cy="475" r="1.6"/>
+      <circle cx="680" cy="380" r="1.6"/><circle cx="750" cy="380" r="1.6"/>
+      <circle cx="820" cy="370" r="1.6"/><circle cx="900" cy="340" r="1.6"/>
     </g>
 
-    <!-- Zonas com baixa cobertura (miolo / periferia) · representação por ausência -->
-    <g fill="none" stroke="#A8412A" stroke-width="1.2" stroke-dasharray="3 3" opacity=".4">
-      <rect x="560" y="330" width="300" height="200"/>
+    <!-- Zona sem cobertura sensorial (Miolo · MuB norte + Cajazeiras) -->
+    <g fill="none" stroke="#A8412A" stroke-width="1.2" stroke-dasharray="3 3" opacity=".45">
+      <rect x="660" y="210" width="280" height="170"/>
     </g>
-    <text x="710" y="438" text-anchor="middle" font-family="'Archivo Black',sans-serif"
-          font-size="8" fill="#A8412A" opacity=".65" letter-spacing="2">
+    <text x="800" y="200" text-anchor="middle" font-family="'Archivo Black',sans-serif"
+          font-size="8" fill="#A8412A" opacity=".7" letter-spacing="2">
       ZONA SEM COBERTURA SENSORIAL
     </text>
 
-    <!-- CCO LOBATO (pulsa) -->
-    <g transform="translate(248 548)">
+    <!-- CCO LOBATO (no MRB, próximo ao Lobato) -->
+    <g transform="translate(285 460)">
       <circle r="16" fill="none" stroke="#A8412A" stroke-width="1.5">
         <animate attributeName="r" values="16;26;16" dur="3s" repeatCount="indefinite"/>
         <animate attributeName="opacity" values="0.6;0;0.6" dur="3s" repeatCount="indefinite"/>
@@ -1833,8 +1819,8 @@ footer {
             font-size="6" fill="#F7EFD9" letter-spacing="1">CCO</text>
     </g>
 
-    <!-- COI ESTADUAL · CAB (pulsa) -->
-    <g transform="translate(855 645)">
+    <!-- COI ESTADUAL · CAB (na Av. Paralela, dentro do MuB) -->
+    <g transform="translate(770 360)">
       <circle r="14" fill="none" stroke="#A8412A" stroke-width="1.5">
         <animate attributeName="r" values="14;22;14" dur="3.4s" repeatCount="indefinite"/>
         <animate attributeName="opacity" values="0.55;0;0.55" dur="3.4s" repeatCount="indefinite"/>
@@ -1847,12 +1833,11 @@ footer {
   </g>
 
   <!-- ═══════════════════════════════════════════════
-       PINOS DAS VINHETAS (sempre visíveis · sobrepõem tudo)
-       Renderizados via JS para permitir interação dinâmica
+       PINOS DAS VINHETAS (renderizados via JS)
   ═══════════════════════════════════════════════ -->
   <g id="layer-pinos"></g>
 
-  <!-- Cartouche / etiqueta de prancha -->
+  <!-- Cartouche -->
   <g transform="translate(20 25)">
     <text font-family="'Archivo Black',sans-serif" font-size="11"
           fill="#1A1611" letter-spacing="3">SALVADOR · MAPA DE INSPEÇÃO</text>
@@ -1860,6 +1845,18 @@ footer {
           fill="#1A1611" opacity=".6" letter-spacing="2">
       PRANCHA · INFRAESTRUTURAS DA CIDADE INTELIGENTE · ESC. INDETERMINADA
     </text>
+  </g>
+
+  <!-- Rosa-dos-ventos (canto sudoeste, no mar da Baía) -->
+  <g transform="translate(80 720)" opacity=".7">
+    <circle r="22" fill="none" stroke="#1A1611" stroke-width=".8"/>
+    <line x1="0" y1="-22" x2="0" y2="22" stroke="#1A1611" stroke-width=".6"/>
+    <line x1="-22" y1="0" x2="22" y2="0" stroke="#1A1611" stroke-width=".6"/>
+    <polygon points="0,-22 -4,-4 0,0 4,-4" fill="#A8412A"/>
+    <text x="0" y="-26" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="8" fill="#1A1611">N</text>
+    <text x="0" y="34" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="8" fill="#1A1611">S</text>
+    <text x="-30" y="3" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="8" fill="#1A1611">O</text>
+    <text x="30" y="3" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="8" fill="#1A1611">L</text>
   </g>
 
 </svg>
@@ -2153,14 +2150,14 @@ const ESTADO = {
 ═══════════════════════════════════════════════ */
 
 const PINOS = [
-  { id: 1, nome: 'CCO LOBATO',          bairro: 'Subúrbio Ferroviário',  x: 248, y: 548, cor: '#A8412A' },
-  { id: 2, nome: 'PELOURINHO',          bairro: 'Centro Histórico',      x: 400, y: 470, cor: '#577387' },
-  { id: 3, nome: 'PARQUE TECNOLÓGICO',  bairro: 'Av. Paralela',          x: 855, y: 645, cor: '#5B6B3F' },
-  { id: 4, nome: 'CAJAZEIRAS',          bairro: 'Miolo · Estr. Urbana',  x: 715, y: 298, cor: '#C89339' },
-  { id: 5, nome: 'MATA ESCURA',         bairro: 'Encostas',              x: 430, y: 510, cor: '#5B6B3F' },
-  { id: 6, nome: 'CABO SUBMARINO',      bairro: 'Orla atlântica',        x: 1065, y: 640, cor: '#577387' },
-  { id: 7, nome: 'FEIRA DE SÃO JOAQUIM', bairro: 'Comércio · Cidade Baixa', x: 368, y: 455, cor: '#C89339' },
-  { id: 8, nome: 'CÂMARA MUNICIPAL',    bairro: 'Praça Tomé de Souza',   x: 415, y: 415, cor: '#1A1611' }
+  { id: 1, nome: 'CCO LOBATO',            bairro: 'Subúrbio Ferroviário · MRB',  x: 285,  y: 460, cor: '#A8412A' },
+  { id: 2, nome: 'PELOURINHO',            bairro: 'Centro Histórico · MUC',      x: 445,  y: 510, cor: '#577387' },
+  { id: 3, nome: 'PARQUE TECNOLÓGICO',    bairro: 'Av. Paralela · MRBA',         x: 770,  y: 665, cor: '#5B6B3F' },
+  { id: 4, nome: 'CAJAZEIRAS',            bairro: 'Miolo · MuB',                 x: 760,  y: 235, cor: '#C89339' },
+  { id: 5, nome: 'MATA ESCURA',           bairro: 'Encostas · entre MUC e MuB',  x: 620,  y: 470, cor: '#5B6B3F' },
+  { id: 6, nome: 'CABO SUBMARINO',        bairro: 'Orla Atlântica',              x: 1075, y: 660, cor: '#577387' },
+  { id: 7, nome: 'FEIRA DE SÃO JOAQUIM',  bairro: 'Comércio · MUC',              x: 405,  y: 482, cor: '#C89339' },
+  { id: 8, nome: 'CÂMARA MUNICIPAL',      bairro: 'Praça Tomé de Souza',         x: 415,  y: 528, cor: '#1A1611' }
 ];
 
 /* ═══════════════════════════════════════════════
