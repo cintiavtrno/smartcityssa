@@ -1500,11 +1500,11 @@ footer {
 
     <!-- MRB · Borda da Baía · azul · esquerda -->
     <g opacity=".82">
-      <path d="M 195 750 Q 210 680 230 615 Q 255 548 290 492
-               Q 325 438 360 408 Q 385 390 415 385
-               L 418 415 Q 390 432 362 462
-               Q 328 502 305 555 Q 278 618 258 688
-               Q 240 738 230 775 Z"
+      <path d="M 218 750 Q 228 695 245 645 Q 262 592 285 548
+               Q 308 505 335 472 Q 355 450 375 438
+               L 378 458 Q 360 470 342 495
+               Q 320 525 305 568 Q 285 625 268 688
+               Q 252 725 242 762 Z"
             fill="url(#hatch-admin-bb)" stroke="#1E5BA8" stroke-width=".8" stroke-dasharray="3 3"/>
       <text x="295" y="575" text-anchor="middle"
             font-family="'Archivo Black',sans-serif" font-size="9"
@@ -1528,106 +1528,71 @@ footer {
     </g>
 
 </g>
-
   <!-- ═══════════════════════════════════════════════
        ÁREAS VERDES (parques, mata) · sempre visíveis
   ═══════════════════════════════════════════════ -->
   <g id="layer-verde">
-    <!-- Parque Metropolitano de Pirajá -->
-    <ellipse cx="490" cy="490" rx="55" ry="38" fill="#7A8B5C" opacity=".55"/>
-    <ellipse cx="490" cy="490" rx="55" ry="38" fill="url(#hatch-mata)"/>
-    <text x="490" y="494" text-anchor="middle" font-family="'Space Mono',monospace"
-          font-size="7" fill="#1A1611" opacity=".75" letter-spacing="1">
-      PQ. PIRAJÁ
-    </text>
-
-    <!-- Parque da Cidade -->
-    <ellipse cx="860" cy="455" rx="38" ry="28" fill="#7A8B5C" opacity=".55"/>
-    <ellipse cx="860" cy="455" rx="38" ry="28" fill="url(#hatch-mata)"/>
-    <text x="860" y="459" text-anchor="middle" font-family="'Space Mono',monospace"
-          font-size="7" fill="#1A1611" opacity=".75" letter-spacing="1">
-      PQ. CIDADE
-    </text>
-
-    <!-- Dique do Tororó -->
-    <ellipse cx="555" cy="430" rx="28" ry="14" fill="#8BA4B0" opacity=".7"/>
-    <text x="555" y="433" text-anchor="middle" font-family="'Space Mono',monospace"
-          font-size="6" fill="#1A1611" opacity=".7" letter-spacing="1">
-      TORORÓ
-    </text>
-
-    <!-- Jardim Botânico -->
-    <ellipse cx="920" cy="525" rx="32" ry="22" fill="#7A8B5C" opacity=".55"/>
-    <ellipse cx="920" cy="525" rx="32" ry="22" fill="url(#hatch-mata)"/>
-    <text x="920" y="529" text-anchor="middle" font-family="'Space Mono',monospace"
-          font-size="6.5" fill="#1A1611" opacity=".75" letter-spacing="1">
-      J. BOTÂNICO
-    </text>
-
-    <!-- Mata de São João/encostas -->
-    <ellipse cx="385" cy="600" rx="42" ry="22" fill="#7A8B5C" opacity=".4"/>
-    <ellipse cx="385" cy="600" rx="42" ry="22" fill="url(#hatch-mata)" opacity=".7"/>
-    <text x="385" y="604" text-anchor="middle" font-family="'Space Mono',monospace"
+    <!-- Mata Escura · encostas -->
+    <ellipse cx="420" cy="510" rx="42" ry="22" fill="#7A8B5C" opacity=".4"/>
+    <ellipse cx="420" cy="510" rx="42" ry="22" fill="url(#hatch-mata)" opacity=".7"/>
+    <text x="420" y="514" text-anchor="middle" font-family="'Space Mono',monospace"
           font-size="6.5" fill="#1A1611" opacity=".7" letter-spacing="1">
       MATA ESCURA
     </text>
-
-    <!-- Vetor verde decorativo (manchas dispersas) -->
-    <g opacity=".35">
+    <!-- manchas verdes dispersas -->
+    <g opacity=".28">
       <circle cx="720" cy="490" r="9" fill="#5B6B3F"/>
-      <circle cx="770" cy="510" r="6" fill="#5B6B3F"/>
       <circle cx="660" cy="450" r="7" fill="#5B6B3F"/>
-      <circle cx="820" cy="555" r="8" fill="#5B6B3F"/>
       <circle cx="600" cy="510" r="6" fill="#5B6B3F"/>
+      <circle cx="780" cy="530" r="7" fill="#5B6B3F"/>
     </g>
-  </g>
+</g>
 
   <!-- ═══════════════════════════════════════════════
        NOMES DOS BAIRROS (sempre visíveis)
   ═══════════════════════════════════════════════ -->
   <g id="layer-bairros" font-family="'Space Mono',monospace" font-size="9" fill="#1A1611" letter-spacing="1.2">
 
-    <!-- MRB · Borda da Baía · esquerda -->
-    <text x="135" y="390" font-weight="700" opacity=".85">PARIPE</text>
-    <text x="160" y="450" font-weight="700" opacity=".82">PERIPERI</text>
-    <text x="195" y="510" font-size="7" opacity=".75">ITAPAGIPE</text>
+    <!-- MRB · Borda da Baía -->
+    <text x="140" y="385" font-weight="700" opacity=".85">PARIPE</text>
+    <text x="165" y="445" font-weight="700" opacity=".82">PERIPERI</text>
+    <text x="192" y="505" font-size="7" opacity=".75">ITAPAGIPE</text>
     <text x="210" y="545" font-size="7" opacity=".75">LOBATO</text>
     <text x="215" y="580" font-size="7" opacity=".7">CALÇADA</text>
 
-    <!-- MUC · Urbanização Consolidada · centro-baixo -->
-    <text x="370" y="460" font-weight="700" opacity=".9">COMÉRCIO</text>
-    <text x="390" y="510" font-weight="700" opacity=".9">LAPA</text>
-    <text x="480" y="530" font-weight="700" opacity=".85">BROTAS</text>
-    <text x="390" y="570" font-size="7" opacity=".75">CANELA</text>
-    <text x="490" y="490" font-size="7" opacity=".7">DIQUE DO TORORÓ</text>
+    <!-- MUC · Urbanização Consolidada -->
+    <text x="368" y="455" font-weight="700" opacity=".9">COMÉRCIO</text>
+    <text x="385" y="510" font-weight="700" opacity=".9">LAPA</text>
+    <text x="478" y="490" font-weight="700" opacity=".85">BROTAS</text>
+    <text x="388" y="565" font-size="7" opacity=".75">CANELA</text>
 
-    <!-- Barra e Ondina · ponta sul -->
-    <text x="290" y="660" font-weight="700" opacity=".9">BARRA</text>
-    <text x="400" y="690" font-weight="700" opacity=".82">ONDINA</text>
+    <!-- Barra · Ondina · ponta sul -->
+    <text x="285" y="665" font-weight="700" opacity=".9">BARRA</text>
+    <text x="398" y="700" font-weight="700" opacity=".82">ONDINA</text>
 
-    <!-- MRBA · Borda Atlântica · faixa inferior direita -->
-    <text x="560" y="720" font-size="7" opacity=".75">RIO VERMELHO</text>
-    <text x="720" y="700" font-size="7" opacity=".7">PITUBA</text>
-    <text x="840" y="670" font-size="7" opacity=".7">PARQUE TECN.</text>
-    <text x="960" y="620" font-size="7" opacity=".75">PIATÃ</text>
-    <text x="1040" y="560" font-weight="700" opacity=".82">ITAPUÃ</text>
+    <!-- MRBA · Borda Atlântica -->
+    <text x="548" y="728" font-size="7" opacity=".75">RIO VERMELHO</text>
+    <text x="705" y="708" font-size="7" opacity=".7">PITUBA</text>
+    <text x="828" y="658" font-size="7" font-weight="700" opacity=".8" fill="#A8412A">PARQUE TECN.</text>
+    <text x="948" y="598" font-size="7" opacity=".75">PIATÃ</text>
+    <text x="1028" y="530" font-weight="700" opacity=".82">ITAPUÃ</text>
 
-    <!-- MIM · Integração Metropolitana · centro-alto -->
-    <text x="490" y="270" font-size="7" opacity=".75">PIRAJÁ</text>
-    <text x="520" y="310" font-size="7" opacity=".7">ÁGUAS CLARAS</text>
-    <text x="605" y="238" font-size="7" opacity=".7">ACESSO NORTE</text>
+    <!-- MIM · Integração Metropolitana -->
+    <text x="478" y="268" font-size="7" opacity=".75">PIRAJÁ</text>
+    <text x="508" y="305" font-size="7" opacity=".7">ÁGUAS CLARAS</text>
+    <text x="598" y="235" font-size="7" opacity=".7">ACESSO NORTE</text>
 
-    <!-- MuB · Estruturação Urbana · centro-direita -->
-    <text x="590" y="390" font-weight="700" opacity=".85">CABULA</text>
-    <text x="620" y="430" font-size="7" opacity=".7">TANCREDO NEVES</text>
-    <text x="590" y="470" font-size="7" opacity=".7">PAU DA LIMA</text>
-    <text x="680" y="360" font-size="7" opacity=".7">PERNAMBUÉS</text>
-    <text x="700" y="400" font-size="7" opacity=".65">CASTELO BRANCO</text>
-    <text x="720" y="300" font-weight="700" opacity=".85">CAJAZEIRAS</text>
+    <!-- MuB · Estruturação Urbana -->
+    <text x="585" y="385" font-weight="700" opacity=".85">CABULA</text>
+    <text x="598" y="428" font-size="7" opacity=".7">TANCREDO NEVES</text>
+    <text x="575" y="468" font-size="7" opacity=".7">PAU DA LIMA</text>
+    <text x="678" y="355" font-size="7" opacity=".7">PERNAMBUÉS</text>
+    <text x="695" y="395" font-size="7" opacity=".65">CASTELO BRANCO</text>
+    <text x="715" y="298" font-weight="700" opacity=".85">CAJAZEIRAS</text>
 
     <!-- Aeroporto · topo direito -->
-    <text x="990" y="170" font-size="8" font-weight="700" opacity=".85">AEROPORTO</text>
-    <text x="990" y="182" font-size="6" opacity=".55">LUÍS E. MAGALHÃES</text>
+    <text x="985" y="168" font-size="8" font-weight="700" opacity=".85">AEROPORTO</text>
+    <text x="985" y="180" font-size="6" opacity=".55">LUÍS E. MAGALHÃES</text>
 
 </g>
 
@@ -1686,7 +1651,6 @@ footer {
     </g>
 
 </g>
-
   <!-- ═══════════════════════════════════════════════
        CAMADA INFRAESTRUTURA (transporte + fibra)
        Visibilidade controlada por JS · #layer-infra
@@ -1851,15 +1815,15 @@ footer {
 
     <!-- Zonas com baixa cobertura (miolo / periferia) · representação por ausência -->
     <g fill="none" stroke="#A8412A" stroke-width="1.2" stroke-dasharray="3 3" opacity=".4">
-      <rect x="450" y="585" width="280" height="120"/>
+      <rect x="560" y="330" width="300" height="200"/>
     </g>
-    <text x="590" y="650" text-anchor="middle" font-family="'Archivo Black',sans-serif"
+    <text x="710" y="438" text-anchor="middle" font-family="'Archivo Black',sans-serif"
           font-size="8" fill="#A8412A" opacity=".65" letter-spacing="2">
       ZONA SEM COBERTURA SENSORIAL
     </text>
 
     <!-- CCO LOBATO (pulsa) -->
-    <g transform="translate(290 510)">
+    <g transform="translate(248 548)">
       <circle r="16" fill="none" stroke="#A8412A" stroke-width="1.5">
         <animate attributeName="r" values="16;26;16" dur="3s" repeatCount="indefinite"/>
         <animate attributeName="opacity" values="0.6;0;0.6" dur="3s" repeatCount="indefinite"/>
@@ -1870,7 +1834,7 @@ footer {
     </g>
 
     <!-- COI ESTADUAL · CAB (pulsa) -->
-    <g transform="translate(870 305)">
+    <g transform="translate(855 645)">
       <circle r="14" fill="none" stroke="#A8412A" stroke-width="1.5">
         <animate attributeName="r" values="14;22;14" dur="3.4s" repeatCount="indefinite"/>
         <animate attributeName="opacity" values="0.55;0;0.55" dur="3.4s" repeatCount="indefinite"/>
@@ -2189,14 +2153,14 @@ const ESTADO = {
 ═══════════════════════════════════════════════ */
 
 const PINOS = [
-  { id: 1, nome: 'CCO LOBATO',          bairro: 'Subúrbio Ferroviário',  x: 295, y: 525, cor: '#A8412A' },
-  { id: 2, nome: 'PELOURINHO',          bairro: 'Centro Histórico',      x: 430, y: 410, cor: '#577387' },
-  { id: 3, nome: 'PARQUE TECNOLÓGICO',  bairro: 'Av. Paralela',          x: 925, y: 390, cor: '#5B6B3F' },
-  { id: 4, nome: 'CAJAZEIRAS',          bairro: 'Miolo · Estr. Urbana',  x: 615, y: 660, cor: '#C89339' },
-  { id: 5, nome: 'MATA ESCURA',         bairro: 'Encostas',              x: 385, y: 610, cor: '#5B6B3F' },
-  { id: 6, nome: 'CABO SUBMARINO',      bairro: 'Orla atlântica',        x: 1095, y: 595, cor: '#577387' },
-  { id: 7, nome: 'FEIRA DE SÃO JOAQUIM', bairro: 'Comércio · Cidade Baixa', x: 355, y: 455, cor: '#C89339' },
-  { id: 8, nome: 'CÂMARA MUNICIPAL',    bairro: 'Praça Tomé de Souza',   x: 415, y: 395, cor: '#1A1611' }
+  { id: 1, nome: 'CCO LOBATO',          bairro: 'Subúrbio Ferroviário',  x: 248, y: 548, cor: '#A8412A' },
+  { id: 2, nome: 'PELOURINHO',          bairro: 'Centro Histórico',      x: 400, y: 470, cor: '#577387' },
+  { id: 3, nome: 'PARQUE TECNOLÓGICO',  bairro: 'Av. Paralela',          x: 855, y: 645, cor: '#5B6B3F' },
+  { id: 4, nome: 'CAJAZEIRAS',          bairro: 'Miolo · Estr. Urbana',  x: 715, y: 298, cor: '#C89339' },
+  { id: 5, nome: 'MATA ESCURA',         bairro: 'Encostas',              x: 430, y: 510, cor: '#5B6B3F' },
+  { id: 6, nome: 'CABO SUBMARINO',      bairro: 'Orla atlântica',        x: 1065, y: 640, cor: '#577387' },
+  { id: 7, nome: 'FEIRA DE SÃO JOAQUIM', bairro: 'Comércio · Cidade Baixa', x: 368, y: 455, cor: '#C89339' },
+  { id: 8, nome: 'CÂMARA MUNICIPAL',    bairro: 'Praça Tomé de Souza',   x: 415, y: 415, cor: '#1A1611' }
 ];
 
 /* ═══════════════════════════════════════════════
