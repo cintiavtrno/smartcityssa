@@ -999,6 +999,213 @@ footer {
   .modal-body { padding: 16px 18px; }
   .legend-transp { font-size: 8px; padding: 7px 9px; }
 }
+   /* ═══════════════════════════════════════════════
+   PARTE 4 · INSPEÇÃO DE ACTANTES E REAGREGAÇÃO
+═══════════════════════════════════════════════ */
+
+/* TEIA DE ACTANTES DENTRO DO MODAL ────────── */
+.teia-svg {
+  width: 100%;
+  display: block;
+}
+
+.actante-node circle.outer {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.actante-node text {
+  pointer-events: none;
+  user-select: none;
+}
+
+.actante-edge {
+  stroke-width: 1.8;
+  fill: none;
+  opacity: .85;
+}
+
+.actante-arrow {
+  opacity: .85;
+}
+
+/* REAGREGAÇÃO · OVERLAY SOBRE O MAPA ─────── */
+#reagreg-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  background: rgba(26,22,17,.92);
+  color: var(--bone);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  animation: fadein-reagreg .8s ease;
+}
+#reagreg-overlay.show { display: flex; }
+
+@keyframes fadein-reagreg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reagreg-box {
+  background: var(--ink);
+  border: 2px solid var(--mustard);
+  box-shadow: 14px 14px 0 var(--brick);
+  max-width: 780px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 32px 36px;
+}
+
+.reagreg-stamp {
+  font-family: var(--font-black);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--mustard);
+  border: 1.5px solid var(--mustard);
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 18px;
+}
+
+.reagreg-h {
+  font-family: var(--font-black);
+  font-size: clamp(18px, 2.8vw, 26px);
+  letter-spacing: 3px;
+  line-height: 1.15;
+  color: var(--bone);
+  margin-bottom: 16px;
+}
+
+.reagreg-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--mustard);
+  border-left: 3px solid var(--mustard);
+  padding: 8px 14px;
+  margin-bottom: 22px;
+}
+
+.reagreg-corpo {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--bone);
+  opacity: .92;
+  margin-bottom: 22px;
+}
+
+.reagreg-corpo p {
+  margin-bottom: 12px;
+}
+
+.reagreg-stats {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(247,239,217,.18);
+  padding-top: 18px;
+  margin-bottom: 22px;
+}
+
+.reagreg-stat-num {
+  font-family: var(--font-black);
+  font-size: 24px;
+  color: var(--mustard);
+}
+
+.reagreg-stat-label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--bone);
+  opacity: .65;
+  margin-top: 3px;
+}
+
+.reagreg-fontes {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--bone);
+  opacity: .5;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(247,239,217,.15);
+}
+
+.reagreg-close {
+  font-family: var(--font-black);
+  font-size: 10px;
+  letter-spacing: 3px;
+  background: var(--mustard);
+  color: var(--ink);
+  border: 2px solid var(--mustard);
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.reagreg-close:hover {
+  background: var(--bone);
+  border-color: var(--bone);
+}
+
+/* TEIA SOBRE O MAPA · CAMADA DE REAGREGAÇÃO ── */
+#teia-mapa-overlay {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+#teia-mapa-overlay.show { opacity: 1; }
+
+.teia-mapa-fio {
+  stroke: var(--mustard);
+  stroke-width: 1.4;
+  stroke-dasharray: 6 5;
+  fill: none;
+  opacity: .85;
+  animation: flow-teia 3s linear infinite;
+}
+
+@keyframes flow-teia {
+  to { stroke-dashoffset: -22; }
+}
+
+/* BOTÃO DE REAGREGAR (aparece quando todos os pinos foram visitados) */
+.btn-reagregar {
+  position: fixed;
+  bottom: 70px;
+  right: 18px;
+  z-index: 80;
+  font-family: var(--font-black);
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  padding: 14px 22px;
+  background: var(--mustard);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  cursor: pointer;
+  display: none;
+  animation: pulse-btn 2.4s ease-in-out infinite;
+  transition: background .2s, transform .15s;
+}
+.btn-reagregar.show { display: block; }
+.btn-reagregar:hover {
+  background: var(--brick);
+  color: var(--bone);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+@keyframes pulse-btn {
+  0%, 100% { box-shadow: 4px 4px 0 var(--ink); }
+  50% { box-shadow: 4px 4px 0 var(--brick), 0 0 0 8px rgba(200,147,57,.25); }
+}
 </style>
 </head>
 <body>
@@ -1878,7 +2085,52 @@ footer {
     </div>
   </div>
 </aside>
+   
+<!-- ═══════════════════════════════════════════════
+     REAGREGAÇÃO · TEXTO DIAGNÓSTICO
+═══════════════════════════════════════════════ -->
+<div id="reagreg-overlay">
+  <div class="reagreg-box">
+    <div class="reagreg-stamp">REAGREGAÇÃO · A REDE FOI TRAÇADA</div>
+    <h2 class="reagreg-h">SALVADOR · O ZONEAMENTO QUE NÃO FOI VOTADO</h2>
+    <div class="reagreg-quote">"O território físico de Salvador não é governado apenas pelas leis na Câmara, mas pelas infraestruturas (cabos, algoritmos, sensores, contratos) que se sobrepõem a ele com vigência muito superior aos mandatos eletivos."</div>
 
+    <div class="reagreg-corpo">
+      <p>Os oito pinos que você acabou de percorrer não são casos isolados. Vistos em conjunto, eles descrevem uma sobreposição. O PDDU de 2016 dividiu Salvador em cinco macroáreas a partir de critérios urbanísticos, sociais e ambientais que foram debatidos publicamente. O PDTCI de 2025, dez anos depois, instalou sobre essa cidade uma segunda divisão, técnica e contratual, que não passou pelo mesmo rito. Onde o PDDU vê o Miolo como prioritário para investimentos estruturantes, o PDTCI concentrou sensores e câmeras na Macroárea de Urbanização Consolidada. Onde o PDDU prevê resiliência climática, o PDTCI substituiu sirenes físicas por aplicativos que dependem de uma infraestrutura de telecomunicações que a periferia não tem garantida.</p>
+
+      <p>A operação desse segundo zoneamento depende de actantes não-humanos que você inspecionou nas vinhetas. Os cabos submarinos da orla atlântica obrigam o processamento de dados municipais a passar por jurisdições estrangeiras, sob o CLOUD Act dos EUA. O banco de identificação criminal estadual treina o algoritmo de reconhecimento facial com uma amostra que reflete a seletividade histórica do policiamento, e cada abordagem nova retorna ao banco como dado de treinamento, fechando o circuito. O contrato de PPP da Companhia SMART define, por décadas, quais indicadores aparecem no painel do CCO Lobato e, portanto, o que conta como cidade gerível. A calibragem fotoquímica herdada das cartelas Shirley, dos anos 1950, ainda determina o que o sensor é capaz de ler quando uma pessoa negra atravessa o Pelourinho.</p>
+
+      <p>Nada disso é metáfora. Cada conexão traçada na rede acima corresponde a uma operação técnica, jurídica ou material que de fato acontece quando o sistema funciona. A discussão política não está em ser favorável ou contrário à tecnologia. Está em decidir, como Câmara Municipal, quais mecanismos institucionais Salvador quer instituir para que a arquitetura técnica da cidade volte a ser objeto de deliberação pública. Auditoria independente de algoritmos contratados pelo município. Avaliação de impacto sobre proteção de dados publicada antes de cada contratação. Comitê municipal de governança digital com participação da sociedade civil. Cláusula de revisão obrigatória em prazo curto para contratos de tecnologia. Análise prévia de impacto racial para sistemas biométricos. Cada um desses instrumentos é juridicamente viável em lei complementar municipal.</p>
+
+      <p>O artefato termina aqui. A pergunta política não.</p>
+    </div>
+
+    <div class="reagreg-stats">
+      <div>
+        <div class="reagreg-stat-num" id="stat-pinos">8</div>
+        <div class="reagreg-stat-label">PINOS INSPECIONADOS</div>
+      </div>
+      <div>
+        <div class="reagreg-stat-num" id="stat-fichas">8</div>
+        <div class="reagreg-stat-label">FICHAS ARQUIVADAS</div>
+      </div>
+      <div>
+        <div class="reagreg-stat-num">7</div>
+        <div class="reagreg-stat-label">ACTANTES MAPEADOS</div>
+      </div>
+      <div>
+        <div class="reagreg-stat-num">28</div>
+        <div class="reagreg-stat-label">CONEXÕES TRAÇADAS</div>
+      </div>
+    </div>
+
+    <div class="reagreg-fontes">
+      FONTES PRIMÁRIAS · PDDU Lei 9069/2016 · PDTCI Lei Complementar 92/2025 · Plano Salvador 500 · LGPD Lei 13.709/2018 · CLOUD Act (EUA, 2018) · Lei 12.037/2009 (identificação criminal) · Resolução CNS 466/2012 (ética em pesquisa) · Pesquisa Vigilância por Lentes Opacas CESeC/LAPIN 2024 · Rede de Observatórios de Segurança 2019 · Documentação técnica da SEMIT, SMART, Transalvador e Codesal · CIDACS/Fiocruz Bahia · Estatuto da Igualdade Racial do Município de Salvador.
+    </div>
+
+    <button class="reagreg-close" onclick="fecharReagregacao()">FECHAR · VOLTAR AO MAPA</button>
+  </div>
+</div>
 <div id="toast"></div>
 
 <script>
@@ -2815,7 +3067,303 @@ function arquivarFicha(v) {
 }
 
 /* Dados dos actantes · entra na Parte 4 */
-const ACTANTES = [];
+/* ═══════════════════════════════════════════════
+   PARTE 4 · ACTANTES NÃO-HUMANOS E INSPEÇÃO
+═══════════════════════════════════════════════ */
+
+const ACTANTES = [
+  { id: 1, sigla: 'CABO',       nome: 'Cabo submarino e fibra Infovia',     cor: '#577387' },
+  { id: 2, sigla: 'BANCO',      nome: 'Banco de dados policial',            cor: '#A8412A' },
+  { id: 3, sigla: 'ALGORITMO',  nome: 'Algoritmo de inferência',            cor: '#C89339' },
+  { id: 4, sigla: 'CONTRATO',   nome: 'Contrato de PPP / LC 92/2025',       cor: '#5B6B3F' },
+  { id: 5, sigla: 'CCO',        nome: 'Dashboard do CCO Lobato',            cor: '#7B5EA7' },
+  { id: 6, sigla: 'SENSOR',     nome: 'Sensor calibrado',                   cor: '#3D8B7A' },
+  { id: 7, sigla: 'CIDADÃO',    nome: 'Cidadão (sujeito-plataforma)',       cor: '#CC3333' }
+];
+
+/* posições no SVG de inspeção (700x340) — hexágono + centro */
+const TEIA_POS = {
+  1: { x: 175, y: 85  },
+  2: { x: 525, y: 85  },
+  3: { x: 605, y: 170 },
+  4: { x: 525, y: 255 },
+  5: { x: 175, y: 255 },
+  6: { x: 95,  y: 170 },
+  7: { x: 350, y: 170 }
+};
+
+/* Quais actantes operam em cada pino e quais coações atravessam a cena */
+const PINO_INSPECAO = {
+  1: { // CCO Lobato
+    presentes: [1, 4, 5, 6, 7],
+    coacoes: [
+      { de: 4, para: 5, texto: 'O contrato define quais widgets aparecem no painel e quais indicadores justificam renovação.' },
+      { de: 5, para: 6, texto: 'O dashboard exige que o sensor entregue séries temporais agregáveis em tempo real.' },
+      { de: 6, para: 5, texto: 'O sensor força o painel a representar apenas o que sua telemetria mede.' },
+      { de: 1, para: 5, texto: 'A fibra da Infovia obriga o painel a operar dentro da latência da rede.' },
+      { de: 5, para: 7, texto: 'O painel decide o que conta como cidade, e o cidadão é tratado conforme essa decisão.' }
+    ]
+  },
+  2: { // Pelourinho · Reconhecimento facial
+    presentes: [2, 3, 6, 1, 7],
+    coacoes: [
+      { de: 6, para: 3, texto: 'A calibração Shirley do sensor entrega ao algoritmo uma matéria-prima já enviesada.' },
+      { de: 2, para: 3, texto: 'O banco policial força o algoritmo a definir suspeito a partir de uma amostra historicamente seletiva.' },
+      { de: 3, para: 7, texto: 'O algoritmo obriga Marcus a encarnar a categoria matemática de suspeito.' },
+      { de: 1, para: 3, texto: 'A fibra transporta o vetor de 512 dimensões até o banco e devolve a similaridade.' },
+      { de: 7, para: 2, texto: 'A abordagem produz boletim que retorna ao banco como dado novo de treinamento.' }
+    ]
+  },
+  3: { // Parque Tecnológico · CIDACS
+    presentes: [3, 4, 1, 7],
+    coacoes: [
+      { de: 4, para: 3, texto: 'O marco regulatório da pesquisa científica define como o algoritmo pode operar.' },
+      { de: 3, para: 7, texto: 'O algoritmo classifica o cidadão em coortes anonimizadas para fins de saúde pública.' },
+      { de: 1, para: 3, texto: 'A fibra transporta os dados sensíveis cruzados sob protocolo ético.' },
+      { de: 4, para: 1, texto: 'O contrato de pesquisa define a jurisdição do processamento dos dados.' }
+    ]
+  },
+  4: { // Cajazeiras · O Miolo
+    presentes: [4, 5, 6, 7],
+    coacoes: [
+      { de: 4, para: 6, texto: 'O contrato define quais vias recebem sensor e quais ficam fora do escopo.' },
+      { de: 6, para: 5, texto: 'O sensor entrega ao painel apenas as vias que ele cobre, e o painel só vê o coberto.' },
+      { de: 5, para: 7, texto: 'O painel otimiza o BRT e retém os ônibus convencionais que servem Cajazeiras.' },
+      { de: 7, para: 5, texto: 'Os GPS dos passageiros parados retornam como ponto vermelho de congestionamento.' }
+    ]
+  },
+  5: { // Mata Escura · Alerta climático
+    presentes: [6, 3, 5, 4, 7, 1],
+    coacoes: [
+      { de: 6, para: 3, texto: 'O sensor geológico mede saturação e dispara o algoritmo de threshold.' },
+      { de: 3, para: 5, texto: 'O algoritmo aciona o protocolo de notificação no painel da Defesa Civil.' },
+      { de: 4, para: 6, texto: 'O contrato substituiu a sirene física pelo aparato digital.' },
+      { de: 1, para: 7, texto: 'A notificação depende de pacote de dados ativo, smartphone e cobertura 4G.' },
+      { de: 5, para: 7, texto: 'O painel registra protocolo cumprido mesmo quando o alerta não chegou.' }
+    ]
+  },
+  6: { // Cabo submarino · Soberania de dados
+    presentes: [1, 3, 4, 7],
+    coacoes: [
+      { de: 1, para: 3, texto: 'O cabo obriga o algoritmo a executar em servidores fora do Brasil.' },
+      { de: 1, para: 4, texto: 'A infraestrutura física define a jurisdição efetiva, mesmo contra a LGPD.' },
+      { de: 4, para: 1, texto: 'O contrato com fornecedor de nuvem comercial fixa a rota transatlântica.' },
+      { de: 3, para: 7, texto: 'O processamento na Virgínia retorna decisões automatizadas sobre o cidadão soteropolitano.' }
+    ]
+  },
+  7: { // Feira de São Joaquim · Scoring
+    presentes: [3, 4, 1, 7],
+    coacoes: [
+      { de: 4, para: 3, texto: 'O contrato de adesão da maquininha autoriza scoring automatizado sem notificação.' },
+      { de: 3, para: 7, texto: 'O algoritmo decide o limite de crédito de Dona Edna sem entregar critérios.' },
+      { de: 1, para: 3, texto: 'A rede transporta os dados transacionais para o servidor que roda o scoring.' },
+      { de: 7, para: 3, texto: 'A continuidade das vendas sob limite menor confirma estatisticamente a categoria de risco.' }
+    ]
+  },
+  8: { // Câmara Municipal · Pino reflexivo
+    presentes: [4, 5, 3, 7],
+    coacoes: [
+      { de: 4, para: 3, texto: 'A lei autoriza, e o contrato derivado decide os critérios técnicos por 15 a 25 anos.' },
+      { de: 4, para: 5, texto: 'A redação contratual define quais indicadores o painel exibe à gestão.' },
+      { de: 3, para: 7, texto: 'O algoritmo opera sobre o cidadão sob blindagem de segredo industrial.' },
+      { de: 7, para: 4, texto: 'O voto popular elege os legisladores, mas não revisa os contratos derivados da lei.' }
+    ]
+  }
+};
+
+/* ═══════════════════════════════════════════════
+   SUBSTITUI O PLACEHOLDER DA ABA INSPEÇÃO
+═══════════════════════════════════════════════ */
+function renderInspPlaceholder(id) {
+  // sobrescreve a função da Parte 3 com a versão completa
+  return renderInspecaoCompleta(id);
+}
+
+function renderInspecaoCompleta(pinoId) {
+  const dados = PINO_INSPECAO[pinoId];
+  if (!dados) return '<div class="insp-intro">Inspeção não disponível para este pino.</div>';
+
+  let html = '<div class="insp-intro">';
+  html += 'Esta cena não é operada por um único responsável humano. Ela acontece porque um conjunto de actantes não-humanos opera junto. Cada seta colorida abaixo parte do actante que <strong>exerce</strong> a coação. A teia mostra a rede que precisa existir para que a cena da aba "A Cena" aconteça.';
+  html += '</div>';
+
+  html += '<div class="insp-teia-wrap">';
+  html += '<svg class="teia-svg" viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg">';
+  html += renderTeiaSVG(dados);
+  html += '</svg>';
+  html += '</div>';
+
+  // legenda
+  html += '<div class="insp-legenda">';
+  dados.presentes.forEach(function(aid) {
+    const a = ACTANTES.find(function(x) { return x.id === aid; });
+    html += '<div class="insp-leg-item">' +
+            '<span class="insp-leg-color" style="background:' + a.cor + '"></span>' +
+            a.sigla + ' · ' + a.nome +
+            '</div>';
+  });
+  html += '</div>';
+
+  // lista textual das coações
+  html += '<div style="margin-top:14px;padding-top:14px;border-top:1.5px dashed var(--ink);">';
+  html += '<div style="font-family:var(--font-black);font-size:10px;letter-spacing:2.5px;color:var(--brick);margin-bottom:10px;">COAÇÕES MAPEADAS NESTA CENA</div>';
+  dados.coacoes.forEach(function(c) {
+    const orig = ACTANTES.find(function(x) { return x.id === c.de; });
+    const dest = ACTANTES.find(function(x) { return x.id === c.para; });
+    html += '<div style="display:flex;gap:10px;align-items:flex-start;padding:9px 12px;background:var(--paper);border-left:3px solid ' + orig.cor + ';margin-bottom:6px;">';
+    html += '<div style="font-family:var(--font-black);font-size:9px;letter-spacing:1px;color:' + orig.cor + ';flex-shrink:0;min-width:90px;">' + orig.sigla + ' → ' + dest.sigla + '</div>';
+    html += '<div style="font-size:11.5px;line-height:1.5;color:var(--ink);">' + c.texto + '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  return html;
+}
+
+function renderTeiaSVG(dados) {
+  let svg = '';
+
+  // setas (renderiza primeiro para ficarem atrás dos nós)
+  dados.coacoes.forEach(function(c) {
+    const posO = TEIA_POS[c.de];
+    const posD = TEIA_POS[c.para];
+    if (!posO || !posD) return;
+    const orig = ACTANTES.find(function(x) { return x.id === c.de; });
+
+    const dx = posD.x - posO.x;
+    const dy = posD.y - posO.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (dist === 0) return;
+    const ux = dx / dist, uy = dy / dist;
+    const raio = 32;
+    // offset lateral para evitar sobreposição de setas em pares bidirecionais
+    const ox = -uy * 3.5, oy = ux * 3.5;
+
+    const x1 = posO.x + ux * raio + ox;
+    const y1 = posO.y + uy * raio + oy;
+    const x2 = posD.x - ux * raio + ox;
+    const y2 = posD.y - uy * raio + oy;
+
+    svg += '<line class="actante-edge" x1="' + x1 + '" y1="' + y1 +
+           '" x2="' + x2 + '" y2="' + y2 + '" stroke="' + orig.cor + '"/>';
+
+    // ponta de seta
+    const arrowSize = 9;
+    const ax = x2 - ux * arrowSize + uy * arrowSize * 0.4;
+    const ay = y2 - uy * arrowSize - ux * arrowSize * 0.4;
+    const bx = x2 - ux * arrowSize - uy * arrowSize * 0.4;
+    const by = y2 - uy * arrowSize + ux * arrowSize * 0.4;
+    svg += '<polygon class="actante-arrow" points="' + x2 + ',' + y2 + ' ' +
+           ax + ',' + ay + ' ' + bx + ',' + by + '" fill="' + orig.cor + '"/>';
+  });
+
+  // nós
+  dados.presentes.forEach(function(aid) {
+    const a = ACTANTES.find(function(x) { return x.id === aid; });
+    const pos = TEIA_POS[aid];
+    if (!pos) return;
+
+    svg += '<g class="actante-node" transform="translate(' + pos.x + ',' + pos.y + ')">';
+    svg += '<circle class="outer" cx="0" cy="0" r="30" fill="' + a.cor + '"/>';
+    svg += '<circle cx="0" cy="0" r="23" fill="none" stroke="#F7EFD9" stroke-width=".8" stroke-dasharray="2 2"/>';
+
+    // sigla
+    const fontSize = a.sigla.length > 7 ? 7 : 9;
+    svg += '<text text-anchor="middle" y="3" font-family="\'Archivo Black\',sans-serif" font-size="' +
+           fontSize + '" fill="#F7EFD9" letter-spacing="1">' + a.sigla + '</text>';
+
+    // nome fora do nó
+    const yLabel = pos.y > 170 ? 48 : -40;
+    const palavras = a.nome.split(' ');
+    let l1 = a.nome, l2 = '';
+    if (a.nome.length > 22) {
+      const m = Math.ceil(palavras.length / 2);
+      l1 = palavras.slice(0, m).join(' ');
+      l2 = palavras.slice(m).join(' ');
+    }
+    svg += '<text text-anchor="middle" y="' + (l2 ? yLabel - 5 : yLabel) +
+           '" font-family="\'Archivo Black\',sans-serif" font-size="8" fill="#1A1611">' + l1 + '</text>';
+    if (l2) {
+      svg += '<text text-anchor="middle" y="' + (yLabel + 5) +
+             '" font-family="\'Archivo Black\',sans-serif" font-size="8" fill="#1A1611">' + l2 + '</text>';
+    }
+
+    svg += '</g>';
+  });
+
+  return svg;
+}
+
+/* ═══════════════════════════════════════════════
+   BOTÃO DE REAGREGAR (aparece quando tudo foi visto)
+═══════════════════════════════════════════════ */
+function checarReagregacao() {
+  const btn = document.getElementById('btn-reagregar');
+  if (!btn) return;
+  if (ESTADO.pinosVisitados.size === PINOS.length) {
+    btn.classList.add('show');
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   REAGREGAÇÃO · CONSTRÓI TEIA SOBRE O MAPA
+═══════════════════════════════════════════════ */
+function abrirReagregacao() {
+  // 1. desenha a teia sobre o mapa
+  desenharTeiaMapa();
+  // 2. abre o overlay com texto diagnóstico
+  document.getElementById('reagreg-overlay').classList.add('show');
+}
+
+function fecharReagregacao() {
+  document.getElementById('reagreg-overlay').classList.remove('show');
+}
+
+function desenharTeiaMapa() {
+  const map = document.getElementById('map-svg');
+  if (!map) return;
+
+  // remove camada anterior se existir
+  const antigo = document.getElementById('teia-mapa-overlay');
+  if (antigo) antigo.remove();
+
+  const ns = 'http://www.w3.org/2000/svg';
+  const g = document.createElementNS(ns, 'g');
+  g.setAttribute('id', 'teia-mapa-overlay');
+
+  // conecta todos os pares de pinos com fios animados
+  for (let i = 0; i < PINOS.length; i++) {
+    for (let j = i + 1; j < PINOS.length; j++) {
+      const a = PINOS[i];
+      const b = PINOS[j];
+      const line = document.createElementNS(ns, 'line');
+      line.setAttribute('class', 'teia-mapa-fio');
+      line.setAttribute('x1', a.x);
+      line.setAttribute('y1', a.y);
+      line.setAttribute('x2', b.x);
+      line.setAttribute('y2', b.y);
+      // delay escalonado para a animação parecer crescer
+      line.style.animationDelay = ((i + j) * 0.15) + 's';
+      g.appendChild(line);
+    }
+  }
+
+  map.appendChild(g);
+
+  // dispara o fade-in após um tick
+  setTimeout(function() {
+    g.classList.add('show');
+  }, 80);
+}
+
+/* ═══════════════════════════════════════════════
+   HOOK NA ABERTURA DA VINHETA · CHECA REAGREG
+═══════════════════════════════════════════════ */
+const _abrirVinhetaOriginal = abrirVinheta;
+abrirVinheta = function(id) {
+  _abrirVinhetaOriginal(id);
+  checarReagregacao();
+};
 
 </script>
 </body>
