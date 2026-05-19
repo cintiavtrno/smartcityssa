@@ -1958,6 +1958,342 @@ footer {
   0%, 100% { box-shadow: 4px 4px 0 var(--ink); }
   50% { box-shadow: 4px 4px 0 var(--brick), 0 0 0 8px rgba(200,147,57,.25); }
 }
+   /* PINO 4 · CAJAZEIRAS · O MAPA QUE O ALGORITMO VÊ */
+.caj-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.caj-panel {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+}
+.caj-panel-label {
+  font-family: var(--font-black);
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  color: var(--paper);
+  opacity: 0.7;
+  margin-bottom: 8px;
+  text-align: center;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
+.caj-svg {
+  width: 100%;
+  display: block;
+}
+.caj-readout {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  opacity: 0.75;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+.caj-bus-real {
+  animation: bus-real 8s linear infinite;
+}
+@keyframes bus-real {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(60px); }
+}
+.caj-bus-blocked {
+  animation: bus-blocked 8s infinite;
+}
+@keyframes bus-blocked {
+  0%, 35%, 100% { transform: translateY(0); }
+  40%, 90% { transform: translateY(0); }
+}
+
+.caj-led {
+  animation: led-green 4s infinite;
+}
+@keyframes led-green {
+  0%, 100% { fill: #C89339; }
+  30%, 70% { fill: #5B6B3F; filter: drop-shadow(0 0 4px #5B6B3F); }
+}
+
+.caj-paradox {
+  margin-top: 10px;
+  padding: 11px 14px;
+  background: var(--brick);
+  color: var(--bone);
+  border: 1.5px solid var(--mustard);
+  font-family: var(--font-black);
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* PINO 5 · MATA ESCURA · FUNIL DO ALERTA + SIRENE TROCADA */
+.mat-screen {
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.mat-block {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.mat-block-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mustard);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
+
+/* Funil */
+.funnel-svg {
+  width: 100%;
+  display: block;
+}
+.funnel-drop {
+  animation: drop-down 3s linear infinite;
+}
+@keyframes drop-down {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(180px); opacity: 0; }
+}
+
+.funnel-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.funnel-side {
+  padding: 10px;
+  border: 1px solid #3A2F22;
+  text-align: center;
+}
+.funnel-side.cco-side {
+  background: #1F2818;
+  border-color: #5B6B3F;
+  position: relative;
+}
+.funnel-side.cco-side::before {
+  content: '●';
+  color: #5B6B3F;
+  font-size: 12px;
+  margin-right: 4px;
+  animation: rec-blink 1.4s infinite;
+}
+.funnel-side.real-side {
+  background: #3D1A12;
+  border-color: var(--brick);
+}
+.funnel-side-num {
+  font-family: var(--font-black);
+  font-size: 22px;
+  line-height: 1;
+}
+.funnel-side.cco-side .funnel-side-num { color: #8FA567; }
+.funnel-side.real-side .funnel-side-num { color: #F2C9C0; }
+.funnel-side-label {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 1.5px;
+  color: var(--paper);
+  opacity: 0.7;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+/* Sirene trocada · timeline */
+.sirene-timeline {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+.sirene-step {
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+  text-align: center;
+}
+.sirene-step.cur { border-color: var(--brick); }
+.sirene-year {
+  font-family: var(--font-black);
+  font-size: 12px;
+  color: var(--mustard);
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+.sirene-icon {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+.sirene-desc {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  color: var(--paper);
+  opacity: 0.85;
+  line-height: 1.45;
+  letter-spacing: 0.3px;
+}
+.sirene-reach {
+  margin-top: 6px;
+  font-family: var(--font-black);
+  font-size: 8.5px;
+  letter-spacing: 1px;
+  padding: 4px;
+}
+.sirene-reach.good { color: var(--mustard); background: #2A2418; }
+.sirene-reach.bad { color: var(--brick); background: #2A1814; }
+
+.sirene-wave {
+  animation: wave-out 1.8s infinite;
+}
+@keyframes wave-out {
+  0% { r: 4; opacity: 1; }
+  100% { r: 22; opacity: 0; }
+}
+.signal-arc {
+  animation: signal-pulse 2s infinite;
+}
+@keyframes signal-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* PINO 6 · CABO SUBMARINO · VIAGEM DO BIT + CONFLITOS HÍDRICOS */
+.cabo-screen {
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.cabo-block {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.cabo-block-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mustard);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
+.cabo-svg {
+  width: 100%;
+  display: block;
+}
+
+.bit-particle {
+  animation: bit-travel 6s linear infinite;
+}
+@keyframes bit-travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.jurisdic-stamp {
+  font-family: var(--font-black);
+  font-size: 6.5px;
+  letter-spacing: 1px;
+}
+.j-br { fill: #5B6B3F; }
+.j-us { fill: var(--brick); }
+
+.cloud-act-banner {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--brick);
+  color: var(--bone);
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-align: center;
+  border: 1px solid var(--mustard);
+  line-height: 1.4;
+}
+
+.water-meter {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  letter-spacing: 1px;
+}
+.water-counter {
+  font-family: var(--font-black);
+  font-size: 13px;
+  color: #8BA4B0;
+}
+
+/* mapa de conflitos */
+.conflict-svg {
+  width: 100%;
+  display: block;
+}
+.conflict-dot {
+  animation: conflict-pulse 2.4s infinite;
+}
+@keyframes conflict-pulse {
+  0%, 100% { r: 4; opacity: 0.9; }
+  50% { r: 7; opacity: 0.5; }
+}
+.conflict-line {
+  stroke-dasharray: 4 3;
+  animation: line-flow 3s linear infinite;
+}
+@keyframes line-flow {
+  to { stroke-dashoffset: -21; }
+}
+
+.conflict-list {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.conflict-item {
+  background: #0E0B07;
+  border-left: 2px solid #8BA4B0;
+  padding: 7px 9px;
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  color: var(--paper);
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+.conflict-item strong {
+  display: block;
+  font-family: var(--font-black);
+  color: #8BA4B0;
+  letter-spacing: 1.5px;
+  font-size: 8.5px;
+  margin-bottom: 3px;
+}
 </style>
 </head>
 <body>
@@ -3296,6 +3632,48 @@ const VINHETAS = [
     },
 
     func: {
+      simulator: `
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · RECONHECIMENTO FACIAL</span>
+    <span>LIVE</span>
+  </div>
+  <div class="audit-sim">
+    <div class="cam-screen">
+      <div class="cam-panel">
+        <div class="cam-panel-label">CÂMERA 0834-B · PELOURINHO</div>
+        <svg class="cam-svg" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="80" fill="#0E0B07"/>
+          <rect x="25" y="10" width="50" height="60" fill="none" stroke="#577387" stroke-width="1" stroke-dasharray="2 2"/>
+          <circle cx="50" cy="40" r="15" fill="none" stroke="#C89339" stroke-width="1"/>
+          <path d="M 40 35 L 60 35" stroke="#C89339" stroke-width="0.5"/>
+          <path d="M 50 25 L 50 55" stroke="#C89339" stroke-width="0.5"/>
+        </svg>
+        <div class="cam-status fail">CONTRASTE BAIXO</div>
+        <div class="cam-vector unstable">VETOR INSTÁVEL [0.24, -0.81...]</div>
+      </div>
+      <div class="cam-panel">
+        <div class="cam-panel-label">BANCO DE DADOS SSP-BA</div>
+        <div class="cam-match">
+          <div class="cam-match-title">BUSCANDO MATCH</div>
+          <div class="cam-bank-strip">
+            <div class="cam-bank-face"></div>
+            <div class="cam-bank-face"></div>
+            <div class="cam-bank-face target"></div>
+            <div class="cam-bank-face"></div>
+            <div class="cam-bank-face"></div>
+          </div>
+          <div class="cam-bank-meta">AMOSTRA COM VIÉS HISTÓRICO</div>
+          <div class="cam-alert">MATCH ARTIFICIAL: 92.4%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>O ALGORITMO COMPENSA O RUÍDO.</strong> A câmera tem dificuldade de ler o contraste, gerando um vetor instável. Ao invés de abortar, o sistema preenche a lacuna buscando a morfologia mais frequente no banco criminal. <em>A falha técnica vira suspeição.</em>
+  </div>
+</div>
+      `,
       titulo: 'COMO O RECONHECIMENTO FACIAL OPERA',
       steps: [
         {
