@@ -61,10 +61,14 @@ body {
   z-index: 1000;
   background: var(--paper);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 24px;
   overflow-y: auto;
+}
+
+.brief-card {
+  margin: auto 0;
 }
 
 .brief-grid {
@@ -5616,7 +5620,7 @@ const VINHETAS = [
   <div class="audit-lesson">
     <strong>O MOBILIÁRIO URBANO VIROU INFRAESTRUTURA DE EXTRAÇÃO.</strong> O totem entrega ao usuário Wi-Fi, USB e temperatura — e simultaneamente coleta dele identificador de celular, perfil estimado, tempo de espera e tipo de aparelho. A sombra que foi cortada para instalá-lo tinha valor de uso público; o display que a substituiu tem valor de extração privada. <em>O ponto de ônibus não foi modernizado para servir melhor o passageiro — foi reconfigurado para servir bem o contrato.</em>
   </div>
-\`,
+`,
       titulo: 'COMO O TOTEM OPERA · O QUE ELE DÁ E O QUE ELE TIRA',
       steps: [
         {
