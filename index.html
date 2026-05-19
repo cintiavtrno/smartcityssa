@@ -1627,7 +1627,527 @@ footer {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
 }
+/* ═══ INÍCIO PINO 7 CSS ═══ */
+.edna-screen {
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.edna-block {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.edna-block-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mustard);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
 
+.edna-machine {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.edna-input {
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+  min-height: 165px;
+  position: relative;
+  overflow: hidden;
+}
+.edna-input-label {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  color: var(--paper);
+  opacity: 0.6;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.edna-data-drop {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 6.5px;
+  color: var(--mustard);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  animation: edna-drop 4s linear infinite;
+}
+@keyframes edna-drop {
+  0% { transform: translateY(-12px); opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(135px); opacity: 0; }
+}
+
+.edna-funnel-svg {
+  width: 60px;
+  height: 100%;
+  display: block;
+}
+
+.edna-output {
+  background: #2A1814;
+  border: 1.5px solid var(--brick);
+  padding: 12px;
+  min-height: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+.edna-stamp {
+  font-family: var(--font-black);
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: var(--bone);
+  background: var(--brick);
+  padding: 6px 14px;
+  border: 2px solid var(--mustard);
+  transform: rotate(-3deg);
+  animation: stamp-thump 4s infinite;
+}
+@keyframes stamp-thump {
+  0%, 90%, 100% { transform: rotate(-3deg) scale(1); }
+  92% { transform: rotate(-3deg) scale(1.1); }
+  94% { transform: rotate(-3deg) scale(1); }
+}
+.edna-limit {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--bone);
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.5;
+}
+.edna-limit s { color: #8B6358; }
+.edna-limit b { color: var(--mustard); font-family: var(--font-black); font-size: 11px; }
+
+.edna-locks {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.edna-lock-btn {
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+  padding: 9px 12px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  opacity: 0.85;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: not-allowed;
+}
+.edna-lock-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Timeline da Edna */
+.edna-timeline {
+  position: relative;
+  padding-left: 22px;
+}
+.edna-timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #3A2F22;
+}
+.edna-tl-event {
+  position: relative;
+  padding: 8px 0 8px 8px;
+  border-bottom: 1px dashed #2A241D;
+}
+.edna-tl-event:last-child { border-bottom: none; }
+.edna-tl-event::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1A1611;
+  border: 2px solid var(--mustard);
+}
+.edna-tl-event.bad::before { border-color: var(--brick); }
+.edna-tl-event.bad.cur::before { background: var(--brick); animation: rec-blink 1.4s infinite; }
+
+.edna-tl-year {
+  font-family: var(--font-black);
+  font-size: 10px;
+  color: var(--mustard);
+  letter-spacing: 1.5px;
+  margin-bottom: 3px;
+}
+.edna-tl-event.bad .edna-tl-year { color: var(--brick); }
+.edna-tl-fact {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--paper);
+  opacity: 0.9;
+  line-height: 1.55;
+  letter-spacing: 0.2px;
+}
+.edna-tl-fact b {
+  font-family: var(--font-black);
+  color: var(--bone);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 640px) {
+  .edna-machine { grid-template-columns: 1fr; }
+  .edna-funnel-svg { display: none; }
+}
+/* ═══ FIM PINO 7 CSS ═══ */
+   /* ═══ INÍCIO PINO 8 CSS ═══ */
+.cam-screen-leg {
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.cam-leg-block {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 14px;
+}
+.cam-leg-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mustard);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
+
+.leg-matrix {
+  display: grid;
+  grid-template-columns: 2.2fr 1.1fr 1.6fr;
+  gap: 0;
+  border: 1px solid #3A2F22;
+  background: #0E0B07;
+}
+.leg-row {
+  display: contents;
+}
+.leg-cell {
+  padding: 9px 10px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  letter-spacing: 0.4px;
+  line-height: 1.5;
+  border-bottom: 1px solid #2A241D;
+  border-right: 1px solid #2A241D;
+}
+.leg-row:last-child .leg-cell { border-bottom: none; }
+.leg-cell:last-child { border-right: none; }
+
+.leg-head {
+  font-family: var(--font-black);
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
+  color: var(--mustard);
+  background: #1A1611;
+  border-bottom: 2px solid var(--mustard) !important;
+  text-transform: uppercase;
+}
+
+.leg-instrument {
+  font-family: var(--font-black);
+  font-size: 9px;
+  color: var(--bone);
+  letter-spacing: 0.8px;
+}
+.leg-instrument small {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  color: var(--paper);
+  opacity: 0.65;
+  font-weight: normal;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+}
+
+.leg-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-black);
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
+}
+.leg-status.no { color: var(--brick); }
+.leg-status.no::before { 
+  content: '✗'; 
+  font-size: 13px;
+  animation: rec-blink 1.4s infinite;
+}
+.leg-status.yes { color: #8FA567; }
+.leg-status.yes::before { content: '✓'; font-size: 13px; }
+
+.leg-precedent {
+  font-size: 7.5px;
+  color: var(--paper);
+  opacity: 0.75;
+  line-height: 1.45;
+}
+.leg-precedent b {
+  color: var(--mustard);
+  font-family: var(--font-black);
+  font-size: 8px;
+  letter-spacing: 0.8px;
+}
+
+.leg-summary {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.leg-tally {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+  text-align: center;
+}
+.leg-tally-num {
+  font-family: var(--font-black);
+  font-size: 24px;
+  line-height: 1;
+}
+.leg-tally.bad .leg-tally-num { color: var(--brick); }
+.leg-tally.good .leg-tally-num { color: #8FA567; }
+.leg-tally.neutral .leg-tally-num { color: var(--mustard); }
+.leg-tally-label {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 1.2px;
+  color: var(--paper);
+  opacity: 0.7;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .leg-matrix { grid-template-columns: 1fr; }
+  .leg-cell { border-right: none; }
+  .leg-summary { grid-template-columns: 1fr; }
+}
+/* ═══ FIM PINO 8 CSS ═══ */
+/* ═══ INÍCIO PINO 9 CSS ═══ */
+.totem-screen {
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.totem-block {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.totem-block-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mustard);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
+
+/* Sombra cortada · antes/depois */
+.shadow-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.shadow-panel {
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+}
+.shadow-panel-label {
+  font-family: var(--font-black);
+  font-size: 8.5px;
+  letter-spacing: 1.8px;
+  color: var(--paper);
+  opacity: 0.75;
+  text-align: center;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #2A241D;
+}
+.shadow-svg {
+  width: 100%;
+  display: block;
+  background: #1A1611;
+  border: 1px solid #2A241D;
+}
+.shadow-temp {
+  margin-top: 6px;
+  text-align: center;
+  font-family: var(--font-black);
+  font-size: 18px;
+  letter-spacing: 1px;
+  padding: 6px;
+}
+.shadow-temp.cool { color: #8FA567; background: #1F2818; }
+.shadow-temp.hot { color: #F2C9C0; background: #3D1A12; }
+.shadow-temp small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  font-weight: normal;
+  opacity: 0.8;
+  letter-spacing: 1px;
+  margin-top: 3px;
+}
+
+/* Folha caindo (animação corte) */
+.leaf-fall {
+  animation: leaf-falling 4s ease-in infinite;
+  transform-origin: center;
+}
+@keyframes leaf-falling {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(15px, 80px) rotate(180deg); opacity: 0; }
+}
+
+/* Calor radiante */
+.heat-wave {
+  animation: heat-rising 2s ease-out infinite;
+}
+@keyframes heat-rising {
+  0% { transform: translateY(0); opacity: 0.7; }
+  100% { transform: translateY(-25px); opacity: 0; }
+}
+
+/* Anatomia do totem */
+.totem-anatomy {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 12px;
+  align-items: stretch;
+}
+.totem-svg-wrap {
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.totem-svg {
+  max-width: 100%;
+  height: auto;
+  max-height: 320px;
+}
+.totem-collect {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.collect-item {
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+  border-left: 3px solid var(--brick);
+  padding: 8px 11px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.collect-item strong {
+  display: block;
+  font-family: var(--font-black);
+  font-size: 8.5px;
+  color: var(--brick);
+  letter-spacing: 1.2px;
+  margin-bottom: 2px;
+}
+.collect-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brick);
+  flex-shrink: 0;
+  margin-top: 3px;
+  animation: rec-blink 1.4s infinite;
+}
+
+.totem-not {
+  margin-top: 10px;
+  background: #1A1611;
+  border: 1px dashed var(--brick);
+  padding: 9px 12px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  opacity: 0.85;
+  letter-spacing: 0.3px;
+  line-height: 1.55;
+  text-align: center;
+}
+.totem-not b {
+  color: var(--brick);
+  font-family: var(--font-black);
+  letter-spacing: 1px;
+}
+
+/* USB ativa */
+.usb-pulse {
+  animation: usb-glow 1.6s infinite;
+}
+@keyframes usb-glow {
+  0%, 100% { fill: var(--mustard); }
+  50% { fill: var(--brick); }
+}
+
+/* Sinal Wi-Fi pulsando */
+.wifi-arc {
+  animation: wifi-pulse 2s ease-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes wifi-pulse {
+  0% { opacity: 0; transform: scale(0.6); }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+
+@media (max-width: 640px) {
+  .shadow-compare { grid-template-columns: 1fr; }
+  .totem-anatomy { grid-template-columns: 1fr; }
+}
+/* ═══ FIM PINO 9 CSS ═══ */
 /* PINO 6 · CABO SUBMARINO · VIAGEM DO BIT + CONFLITOS HÍDRICOS */
 .cabo-screen {
   background: #0E0B07;
@@ -2968,7 +3488,7 @@ footer {
     </div>
     <div class="foot-count">
       <span class="foot-count-label">VISITADOS</span>
-      <span class="foot-count-num" id="foot-count">0/8</span>
+      <span class="foot-count-num" id="foot-count">0/9</span>
     </div>
   </footer>
 </div>
@@ -3116,11 +3636,11 @@ footer {
 
     <div class="reagreg-stats">
       <div>
-        <div class="reagreg-stat-num" id="stat-pinos">8</div>
+        <div class="reagreg-stat-num" id="stat-pinos">9</div>
         <div class="reagreg-stat-label">PINOS INSPECIONADOS</div>
       </div>
       <div>
-        <div class="reagreg-stat-num" id="stat-fichas">8</div>
+        <div class="reagreg-stat-num" id="stat-fichas">9</div>
         <div class="reagreg-stat-label">FICHAS ARQUIVADAS</div>
       </div>
       <div>
@@ -3244,7 +3764,8 @@ const PINOS = [
   { id: 5, nome: 'MATA ESCURA',           bairro: 'Encostas · entre MUC e MuB',  x: 620,  y: 470, cor: '#5B6B3F' },
   { id: 6, nome: 'CABO SUBMARINO',        bairro: 'Orla Atlântica',              x: 1075, y: 660, cor: '#577387' },
   { id: 7, nome: 'FEIRA DE SÃO JOAQUIM',  bairro: 'Comércio · MUC',              x: 405,  y: 482, cor: '#C89339' },
-  { id: 8, nome: 'CÂMARA MUNICIPAL',      bairro: 'Praça Tomé de Souza',         x: 415,  y: 528, cor: '#1A1611' }
+  { id: 8, nome: 'CÂMARA MUNICIPAL',      bairro: 'Praça Tomé de Souza',         x: 415,  y: 528, cor: '#1A1611' },
+  { id: 9, nome: 'TOTEM · CABULA',        bairro: 'Largo do Cabula · MuB',       x: 720,  y: 305, cor: '#3D8B7A' }
 ];
 
 /* ═══════════════════════════════════════════════
@@ -4569,6 +5090,106 @@ const VINHETAS = [
     },
 
     func: {
+      simulator: `
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · A CAIXA-PRETA DO SCORING + A VIDA DE EDNA</span>
+    <span>FEIRA DE SÃO JOAQUIM</span>
+  </div>
+  <div class="audit-sim">
+    <div class="edna-screen">
+
+      <div class="edna-block">
+        <div class="edna-block-label">A CAIXA-PRETA · ENTRADA VISÍVEL · SAÍDA OPACA</div>
+
+        <div class="edna-machine">
+          <div class="edna-input">
+            <div class="edna-input-label">VENDAS DE EDNA · ENTRADA</div>
+            <div class="edna-data-drop" style="left: 8%; animation-delay: 0s;">R$ 12,00 · 11h04 · PIX</div>
+            <div class="edna-data-drop" style="left: 32%; animation-delay: 0.4s;">R$ 8,00 · 11h09 · DÉBITO</div>
+            <div class="edna-data-drop" style="left: 12%; animation-delay: 0.9s;">R$ 24,00 · 11h13 · PIX</div>
+            <div class="edna-data-drop" style="left: 45%; animation-delay: 1.3s;">R$ 6,00 · 11h17 · CRÉDITO</div>
+            <div class="edna-data-drop" style="left: 22%; animation-delay: 1.7s;">R$ 18,00 · 11h22 · PIX</div>
+            <div class="edna-data-drop" style="left: 5%; animation-delay: 2.1s;">CEP: 40301-110</div>
+            <div class="edna-data-drop" style="left: 38%; animation-delay: 2.5s;">R$ 14,00 · 11h28 · DÉBITO</div>
+            <div class="edna-data-drop" style="left: 18%; animation-delay: 2.9s;">QUARTA · -8% vs MÉDIA</div>
+            <div class="edna-data-drop" style="left: 42%; animation-delay: 3.3s;">R$ 10,00 · 11h32 · PIX</div>
+            <div class="edna-data-drop" style="left: 28%; animation-delay: 3.7s;">DIST. TERMINAL: 4.2m</div>
+          </div>
+
+          <svg class="edna-funnel-svg" viewBox="0 0 60 165" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 5 20 L 55 20 L 38 70 L 22 70 Z" fill="none" stroke="#3A2F22" stroke-width="1.2"/>
+            <rect x="22" y="70" width="16" height="75" fill="none" stroke="#3A2F22" stroke-width="1.2"/>
+            <g fill="var(--mustard)">
+              <circle cx="30" cy="25"><animate attributeName="cy" values="25;145;25" dur="1.8s" repeatCount="indefinite"/><animate attributeName="r" values="2;1.5;1" dur="1.8s" repeatCount="indefinite"/></circle>
+              <circle cx="30" cy="25"><animate attributeName="cy" values="25;145;25" dur="1.8s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="r" values="2;1.5;1" dur="1.8s" begin="0.6s" repeatCount="indefinite"/></circle>
+              <circle cx="30" cy="25"><animate attributeName="cy" values="25;145;25" dur="1.8s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="r" values="2;1.5;1" dur="1.8s" begin="1.2s" repeatCount="indefinite"/></circle>
+            </g>
+            <text x="30" y="12" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E" letter-spacing="1">ALGORITMO</text>
+            <text x="30" y="160" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E" letter-spacing="1">↓ SAÍDA</text>
+          </svg>
+
+          <div class="edna-output">
+            <div class="edna-input-label" style="opacity: 0.65;">RESULTADO · SEM EXPLICAÇÃO</div>
+            <div class="edna-stamp">RISCO MÉDIO</div>
+            <div class="edna-limit">
+              LIMITE: <s>R$ 3.000</s> → <b>R$ 1.200</b><br>
+              <span style="opacity: 0.7; font-size: 8px;">REDUÇÃO DE 60% · SEM AVISO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="edna-locks">
+          <div class="edna-lock-btn">
+            <svg class="edna-lock-icon" viewBox="0 0 14 14"><rect x="3" y="6" width="8" height="6" fill="var(--brick)"/><path d="M 4.5 6 V 4 a 2.5 2.5 0 1 1 5 0 V 6" fill="none" stroke="var(--brick)" stroke-width="1.2"/></svg>
+            EDNA CLICA EM "POR QUÊ?" → "ANÁLISE DE PERFIL · SEGREDO INDUSTRIAL"
+          </div>
+          <div class="edna-lock-btn">
+            <svg class="edna-lock-icon" viewBox="0 0 14 14"><rect x="3" y="6" width="8" height="6" fill="var(--brick)"/><path d="M 4.5 6 V 4 a 2.5 2.5 0 1 1 5 0 V 6" fill="none" stroke="var(--brick)" stroke-width="1.2"/></svg>
+            EDNA CLICA NOVAMENTE → MESMA RESPOSTA · CADEADO MANTIDO
+          </div>
+        </div>
+      </div>
+
+      <div class="edna-block">
+        <div class="edna-block-label">A VIDA DE EDNA · NADA MUDOU. O CÁLCULO MUDOU.</div>
+        <div class="edna-timeline">
+
+          <div class="edna-tl-event">
+            <div class="edna-tl-year">2019</div>
+            <div class="edna-tl-fact"><b>Edna assina o contrato de adesão da maquininha.</b> 87 páginas, cláusula 18-B autoriza alteração do limite sem notificação prévia. Ela assina como pré-requisito para vender por cartão.</div>
+          </div>
+
+          <div class="edna-tl-event">
+            <div class="edna-tl-year">2020</div>
+            <div class="edna-tl-fact">Limite inicial: <b>R$ 3.000</b>. Vende em média 47 acarajés por dia. Bom score, bom histórico.</div>
+          </div>
+
+          <div class="edna-tl-event">
+            <div class="edna-tl-year">2022</div>
+            <div class="edna-tl-fact">Algoritmo registra padrão: <b>queda de 8% nas vendas em quartas-feiras após chuva</b>. Edna não sabe que isso está sendo medido. Ela continua vendendo normalmente, o tempo apenas afasta clientes em dias específicos.</div>
+          </div>
+
+          <div class="edna-tl-event bad">
+            <div class="edna-tl-year">2023</div>
+            <div class="edna-tl-fact">Vetor comportamental cruzado com base de inadimplentes. Categorização automática: <b>"risco médio"</b>. Limite cai para R$ 1.800.</div>
+          </div>
+
+          <div class="edna-tl-event bad cur">
+            <div class="edna-tl-year">2024 · HOJE</div>
+            <div class="edna-tl-fact"><b>Semana de Iemanjá.</b> Limite cai para R$ 1.200 em plena semana de maior movimento. Edna liga para o suporte. Recebe: "análise de perfil pelo sistema". Pede explicação detalhada. Recebe: "critérios protegidos por segredo industrial".</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>O ART. 20 DA LGPD GARANTE REVISÃO · A ARQUITETURA DA OPERAÇÃO IMPEDE.</strong> Edna tem, em tese, o direito legal de pedir revisão de uma decisão automatizada. Mas a Cláusula 18-B do contrato autorizou a mudança sem aviso, o Art. 12 blinda os critérios como segredo industrial, e nada na operação obriga a empresa a comunicar que houve uma decisão algorítmica — apenas que "o limite foi atualizado". <em>Sem saber que foi a máquina, sem saber os critérios, sem ter assistência técnica para contestá-los, o direito permanece no papel enquanto o limite cai na realidade.</em>
+  </div>
+</div>
+      `,
       titulo: 'COMO O SCORING DECIDE SOBRE A FEIRANTE',
       steps: [
         {
@@ -4628,6 +5249,105 @@ const VINHETAS = [
     },
 
     func: {
+      simulator: `
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · O QUE A CÂMARA PODERIA LEGISLAR · E NÃO LEGISLOU</span>
+    <span>PDTCI LC 92/2025</span>
+  </div>
+  <div class="audit-sim">
+    <div class="cam-screen-leg">
+
+      <div class="cam-leg-block">
+        <div class="cam-leg-label">MATRIZ DE INSTRUMENTOS JURÍDICOS DISPONÍVEIS</div>
+
+        <div class="leg-matrix">
+
+          <div class="leg-row">
+            <div class="leg-cell leg-head">INSTRUMENTO POSSÍVEL EM LEI MUNICIPAL</div>
+            <div class="leg-cell leg-head">STATUS NO PDTCI</div>
+            <div class="leg-cell leg-head">PRECEDENTE EM OUTRAS CIDADES</div>
+          </div>
+
+          <div class="leg-row">
+            <div class="leg-cell leg-instrument">
+              AUDITORIA ALGORÍTMICA INDEPENDENTE
+              <small>Obrigatoriedade de auditoria externa anual de qualquer algoritmo contratado pelo município</small>
+            </div>
+            <div class="leg-cell"><span class="leg-status no">AUSENTE</span></div>
+            <div class="leg-cell leg-precedent"><b>NYC · Local Law 144/2021</b> exige auditoria de viés em sistemas automatizados de RH municipal.</div>
+          </div>
+
+          <div class="leg-row">
+            <div class="leg-cell leg-instrument">
+              AIPD OBRIGATÓRIA E PÚBLICA
+              <small>Avaliação de Impacto sobre Proteção de Dados publicada antes da assinatura do contrato</small>
+            </div>
+            <div class="leg-cell"><span class="leg-status no">AUSENTE</span></div>
+            <div class="leg-cell leg-precedent"><b>São Paulo · Decreto 62.480/2023</b> exige AIPD prévia para contratos de tecnologia.</div>
+          </div>
+
+          <div class="leg-row">
+            <div class="leg-cell leg-instrument">
+              COMITÊ MUNICIPAL COM SOCIEDADE CIVIL
+              <small>Conselho de Governança Digital com paridade entre governo, sociedade civil e academia</small>
+            </div>
+            <div class="leg-cell"><span class="leg-status no">AUSENTE</span></div>
+            <div class="leg-cell leg-precedent"><b>Recife · Lei 18.911/2022</b> instituiu Conselho Municipal de Governança Digital.</div>
+          </div>
+
+          <div class="leg-row">
+            <div class="leg-cell leg-instrument">
+              SUNSET CLAUSE
+              <small>Cláusula de revisão obrigatória em 4 anos para contratos de tecnologia superiores a determinado valor</small>
+            </div>
+            <div class="leg-cell"><span class="leg-status no">AUSENTE</span></div>
+            <div class="leg-cell leg-precedent"><b>Porto Alegre · LC 815/2020</b> exige reavaliação quadrienal de PPPs tecnológicas.</div>
+          </div>
+
+          <div class="leg-row">
+            <div class="leg-cell leg-instrument">
+              ANÁLISE DE IMPACTO RACIAL
+              <small>Estudo prévio sobre efeitos diferenciados de sistemas biométricos sobre populações negras</small>
+            </div>
+            <div class="leg-cell"><span class="leg-status no">AUSENTE</span></div>
+            <div class="leg-cell leg-precedent"><b>Salvador já tem</b> Estatuto Municipal da Igualdade Racial · base legal disponível para regulamentar.</div>
+          </div>
+
+          <div class="leg-row">
+            <div class="leg-cell leg-instrument">
+              AUDIÊNCIA PÚBLICA VINCULANTE
+              <small>Contratos acima de determinado valor obrigam audiência pública prévia com poder de veto</small>
+            </div>
+            <div class="leg-cell"><span class="leg-status no">AUSENTE</span></div>
+            <div class="leg-cell leg-precedent"><b>Florianópolis · LC 750/2023</b> exige audiência vinculante para PPPs de TI acima de R$ 50mi.</div>
+          </div>
+
+        </div>
+
+        <div class="leg-summary">
+          <div class="leg-tally bad">
+            <div class="leg-tally-num">0/6</div>
+            <div class="leg-tally-label">INSTRUMENTOS ADOTADOS NO PDTCI</div>
+          </div>
+          <div class="leg-tally neutral">
+            <div class="leg-tally-num">6/6</div>
+            <div class="leg-tally-label">JURIDICAMENTE VIÁVEIS EM LC MUNICIPAL</div>
+          </div>
+          <div class="leg-tally good">
+            <div class="leg-tally-num">6/6</div>
+            <div class="leg-tally-label">COM PRECEDENTE EM CIDADES BRASILEIRAS</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>A LEI AUTORIZA. O CONTRATO DECIDE. A CÂMARA PODE INTERVIR NO MEIO.</strong> Cada instrumento na matriz acima é juridicamente viável em lei complementar municipal, sem ferir competência federal, e cada um tem precedente já testado em outra capital brasileira. Nenhum está hoje incorporado ao PDTCI. <em>O que separa a delegação opaca atual de uma governança digital democrática não é uma reforma constitucional — é a redação de seis artigos.</em>
+  </div>
+</div>
+      `,
       titulo: 'O QUE FICA NA LEI E O QUE FICA NO CONTRATO',
       steps: [
         {
@@ -4663,12 +5383,285 @@ const VINHETAS = [
 
     ficha: {
       quote: 'A lei autoriza. O contrato decide. Entre uma coisa e outra existe um espaço de decisão técnica que, na ausência de mecanismo institucional de controle, opera com discricionariedade quase total e por prazos que excedem mandatos eletivos.',
-      fonte: 'Síntese a partir de Carlos Ari Sundfeld (Direito Administrativo para Céticos) e da pesquisa sobre PPPs em smart cities (CESeC/LAPIN, 2024).'
+     fonte: 'Síntese a partir de Carlos Ari Sundfeld (Direito Administrativo para Céticos) e da pesquisa sobre PPPs em smart cities (CESeC/LAPIN, 2024).'
+    }
+  },
+
+  /* ──────────────────────────────────────────
+     PINO 9 · CABULA · TOTEM DE PONTO DE ÔNIBUS
+  ────────────────────────────────────────── */
+  {
+    id: 9,
+    titulo: 'O PONTO DE ÔNIBUS QUE COLETA VOCÊ',
+    bairro: 'LARGO DO CABULA · MuB',
+    sub: 'Modernização do mobiliário urbano · sombra trocada por sensor',
+
+    cena: {
+      bairro: 'LARGO DO CABULA · MEIO-DIA',
+      titulo: 'A árvore foi removida. O totem mede a temperatura que ele ajudou a criar.',
+      texto: [
+        'A modernização do mobiliário urbano de Salvador, executada como contrapartida de contratos de exploração publicitária, instalou no Largo do Cabula um totem de aço com display de temperatura, Wi-Fi gratuito, porta USB e banco metálico, substituindo o antigo abrigo que se apoiava sob a copa de uma árvore frondosa.',
+        'A remoção da árvore, justificada pela necessidade técnica de fundação e cabeamento do equipamento, eliminou a sombra que ali existia há décadas, fazendo com que o termômetro do próprio totem passasse a registrar trinta e sete graus ao meio-dia. O dispositivo, portanto, mede com precisão a temperatura crítica de um microclima que ele mesmo ajudou a produzir ao remover a vegetação que o atenuava.',
+        'Embora seja vendido ao usuário como serviço gratuito de Wi-Fi e ponto de carregamento, o totem opera simultaneamente como infraestrutura de coleta de dados, captando endereços MAC dos celulares próximos, contando pessoas via câmera de fluxo, registrando tempo médio de permanência e armazenando metadados de quem se conecta à porta USB. Consequentemente, enquanto o aparato exibe um display amigável com temperatura e horário do próximo ônibus, ele extrai continuamente, dos próprios usuários da espera, os dados que justificarão a renovação do contrato com a empresa fornecedora.'
+      ]
+    },
+
+    func: {
+      simulator: \`
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · A SOMBRA CORTADA + ANATOMIA DO TOTEM</span>
+    <span>LARGO DO CABULA · 12h00</span>
+  </div>
+  <div class="audit-sim">
+    <div class="totem-screen">
+
+      <div class="totem-block">
+        <div class="totem-block-label">ANTES E DEPOIS · O QUE FOI TROCADO</div>
+        <div class="shadow-compare">
+
+          <div class="shadow-panel">
+            <div class="shadow-panel-label">ANTES · ÁRVORE FRONDOSA</div>
+            <svg class="shadow-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="200" height="200" fill="#1A1611"/>
+              <rect x="0" y="170" width="200" height="30" fill="#2A241D"/>
+
+              <ellipse cx="100" cy="178" rx="55" ry="8" fill="#0E0B07" opacity="0.6"/>
+
+              <rect x="95" y="100" width="10" height="70" fill="#5C4F3E"/>
+              <ellipse cx="100" cy="80" rx="50" ry="35" fill="#5B6B3F"/>
+              <ellipse cx="80" cy="65" rx="28" ry="22" fill="#7A8B5C"/>
+              <ellipse cx="120" cy="70" rx="32" ry="24" fill="#7A8B5C"/>
+              <ellipse cx="100" cy="55" rx="25" ry="20" fill="#7A8B5C"/>
+
+              <g class="leaf-fall" style="animation-delay: 0s;">
+                <ellipse cx="115" cy="90" rx="3" ry="1.5" fill="#7A8B5C"/>
+              </g>
+              <g class="leaf-fall" style="animation-delay: 2s;">
+                <ellipse cx="85" cy="85" rx="3" ry="1.5" fill="#7A8B5C"/>
+              </g>
+
+              <rect x="55" y="155" width="40" height="20" fill="#3A2F22" stroke="#5C4F3E" stroke-width="0.6"/>
+              <rect x="58" y="158" width="34" height="3" fill="#5C4F3E"/>
+              <text x="75" y="168" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#C89339">ABRIGO</text>
+
+              <g transform="translate(140 150)">
+                <path d="M -3 0 L 3 0 L 3 -5 L 6 -5 L 0 -12 L -6 -5 L -3 -5 Z" fill="#C89339"/>
+                <text x="0" y="9" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="11" fill="#C89339">26°</text>
+              </g>
+            </svg>
+            <div class="shadow-temp cool">
+              26°C
+              <small>SOMBRA + VENTILAÇÃO NATURAL</small>
+            </div>
+          </div>
+
+          <div class="shadow-panel">
+            <div class="shadow-panel-label">DEPOIS · TOTEM DE AÇO</div>
+            <svg class="shadow-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="200" height="200" fill="#1A1611"/>
+              <rect x="0" y="170" width="200" height="30" fill="#2A241D"/>
+
+              <circle cx="100" cy="100" r="35" fill="#C89339" opacity="0.18"/>
+              <circle cx="100" cy="100" r="55" fill="#A8412A" opacity="0.08"/>
+
+              <g class="heat-wave" style="animation-delay: 0s;">
+                <path d="M 75 150 Q 78 145 75 140 Q 72 135 75 130" stroke="#A8412A" stroke-width="1" fill="none" opacity="0.6"/>
+              </g>
+              <g class="heat-wave" style="animation-delay: 0.6s;">
+                <path d="M 100 150 Q 103 145 100 140 Q 97 135 100 130" stroke="#A8412A" stroke-width="1" fill="none" opacity="0.6"/>
+              </g>
+              <g class="heat-wave" style="animation-delay: 1.2s;">
+                <path d="M 125 150 Q 128 145 125 140 Q 122 135 125 130" stroke="#A8412A" stroke-width="1" fill="none" opacity="0.6"/>
+              </g>
+
+              <rect x="50" y="80" width="100" height="92" fill="#3A2F22" stroke="#5C4F3E" stroke-width="0.8"/>
+              <rect x="55" y="86" width="90" height="32" fill="#0E0B07" stroke="#5C4F3E" stroke-width="0.6"/>
+              <text x="100" y="106" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="14" fill="#A8412A">37°C</text>
+              <text x="100" y="115" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#C89339">PRÓX. ÔNIBUS 12min</text>
+
+              <rect x="55" y="125" width="42" height="20" fill="#1A1611" stroke="#5C4F3E" stroke-width="0.5"/>
+              <text x="76" y="138" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#C89339" letter-spacing="1">WIFI</text>
+
+              <rect x="103" y="125" width="42" height="20" fill="#1A1611" stroke="#5C4F3E" stroke-width="0.5"/>
+              <rect x="115" y="131" width="18" height="8" fill="#0E0B07" stroke="#5C4F3E" stroke-width="0.4"/>
+              <rect x="119" y="133" width="3" height="2" class="usb-pulse"/>
+              <rect x="126" y="133" width="3" height="2" class="usb-pulse"/>
+              <text x="124" y="155" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#C89339">USB</text>
+
+              <rect x="60" y="152" width="80" height="14" fill="#5C4F3E" stroke="#3A2F22" stroke-width="0.5"/>
+              <text x="100" y="162" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#1A1611">BANCO METÁLICO · 48°C</text>
+
+              <circle cx="100" cy="75" r="3" fill="#A8412A">
+                <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+              </circle>
+              <text x="100" y="73" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4" fill="#A8412A">CAM</text>
+            </svg>
+            <div class="shadow-temp hot">
+              37°C
+              <small>SOL DIRETO · AÇO IRRADIANDO CALOR</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="totem-block">
+        <div class="totem-block-label">ANATOMIA DO TOTEM · O QUE ELE COLETA SEM AVISAR</div>
+        <div class="totem-anatomy">
+
+          <div class="totem-svg-wrap">
+            <svg class="totem-svg" viewBox="0 0 140 280" xmlns="http://www.w3.org/2000/svg">
+              <rect x="40" y="20" width="60" height="220" fill="#2A241D" stroke="#5C4F3E" stroke-width="1"/>
+              <rect x="40" y="20" width="60" height="220" fill="none" stroke="#3A2F22" stroke-width="0.5" stroke-dasharray="2 3"/>
+
+              <rect x="46" y="28" width="48" height="36" fill="#0E0B07" stroke="#C89339" stroke-width="0.6"/>
+              <text x="70" y="44" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="9" fill="#A8412A">37°C</text>
+              <text x="70" y="56" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4" fill="#C89339">12 MIN</text>
+
+              <circle cx="70" cy="78" r="3" fill="#A8412A">
+                <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+              </circle>
+              <line x1="70" y1="81" x2="62" y2="92" stroke="#5C4F3E" stroke-width="0.5"/>
+              <line x1="70" y1="81" x2="78" y2="92" stroke="#5C4F3E" stroke-width="0.5"/>
+              <text x="105" y="80" font-family="'Space Mono',monospace" font-size="5" fill="#A8412A" letter-spacing="0.5">← câmera</text>
+
+              <g transform="translate(70 95)">
+                <path class="wifi-arc" d="M -10 0 Q 0 -8 10 0" fill="none" stroke="#C89339" stroke-width="0.8"/>
+                <path class="wifi-arc" d="M -7 -2 Q 0 -7 7 -2" fill="none" stroke="#C89339" stroke-width="0.8" style="animation-delay: 0.4s;"/>
+                <path class="wifi-arc" d="M -4 -4 Q 0 -7 4 -4" fill="none" stroke="#C89339" stroke-width="0.8" style="animation-delay: 0.8s;"/>
+                <circle r="1.5" fill="#C89339"/>
+              </g>
+              <text x="105" y="97" font-family="'Space Mono',monospace" font-size="5" fill="#C89339" letter-spacing="0.5">← Wi-Fi</text>
+
+              <rect x="50" y="115" width="40" height="22" fill="#0E0B07" stroke="#C89339" stroke-width="0.6"/>
+              <text x="70" y="128" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#C89339" letter-spacing="1">DISPLAY</text>
+              <line x1="50" y1="126" x2="32" y2="126" stroke="#5C4F3E" stroke-width="0.5"/>
+              <text x="30" y="128" text-anchor="end" font-family="'Space Mono',monospace" font-size="5" fill="#C89339">display →</text>
+
+              <rect x="50" y="148" width="40" height="14" fill="#1A1611" stroke="#5C4F3E" stroke-width="0.5"/>
+              <rect x="58" y="152" width="24" height="6" fill="#0E0B07" stroke="#5C4F3E" stroke-width="0.4"/>
+              <rect x="62" y="154" width="3" height="2" class="usb-pulse"/>
+              <rect x="69" y="154" width="3" height="2" class="usb-pulse"/>
+              <rect x="76" y="154" width="3" height="2" class="usb-pulse"/>
+              <line x1="50" y1="155" x2="32" y2="155" stroke="#5C4F3E" stroke-width="0.5"/>
+              <text x="30" y="157" text-anchor="end" font-family="'Space Mono',monospace" font-size="5" fill="#C89339">USB ×3 →</text>
+
+              <rect x="50" y="172" width="40" height="44" fill="#0E0B07" stroke="#3A2F22" stroke-width="0.5"/>
+              <g stroke="#A8412A" stroke-width="0.4" opacity="0.6">
+                <line x1="55" y1="180" x2="85" y2="180"/>
+                <line x1="55" y1="186" x2="80" y2="186"/>
+                <line x1="55" y1="192" x2="83" y2="192"/>
+                <line x1="55" y1="198" x2="78" y2="198"/>
+                <line x1="55" y1="204" x2="85" y2="204"/>
+                <line x1="55" y1="210" x2="81" y2="210"/>
+              </g>
+              <text x="70" y="225" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#A8412A" letter-spacing="0.5">SERVIDOR</text>
+              <line x1="50" y1="195" x2="32" y2="195" stroke="#5C4F3E" stroke-width="0.5"/>
+              <text x="30" y="197" text-anchor="end" font-family="'Space Mono',monospace" font-size="5" fill="#A8412A">CPU + 4G →</text>
+
+              <rect x="35" y="240" width="70" height="6" fill="#1A1611" stroke="#5C4F3E" stroke-width="0.5"/>
+              <rect x="30" y="246" width="80" height="4" fill="#3A2F22"/>
+            </svg>
+          </div>
+
+          <div class="totem-collect">
+            <div class="collect-item">
+              <div class="collect-dot"></div>
+              <div>
+                <strong>MAC ADDRESS</strong>
+                Captura o identificador único de cada celular dentro do alcance do Wi-Fi, mesmo sem conexão ativa.
+              </div>
+            </div>
+            <div class="collect-item">
+              <div class="collect-dot"></div>
+              <div>
+                <strong>CONTAGEM DE FLUXO</strong>
+                Câmera no topo conta pessoas/hora e armazena perfil estimado (idade aproximada, gênero).
+              </div>
+            </div>
+            <div class="collect-item">
+              <div class="collect-dot"></div>
+              <div>
+                <strong>TEMPO DE PERMANÊNCIA</strong>
+                Cruzamento de MAC + câmera mede em segundos quanto cada usuário espera no ponto.
+              </div>
+            </div>
+            <div class="collect-item">
+              <div class="collect-dot"></div>
+              <div>
+                <strong>METADADOS DE CARREGAMENTO</strong>
+                Porta USB registra tipo de aparelho conectado, marca, sistema operacional e tempo de uso.
+              </div>
+            </div>
+            <div class="collect-item">
+              <div class="collect-dot"></div>
+              <div>
+                <strong>SESSÕES DE WI-FI</strong>
+                Cada login no Wi-Fi gratuito exige aceite de termo extenso que autoriza uso comercial dos dados.
+              </div>
+            </div>
+
+            <div class="totem-not">
+              <b>O QUE O TOTEM NÃO INFORMA:</b><br>
+              Se o ônibus está atrasado, lotado, ou se vai mesmo passar.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>O MOBILIÁRIO URBANO VIROU INFRAESTRUTURA DE EXTRAÇÃO.</strong> O totem entrega ao usuário Wi-Fi, USB e temperatura — e simultaneamente coleta dele identificador de celular, perfil estimado, tempo de espera e tipo de aparelho. A sombra que foi cortada para instalá-lo tinha valor de uso público; o display que a substituiu tem valor de extração privada. <em>O ponto de ônibus não foi modernizado para servir melhor o passageiro — foi reconfigurado para servir bem o contrato.</em>
+  </div>
+\`,
+      titulo: 'COMO O TOTEM OPERA · O QUE ELE DÁ E O QUE ELE TIRA',
+      steps: [
+        {
+          n: '01',
+          t: 'CONTRAPARTIDA PUBLICITÁRIA',
+          d: 'O totem foi instalado como contrapartida de contrato de exploração publicitária do mobiliário urbano. A empresa instala "gratuitamente" o equipamento em troca do direito exclusivo de veicular publicidade no display por 20 anos.'
+        },
+        {
+          n: '02',
+          t: 'REMOÇÃO DA ÁRVORE',
+          d: 'A fundação concretada do totem e o cabeamento subterrâneo exigem a remoção de qualquer vegetação no raio de 2,5m. A árvore que dava sombra ao antigo abrigo foi cortada como pré-condição técnica do contrato.'
+        },
+        {
+          n: '03',
+          t: 'CAPTURA SEM CONSENTIMENTO ESPECÍFICO',
+          d: 'O hotspot Wi-Fi captura o endereço MAC de qualquer celular dentro do alcance, mesmo sem conexão ativa. A câmera conta pessoas. A porta USB registra metadados. Nada disso é informado em comunicação clara no momento da espera.'
+        },
+        {
+          n: '04',
+          t: 'TERMO DE ACEITE EXTENSO',
+          d: 'Quem conecta ao Wi-Fi é apresentado a um termo de uso de 23 páginas, que autoriza compartilhamento dos dados com "parceiros comerciais" e "fornecedores de tecnologia". A maioria aceita sem ler porque está com pressa.'
+        },
+        {
+          n: '05',
+          t: 'ASSIMETRIA INFORMATIVA',
+          d: 'O passageiro recebe: temperatura, hora, possivelmente a previsão do próximo ônibus. A empresa recebe: identificador único, perfil estimado, tempo de permanência, metadados de aparelho, padrão de deslocamento agregado. A troca é estruturalmente desigual.'
+        }
+      ]
+    },
+
+    lei: {
+      stamp: 'PDDU 2016 · LGPD Arts. 7º, 8º, 9º · PDTCI Art. 5º XLII',
+      titulo: 'Arborização urbana e consentimento informado',
+      quote: 'PDDU Art. 234: A arborização das vias e logradouros públicos é considerada de interesse público e sua supressão depende de autorização específica do órgão ambiental municipal, com plano de compensação. / LGPD Art. 8º: O consentimento será fornecido por escrito ou por outro meio que demonstre a manifestação de vontade do titular, sendo vedado o tratamento de dados sem informação clara sobre suas finalidades.',
+      fonte: 'PDDU de Salvador (Lei 9069/2016), Art. 234 · LGPD (Lei 13.709/2018), Arts. 7º a 9º · PDTCI (LC 92/2025), Art. 5º, inciso XLII sobre mobiliário urbano inteligente.',
+      comentario: 'A remoção de árvores em via pública depende de autorização ambiental e compensação obrigatória pelo PDDU. A coleta de dados pessoais via Wi-Fi público depende de consentimento informado, claro e específico pela LGPD. No caso do totem do Cabula, as duas exigências legais são atendidas no papel mas esvaziadas na prática: a compensação ambiental virou crédito difuso administrado pela empresa instaladora, e o consentimento informado virou termo de 23 páginas aceito por pressa. A legalidade formal coexiste com a perda material de sombra e de privacidade.'
+    },
+
+    ficha: {
+      quote: 'A modernização do mobiliário urbano não é neutra: é uma negociação entre infraestrutura de uso público e infraestrutura de extração privada. Cada banco metálico que substitui um banco sob sombra é também um sensor que substitui um espaço de não-vigilância.',
+      fonte: 'Síntese a partir de pesquisas sobre smart benches e mobiliário urbano sensoriado (Idec, 2024) e do PDDU sobre arborização viária.'
     }
   }
 
 ];
-
 /* ═══════════════════════════════════════════════
    ABERTURA DA VINHETA · POPULA O MODAL
 ═══════════════════════════════════════════════ */
@@ -4912,6 +5905,16 @@ const PINO_INSPECAO = {
       { de: 4, para: 5, texto: 'A redação contratual define quais indicadores o painel exibe à gestão.' },
       { de: 3, para: 7, texto: 'O algoritmo opera sobre o cidadão sob blindagem de segredo industrial.' },
       { de: 7, para: 4, texto: 'O voto popular elege os legisladores, mas não revisa os contratos derivados da lei.' }
+    ]
+  },
+  9: { // Cabula · Totem de ponto de ônibus
+    presentes: [4, 6, 3, 1, 7],
+    coacoes: [
+      { de: 4, para: 6, texto: 'O contrato de exploração publicitária exigiu a remoção da árvore para instalar o totem-sensor.' },
+      { de: 6, para: 7, texto: 'O totem captura MAC address, fluxo e tempo de permanência sem consentimento específico.' },
+      { de: 1, para: 3, texto: 'A fibra transporta os dados coletados ao servidor da empresa fornecedora.' },
+      { de: 3, para: 7, texto: 'O algoritmo de perfil estimado classifica o passageiro a partir dos dados extraídos no ponto.' },
+      { de: 7, para: 4, texto: 'A aceitação do termo de 23 páginas, feita com pressa, legitima juridicamente a coleta.' }
     ]
   }
 };
