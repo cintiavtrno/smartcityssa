@@ -1409,6 +1409,349 @@ footer {
   .cc-num { font-size: 22px; }
 }
 
+/* PINO 4 · CAJAZEIRAS · O MAPA QUE O ALGORITMO VÊ */
+.caj-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.caj-panel {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+}
+.caj-panel-label {
+  font-family: var(--font-black);
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  color: var(--paper);
+  opacity: 0.7;
+  margin-bottom: 8px;
+  text-align: center;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
+.caj-svg {
+  width: 100%;
+  display: block;
+}
+.caj-readout {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  opacity: 0.75;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+.caj-bus-real {
+  animation: bus-real 8s linear infinite;
+}
+@keyframes bus-real {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(60px); }
+}
+.caj-bus-blocked {
+  animation: bus-blocked 8s infinite;
+}
+@keyframes bus-blocked {
+  0%, 35%, 100% { transform: translateY(0); }
+  40%, 90% { transform: translateY(0); }
+}
+
+.caj-led {
+  animation: led-green 4s infinite;
+}
+@keyframes led-green {
+  0%, 100% { fill: #C89339; }
+  30%, 70% { fill: #5B6B3F; filter: drop-shadow(0 0 4px #5B6B3F); }
+}
+
+.caj-paradox {
+  margin-top: 10px;
+  padding: 11px 14px;
+  background: var(--brick);
+  color: var(--bone);
+  border: 1.5px solid var(--mustard);
+  font-family: var(--font-black);
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* PINO 5 · MATA ESCURA · FUNIL DO ALERTA + SIRENE TROCADA */
+.mat-screen {
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.mat-block {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.mat-block-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mustard);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
+
+/* Funil */
+.funnel-svg {
+  width: 100%;
+  display: block;
+}
+.funnel-drop {
+  animation: drop-down 3s linear infinite;
+}
+@keyframes drop-down {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(180px); opacity: 0; }
+}
+
+.funnel-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.funnel-side {
+  padding: 10px;
+  border: 1px solid #3A2F22;
+  text-align: center;
+}
+.funnel-side.cco-side {
+  background: #1F2818;
+  border-color: #5B6B3F;
+  position: relative;
+}
+.funnel-side.cco-side::before {
+  content: '●';
+  color: #5B6B3F;
+  font-size: 12px;
+  margin-right: 4px;
+  animation: rec-blink 1.4s infinite;
+}
+.funnel-side.real-side {
+  background: #3D1A12;
+  border-color: var(--brick);
+}
+.funnel-side-num {
+  font-family: var(--font-black);
+  font-size: 22px;
+  line-height: 1;
+}
+.funnel-side.cco-side .funnel-side-num { color: #8FA567; }
+.funnel-side.real-side .funnel-side-num { color: #F2C9C0; }
+.funnel-side-label {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 1.5px;
+  color: var(--paper);
+  opacity: 0.7;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+/* Sirene trocada · timeline */
+.sirene-timeline {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+.sirene-step {
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+  text-align: center;
+}
+.sirene-step.cur { border-color: var(--brick); }
+.sirene-year {
+  font-family: var(--font-black);
+  font-size: 12px;
+  color: var(--mustard);
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+.sirene-icon {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+.sirene-desc {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  color: var(--paper);
+  opacity: 0.85;
+  line-height: 1.45;
+  letter-spacing: 0.3px;
+}
+.sirene-reach {
+  margin-top: 6px;
+  font-family: var(--font-black);
+  font-size: 8.5px;
+  letter-spacing: 1px;
+  padding: 4px;
+}
+.sirene-reach.good { color: var(--mustard); background: #2A2418; }
+.sirene-reach.bad { color: var(--brick); background: #2A1814; }
+
+.sirene-wave {
+  animation: wave-out 1.8s infinite;
+}
+@keyframes wave-out {
+  0% { r: 4; opacity: 1; }
+  100% { r: 22; opacity: 0; }
+}
+.signal-arc {
+  animation: signal-pulse 2s infinite;
+}
+@keyframes signal-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* PINO 6 · CABO SUBMARINO · VIAGEM DO BIT + CONFLITOS HÍDRICOS */
+.cabo-screen {
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.cabo-block {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.cabo-block-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mustard);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3A2F22;
+}
+.cabo-svg {
+  width: 100%;
+  display: block;
+}
+
+.bit-particle {
+  animation: bit-travel 6s linear infinite;
+}
+@keyframes bit-travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.jurisdic-stamp {
+  font-family: var(--font-black);
+  font-size: 6.5px;
+  letter-spacing: 1px;
+}
+.j-br { fill: #5B6B3F; }
+.j-us { fill: var(--brick); }
+
+.cloud-act-banner {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--brick);
+  color: var(--bone);
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-align: center;
+  border: 1px solid var(--mustard);
+  line-height: 1.4;
+}
+
+.water-meter {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  letter-spacing: 1px;
+}
+.water-counter {
+  font-family: var(--font-black);
+  font-size: 13px;
+  color: #8BA4B0;
+}
+
+/* mapa de conflitos */
+.conflict-svg {
+  width: 100%;
+  display: block;
+}
+.conflict-dot {
+  animation: conflict-pulse 2.4s infinite;
+}
+@keyframes conflict-pulse {
+  0%, 100% { r: 4; opacity: 0.9; }
+  50% { r: 7; opacity: 0.5; }
+}
+.conflict-line {
+  stroke-dasharray: 4 3;
+  animation: line-flow 3s linear infinite;
+}
+@keyframes line-flow {
+  to { stroke-dashoffset: -21; }
+}
+
+.conflict-list {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.conflict-item {
+  background: #0E0B07;
+  border-left: 2px solid #8BA4B0;
+  padding: 7px 9px;
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  color: var(--paper);
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+.conflict-item strong {
+  display: block;
+  font-family: var(--font-black);
+  color: #8BA4B0;
+  letter-spacing: 1.5px;
+  font-size: 8.5px;
+  margin-bottom: 3px;
+}
+
+@media (max-width: 640px) {
+  .caj-screen { grid-template-columns: 1fr; }
+  .sirene-timeline { grid-template-columns: 1fr; }
+  .conflict-list { grid-template-columns: 1fr; }
+}
+
    /* ═══════════════════════════════════════════════
    PARTE 4 · INSPEÇÃO DE ACTANTES E REAGREGAÇÃO
 
@@ -3217,6 +3560,141 @@ const VINHETAS = [
     },
 
     func: {
+      simulator: `
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · A RUA REAL × O QUE O ALGORITMO VÊ</span>
+    <span>ONDA VERDE · 17h45</span>
+  </div>
+  <div class="audit-sim">
+    <div class="caj-screen">
+
+      <div class="caj-panel">
+        <div class="caj-panel-label">MONITOR 1 · A RUA REAL</div>
+        <svg class="caj-svg" viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="240" height="180" fill="#1A1611"/>
+
+          <rect x="0" y="48" width="240" height="36" fill="#2A241D"/>
+          <line x1="0" y1="48" x2="240" y2="48" stroke="#5C4F3E" stroke-width="0.5"/>
+          <line x1="0" y1="84" x2="240" y2="84" stroke="#5C4F3E" stroke-width="0.5"/>
+          <g stroke="#C89339" stroke-width="0.4" stroke-dasharray="6 6" opacity="0.5">
+            <line x1="0" y1="66" x2="240" y2="66"/>
+          </g>
+          <text x="6" y="44" font-family="'Space Mono',monospace" font-size="7" fill="#5C4F3E" letter-spacing="1">AV. ACM · BRT</text>
+
+          <g class="caj-bus-real">
+            <rect x="20" y="55" width="22" height="10" fill="#D67E1F" stroke="#1A1611" stroke-width="0.5"/>
+            <rect x="22" y="56" width="3" height="3" fill="#0E0B07"/>
+            <rect x="28" y="56" width="3" height="3" fill="#0E0B07"/>
+            <rect x="34" y="56" width="3" height="3" fill="#0E0B07"/>
+            <text x="31" y="74" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#D67E1F">BRT</text>
+          </g>
+
+          <rect x="100" y="100" width="36" height="80" fill="#2A241D"/>
+          <line x1="100" y1="100" x2="100" y2="180" stroke="#5C4F3E" stroke-width="0.5"/>
+          <line x1="136" y1="100" x2="136" y2="180" stroke="#5C4F3E" stroke-width="0.5"/>
+          <g stroke="#5C4F3E" stroke-width="0.4" stroke-dasharray="4 4" opacity="0.4">
+            <line x1="118" y1="100" x2="118" y2="180"/>
+          </g>
+          <text x="118" y="175" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#5C4F3E" letter-spacing="1">VIA TRANSVERSAL</text>
+
+          <g class="caj-bus-blocked">
+            <g transform="translate(106 105)">
+              <rect x="0" y="0" width="20" height="9" fill="#577387" stroke="#1A1611" stroke-width="0.5"/>
+              <rect x="2" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <rect x="7" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <rect x="12" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <text x="10" y="14" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4" fill="#577387">CAJAZEIRAS</text>
+            </g>
+            <g transform="translate(106 125)">
+              <rect x="0" y="0" width="20" height="9" fill="#577387" stroke="#1A1611" stroke-width="0.5"/>
+              <rect x="2" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <rect x="7" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <rect x="12" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <text x="10" y="14" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4" fill="#577387">CAJAZEIRAS</text>
+            </g>
+            <g transform="translate(106 145)">
+              <rect x="0" y="0" width="20" height="9" fill="#577387" stroke="#1A1611" stroke-width="0.5"/>
+              <rect x="2" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <rect x="7" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <rect x="12" y="1.5" width="2.5" height="2.5" fill="#0E0B07"/>
+              <text x="10" y="14" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4" fill="#577387">CAJAZEIRAS</text>
+            </g>
+          </g>
+
+          <g transform="translate(95 88)">
+            <rect x="-4" y="-10" width="8" height="14" fill="#1A1611" stroke="#5C4F3E" stroke-width="0.6"/>
+            <circle cx="0" cy="-6" r="2" class="caj-led"/>
+          </g>
+
+          <g transform="translate(36 30)">
+            <text font-family="'Archivo Black',sans-serif" font-size="7" fill="#5B6B3F" letter-spacing="1.2">⬤ ONDA VERDE ATIVA · BRT</text>
+            <text y="9" font-family="'Space Mono',monospace" font-size="6" fill="#5C4F3E" opacity="0.8" letter-spacing="0.5">3 ônibus convencionais retidos</text>
+          </g>
+        </svg>
+        <div class="caj-readout">
+          ~280 PASSAGEIROS PARADOS · 4min 12s DE ESPERA
+        </div>
+      </div>
+
+      <div class="caj-panel">
+        <div class="caj-panel-label">MONITOR 2 · O QUE O CCO ENXERGA</div>
+        <svg class="caj-svg" viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="240" height="180" fill="#000"/>
+
+          <rect x="0" y="48" width="240" height="36" fill="#1A1611"/>
+          <g stroke="#C89339" stroke-width="1.2" opacity="0.9">
+            <line x1="0" y1="66" x2="240" y2="66" stroke-dasharray="10 4">
+              <animate attributeName="stroke-dashoffset" values="0;-28" dur="1.5s" repeatCount="indefinite"/>
+            </line>
+          </g>
+          <g fill="#C89339">
+            <circle cx="40" cy="66" r="3"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.2s" repeatCount="indefinite"/></circle>
+            <circle cx="100" cy="66" r="3"><animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite"/></circle>
+            <circle cx="160" cy="66" r="3"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.2s" repeatCount="indefinite"/></circle>
+            <circle cx="210" cy="66" r="3"><animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite"/></circle>
+          </g>
+          <text x="6" y="44" font-family="'Space Mono',monospace" font-size="7" fill="#C89339" letter-spacing="1">BRT · TELEMETRIA 100%</text>
+
+          <g opacity="0.15">
+            <rect x="100" y="100" width="36" height="80" fill="#0E0B07"/>
+          </g>
+
+          <g fill="#A8412A">
+            <circle cx="118" cy="115" r="3.5">
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="118" cy="135" r="3.5">
+              <animate attributeName="opacity" values="1;0.6;1" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="118" cy="155" r="3.5">
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          <text x="118" y="175" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#A8412A" letter-spacing="1">CONGESTIONAMENTO?</text>
+
+          <g transform="translate(36 30)">
+            <text font-family="'Archivo Black',sans-serif" font-size="7" fill="#5B6B3F" letter-spacing="1.2">⬤ KPI BRT · CUMPRIDO 100%</text>
+            <text y="9" font-family="'Space Mono',monospace" font-size="6" fill="#5C4F3E" opacity="0.8" letter-spacing="0.5">Transversal sem sensor · sem dado</text>
+          </g>
+        </svg>
+        <div class="caj-readout">
+          GPS PARADO = "PONTO VERMELHO NA TRANSVERSAL"<br>
+          MÉTRICA DO BRT: 100% PONTUALIDADE
+        </div>
+      </div>
+
+    </div>
+
+    <div class="caj-paradox">
+      ⚠ A IMOBILIDADE FORÇADA DOS ÔNIBUS DE CAJAZEIRAS<br>VIRA A MÉTRICA DE EFICIÊNCIA DO BRT QUE OS PARALISA
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>O ALGORITMO OTIMIZA O QUE TEM SENSOR.</strong> A escolha de quais vias recebem telemetria foi feita em cláusula contratual de PPP. As vias sem sensor não desaparecem da cidade — elas desaparecem do painel. Quando os GPS dos ônibus parados retornam à central, o sistema lê isso como problema da via transversal, e não como consequência da onda verde que ele próprio acionou no eixo principal. <em>A invisibilidade de Cajazeiras tem nome, data e número de processo licitatório.</em>
+  </div>
+</div>
+      `,
       titulo: 'COMO A AUSÊNCIA DE SENSOR PRODUZ INVISIBILIDADE',
       steps: [
         {
@@ -3276,6 +3754,138 @@ const VINHETAS = [
     },
 
     func: {
+      simulator: `
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · O FUNIL DO ALERTA + A SIRENE QUE FOI TROCADA</span>
+    <span>120mm/2h · CRÍTICO</span>
+  </div>
+  <div class="audit-sim">
+    <div class="mat-screen">
+
+      <div class="mat-block">
+        <div class="mat-block-label">FUNIL · DE QUANTOS RECEBEM O ALERTA</div>
+        <svg class="funnel-svg" viewBox="0 0 460 230" xmlns="http://www.w3.org/2000/svg">
+          <rect width="460" height="230" fill="#1A1611"/>
+
+          <path d="M 60 28 L 400 28 L 350 60 L 110 60 Z" fill="#3D1A12" stroke="var(--brick)" stroke-width="1"/>
+          <text x="230" y="48" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="11" fill="#F2C9C0" letter-spacing="2">4.200 HABITANTES EM RISCO</text>
+
+          <g stroke="var(--brick)" stroke-width="1" fill="#1A1611">
+            <line x1="110" y1="60" x2="125" y2="85"/>
+            <line x1="350" y1="60" x2="335" y2="85"/>
+          </g>
+          <rect x="125" y="80" width="210" height="14" fill="#2A1814" stroke="#3A2F22" stroke-width="0.5"/>
+          <text x="230" y="90" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="#E08266" letter-spacing="1">✗ SEM SMARTPHONE COMPATÍVEL</text>
+
+          <g stroke="var(--brick)" stroke-width="1">
+            <line x1="125" y1="94" x2="140" y2="119"/>
+            <line x1="335" y1="94" x2="320" y2="119"/>
+          </g>
+          <rect x="140" y="114" width="180" height="14" fill="#2A1814" stroke="#3A2F22" stroke-width="0.5"/>
+          <text x="230" y="124" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="#E08266" letter-spacing="1">✗ SEM PACOTE DE DADOS ATIVO</text>
+
+          <g stroke="var(--brick)" stroke-width="1">
+            <line x1="140" y1="128" x2="155" y2="153"/>
+            <line x1="320" y1="128" x2="305" y2="153"/>
+          </g>
+          <rect x="155" y="148" width="150" height="14" fill="#2A1814" stroke="#3A2F22" stroke-width="0.5"/>
+          <text x="230" y="158" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="#E08266" letter-spacing="1">✗ ZONA-SOMBRA 4G</text>
+
+          <g stroke="var(--brick)" stroke-width="1">
+            <line x1="155" y1="162" x2="170" y2="187"/>
+            <line x1="305" y1="162" x2="290" y2="187"/>
+          </g>
+          <rect x="170" y="182" width="120" height="14" fill="#2A1814" stroke="#3A2F22" stroke-width="0.5"/>
+          <text x="230" y="192" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="#E08266" letter-spacing="1">✗ APP SEM PERMISSÃO</text>
+
+          <g stroke="var(--brick)" stroke-width="1">
+            <line x1="170" y1="196" x2="195" y2="215"/>
+            <line x1="290" y1="196" x2="265" y2="215"/>
+          </g>
+          <rect x="195" y="210" width="70" height="18" fill="var(--brick)" stroke="var(--mustard)" stroke-width="1.2"/>
+          <text x="230" y="223" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="11" fill="var(--bone)" letter-spacing="1.5">168</text>
+
+          <g class="funnel-drop">
+            <circle cx="230" cy="28" r="2.5" fill="#F2C9C0"/>
+          </g>
+        </svg>
+
+        <div class="funnel-result">
+          <div class="funnel-side cco-side">
+            <div class="funnel-side-num">100%</div>
+            <div class="funnel-side-label">PROTOCOLO CUMPRIDO<br>DASHBOARD DO CCO</div>
+          </div>
+          <div class="funnel-side real-side">
+            <div class="funnel-side-num">4%</div>
+            <div class="funnel-side-label">ALERTA EFETIVAMENTE<br>RECEBIDO NA ENCOSTA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mat-block">
+        <div class="mat-block-label">O QUE FOI TROCADO · SIRENE FÍSICA → APP</div>
+        <div class="sirene-timeline">
+
+          <div class="sirene-step">
+            <div class="sirene-year">2014</div>
+            <div class="sirene-icon">
+              <svg viewBox="0 0 60 50" width="55" height="46">
+                <rect x="26" y="14" width="8" height="22" fill="#C89339"/>
+                <ellipse cx="30" cy="13" rx="9" ry="5" fill="#A8412A"/>
+                <line x1="30" y1="36" x2="30" y2="44" stroke="#5C4F3E" stroke-width="2"/>
+                <circle cx="30" cy="13" r="11" class="sirene-wave" fill="none" stroke="#C89339" stroke-width="1.5"/>
+                <circle cx="30" cy="13" r="11" class="sirene-wave" fill="none" stroke="#C89339" stroke-width="1.5" style="animation-delay: 0.6s;"/>
+                <circle cx="30" cy="13" r="11" class="sirene-wave" fill="none" stroke="#C89339" stroke-width="1.5" style="animation-delay: 1.2s;"/>
+              </svg>
+            </div>
+            <div class="sirene-desc">12 sirenes físicas instaladas em encostas após o Morro do Bumba</div>
+            <div class="sirene-reach good">ALCANCE: 100% · 800m</div>
+          </div>
+
+          <div class="sirene-step cur">
+            <div class="sirene-year">2022</div>
+            <div class="sirene-icon">
+              <svg viewBox="0 0 60 50" width="55" height="46">
+                <rect x="26" y="14" width="8" height="22" fill="#5C4F3E" opacity="0.4"/>
+                <ellipse cx="30" cy="13" rx="9" ry="5" fill="#3A2F22" opacity="0.5"/>
+                <line x1="14" y1="6" x2="46" y2="42" stroke="var(--brick)" stroke-width="2"/>
+                <line x1="46" y1="6" x2="14" y2="42" stroke="var(--brick)" stroke-width="2"/>
+                <text x="30" y="48" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="var(--brick)" letter-spacing="0.5">DESLIGADAS</text>
+              </svg>
+            </div>
+            <div class="sirene-desc">Contrato de modernização substitui aparato físico por app</div>
+            <div class="sirene-reach bad">REPASSE: R$ 0 EM MANUTENÇÃO</div>
+          </div>
+
+          <div class="sirene-step cur">
+            <div class="sirene-year">2024</div>
+            <div class="sirene-icon">
+              <svg viewBox="0 0 60 50" width="55" height="46">
+                <rect x="20" y="6" width="20" height="36" rx="2" fill="#1A1611" stroke="#5C4F3E" stroke-width="0.8"/>
+                <rect x="22" y="10" width="16" height="22" fill="#0E0B07"/>
+                <circle cx="30" cy="38" r="1.4" fill="#5C4F3E"/>
+                <text x="30" y="22" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="9" fill="var(--brick)">!</text>
+                <g class="signal-arc">
+                  <path d="M 42 8 Q 50 12 50 20" fill="none" stroke="var(--brick)" stroke-width="0.8" opacity="0.6"/>
+                  <path d="M 44 5 Q 56 10 56 22" fill="none" stroke="var(--brick)" stroke-width="0.8" opacity="0.4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="sirene-desc">App "Defesa Civil Salvador" · depende de Android atualizado + dados + 4G + permissão</div>
+            <div class="sirene-reach bad">ALCANCE: 4-28% DOS CADASTROS</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>O PAINEL FICOU VERDE. A ENCOSTA FICOU EM SILÊNCIO.</strong> Cada elemento técnico operou exatamente como projetado: sensor leu a saturação, algoritmo disparou o protocolo, servidor enviou SMS e push. O que não estava no projeto eram as condições materiais reais da encosta — smartphone, dados, sinal, app instalado. A sirene física, desligada em 2022, alcançava todos. O app alcança alguns. <em>O solucionismo tecnológico não corrige o déficit de infraestrutura básica; ele o substitui por uma falsa cobertura no relatório.</em>
+  </div>
+</div>
+      `,
       titulo: 'COMO O ALERTA OPERA · E ONDE ELE FALHA',
       steps: [
         {
@@ -3335,6 +3945,188 @@ const VINHETAS = [
     },
 
     func: {
+      simulator: `
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · A VIAGEM DO BIT + OS CONFLITOS HÍDRICOS</span>
+    <span>89ms · SALVADOR → VIRGÍNIA</span>
+  </div>
+  <div class="audit-sim">
+    <div class="cabo-screen">
+
+      <div class="cabo-block">
+        <div class="cabo-block-label">A VIAGEM DE UM PRONTUÁRIO SOTEROPOLITANO</div>
+        <svg class="cabo-svg" viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="460" height="200" fill="#1A1611"/>
+
+          <path id="bit-route" d="M 40 130 L 130 130 L 230 95 L 360 60 L 420 60" fill="none" stroke="#3A2F22" stroke-width="0.6" stroke-dasharray="3 3"/>
+          <path d="M 40 130 L 130 130" stroke="#8BA4B0" stroke-width="2" fill="none" opacity="0.7"/>
+          <path d="M 130 130 L 230 95" stroke="#8BA4B0" stroke-width="2" fill="none" opacity="0.7"/>
+          <path d="M 230 95 L 360 60" stroke="#577387" stroke-width="2.5" fill="none" opacity="0.85"/>
+          <path d="M 360 60 L 420 60" stroke="#A8412A" stroke-width="2.5" fill="none" opacity="0.85"/>
+
+          <g transform="translate(40 130)">
+            <circle r="9" fill="#1A1611" stroke="#5B6B3F" stroke-width="1.5"/>
+            <circle r="3" fill="#5B6B3F"/>
+            <text y="-14" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="var(--bone)" letter-spacing="1">SALVADOR</text>
+            <text y="22" text-anchor="middle" class="jurisdic-stamp j-br">⬤ LGPD</text>
+            <text y="30" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E">0ms</text>
+          </g>
+
+          <g transform="translate(130 130)">
+            <circle r="9" fill="#1A1611" stroke="#5B6B3F" stroke-width="1.5"/>
+            <circle r="3" fill="#5B6B3F"/>
+            <text y="-14" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="var(--bone)" letter-spacing="1">SÃO PAULO</text>
+            <text y="22" text-anchor="middle" class="jurisdic-stamp j-br">⬤ LGPD</text>
+            <text y="30" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E">18ms</text>
+          </g>
+
+          <g transform="translate(230 95)">
+            <circle r="9" fill="#1A1611" stroke="#577387" stroke-width="1.5"/>
+            <circle r="3" fill="#577387"/>
+            <text y="-14" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="var(--bone)" letter-spacing="1">PRAIA DO FORTE</text>
+            <text y="-22" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#577387">ATERRAGEM SUBMARINA</text>
+            <text y="22" text-anchor="middle" class="jurisdic-stamp j-br">⬤ LGPD</text>
+            <text y="30" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E">24ms</text>
+          </g>
+
+          <text x="295" y="80" font-family="'Space Mono',monospace" font-size="6" fill="#577387" opacity="0.7" letter-spacing="1">~ATLÂNTICO~</text>
+          <g opacity="0.4" stroke="#577387" stroke-width="0.5" fill="none">
+            <path d="M 250 92 Q 260 88 270 92 Q 280 96 290 92 Q 300 88 310 92"/>
+            <path d="M 310 78 Q 320 74 330 78 Q 340 82 350 78"/>
+          </g>
+
+          <g transform="translate(360 60)">
+            <circle r="11" fill="#1A1611" stroke="var(--brick)" stroke-width="1.5"/>
+            <circle r="4" fill="var(--brick)"/>
+            <text y="-16" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="var(--bone)" letter-spacing="1">VIRGÍNIA · EUA</text>
+            <text y="-25" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="var(--brick)">AWS us-east-1</text>
+            <text y="22" text-anchor="middle" class="jurisdic-stamp j-us">⬤ CLOUD ACT</text>
+            <text y="30" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E">89ms</text>
+          </g>
+
+          <g transform="translate(420 60)">
+            <rect x="-12" y="-9" width="24" height="18" fill="#2A1814" stroke="var(--brick)" stroke-width="1"/>
+            <rect x="-9" y="-6" width="6" height="3" fill="#A8412A"/>
+            <rect x="-1" y="-6" width="6" height="3" fill="#A8412A"/>
+            <rect x="-9" y="-1" width="6" height="3" fill="#A8412A"/>
+            <rect x="-1" y="-1" width="6" height="3" fill="#A8412A"/>
+            <rect x="-9" y="4" width="6" height="3" fill="#A8412A"/>
+            <rect x="-1" y="4" width="6" height="3" fill="#A8412A"/>
+            <text y="-16" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#A8412A">DATACENTER</text>
+          </g>
+
+          <g style="offset-path: path('M 40 130 L 130 130 L 230 95 L 360 60 L 420 60');" class="bit-particle">
+            <rect x="-5" y="-3" width="10" height="6" fill="var(--mustard)" stroke="#1A1611" stroke-width="0.6"/>
+            <text y="1" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="5" fill="#1A1611">DATA</text>
+          </g>
+          <g style="offset-path: path('M 40 130 L 130 130 L 230 95 L 360 60 L 420 60'); animation-delay: 2s;" class="bit-particle">
+            <rect x="-5" y="-3" width="10" height="6" fill="var(--mustard)" stroke="#1A1611" stroke-width="0.6"/>
+            <text y="1" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="5" fill="#1A1611">DATA</text>
+          </g>
+          <g style="offset-path: path('M 40 130 L 130 130 L 230 95 L 360 60 L 420 60'); animation-delay: 4s;" class="bit-particle">
+            <rect x="-5" y="-3" width="10" height="6" fill="var(--mustard)" stroke="#1A1611" stroke-width="0.6"/>
+            <text y="1" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="5" fill="#1A1611">DATA</text>
+          </g>
+
+          <text x="230" y="180" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#5C4F3E" letter-spacing="2">PRONTUÁRIO SUS · CADÚNICO · BIOMETRIA</text>
+        </svg>
+
+        <div class="cloud-act-banner">
+          ⚠ CLOUD ACT (EUA · 2018) · AUTORIZA REQUISIÇÃO DE DADOS PELA AWS<br>SEM NOTIFICAR A AUTORIDADE BRASILEIRA · MESMO COM LGPD VIGENTE
+        </div>
+
+        <div class="water-meter">
+          <div>
+            <div class="water-counter" id="water-count">— L</div>
+            <div style="opacity:0.6;">ÁGUA POTÁVEL JÁ CONSUMIDA NO RESFRIAMENTO DESTA SESSÃO</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family: var(--font-black); color: #8BA4B0; font-size: 13px;">~1.7L</div>
+            <div style="opacity:0.6;">POR INTERAÇÃO MÉDIA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cabo-block">
+        <div class="cabo-block-label">CONFLITOS HÍDRICOS · ONDE A ÁGUA SAI</div>
+        <svg class="conflict-svg" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="460" height="220" fill="#0E0B07"/>
+
+          <g fill="#2A241D" stroke="#3A2F22" stroke-width="0.5">
+            <path d="M 60 70 Q 75 50 95 55 L 120 65 Q 135 75 130 95 L 115 110 Q 90 105 75 95 Z"/>
+            <path d="M 105 110 L 115 130 Q 125 165 135 195 L 105 200 Q 90 175 95 145 L 100 120 Z"/>
+            <path d="M 175 50 Q 220 40 265 50 Q 310 65 340 75 L 365 100 Q 360 125 330 130 L 290 125 Q 250 115 210 105 Q 185 85 175 65 Z"/>
+            <path d="M 200 140 Q 250 145 290 155 L 320 175 Q 290 195 245 195 Q 210 185 195 165 Z"/>
+            <path d="M 380 60 Q 410 65 425 90 Q 430 130 410 165 Q 380 175 370 145 Q 365 105 370 75 Z"/>
+          </g>
+
+          <g class="conflict-line" stroke="#577387" stroke-width="1" fill="none">
+            <path d="M 130 175 Q 145 170 105 130"/>
+            <path d="M 130 175 Q 165 165 230 75"/>
+            <path d="M 130 175 Q 195 170 270 180"/>
+          </g>
+
+          <g transform="translate(130 175)">
+            <circle r="5" fill="var(--mustard)" stroke="#1A1611" stroke-width="1"/>
+            <circle r="5" class="conflict-dot" fill="var(--mustard)" opacity="0.5"/>
+            <text x="9" y="3" font-family="'Archivo Black',sans-serif" font-size="7" fill="#F7EFD9" letter-spacing="1">SALVADOR</text>
+          </g>
+
+          <g transform="translate(105 130)">
+            <circle r="4" fill="#8BA4B0" stroke="#1A1611" stroke-width="1"/>
+            <circle r="4" class="conflict-dot" fill="#8BA4B0" opacity="0.5"/>
+            <text x="-3" y="-7" text-anchor="end" font-family="'Archivo Black',sans-serif" font-size="6" fill="#8BA4B0" letter-spacing="0.8">ATACAMA</text>
+          </g>
+
+          <g transform="translate(118 60)">
+            <circle r="4" fill="#8BA4B0" stroke="#1A1611" stroke-width="1"/>
+            <circle r="4" class="conflict-dot" fill="#8BA4B0" opacity="0.5"/>
+            <text x="-3" y="-7" text-anchor="end" font-family="'Archivo Black',sans-serif" font-size="6" fill="#8BA4B0" letter-spacing="0.8">QUERÉTARO</text>
+          </g>
+
+          <g transform="translate(270 60)">
+            <circle r="4" fill="#8BA4B0" stroke="#1A1611" stroke-width="1"/>
+            <circle r="4" class="conflict-dot" fill="#8BA4B0" opacity="0.5"/>
+            <text x="6" y="-4" font-family="'Archivo Black',sans-serif" font-size="6" fill="#8BA4B0" letter-spacing="0.8">ARAGÓN</text>
+          </g>
+
+          <g transform="translate(225 80)">
+            <circle r="5" fill="var(--brick)" stroke="#1A1611" stroke-width="1"/>
+            <circle r="5" class="conflict-dot" fill="var(--brick)" opacity="0.5"/>
+            <text x="-6" y="-7" text-anchor="end" font-family="'Archivo Black',sans-serif" font-size="6" fill="var(--brick)" letter-spacing="0.8">VIRGÍNIA</text>
+          </g>
+
+          <text x="230" y="210" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#5C4F3E" letter-spacing="1.5">CADA BIT PROCESSADO TEM UMA COMUNIDADE EM CONFLITO POR ÁGUA</text>
+        </svg>
+
+        <div class="conflict-list">
+          <div class="conflict-item">
+            <strong>ATACAMA · CHILE</strong>
+            Datacenters competem com comunidades aymara e atacamenhas por aquíferos em região de estresse hídrico crônico.
+          </div>
+          <div class="conflict-item">
+            <strong>QUERÉTARO · MÉXICO</strong>
+            Microsoft e Google instalam clusters em zona de seca prolongada; protestos por consumo de água potável em 2023-2024.
+          </div>
+          <div class="conflict-item">
+            <strong>ARAGÓN · ESPANHA</strong>
+            AWS amplia datacenters em região agrícola; conflito com agricultores por uso de aquífero do Ebro.
+          </div>
+          <div class="conflict-item">
+            <strong>VIRGÍNIA · EUA</strong>
+            Maior concentração mundial de servidores AWS; bilhões de litros/ano em consumo de resfriamento.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>A SOBERANIA DIGITAL TEM PESO HÍDRICO.</strong> A LGPD aplica-se até o cabo submarino. Do outro lado, o CLOUD Act autoriza o governo norte-americano a requisitar dados da AWS sem notificar a autoridade brasileira — e o resfriamento dos servidores consome água potável em comunidades que nunca foram consultadas. <em>O bit soteropolitano não fica em Salvador, e a água que o refrigera não está em Salvador. A cidade inteligente é também um arranjo de extração hídrica em outros continentes.</em>
+  </div>
+</div>
+      `,
       titulo: 'POR ONDE PASSAM SEUS DADOS',
       steps: [
         {
@@ -3629,6 +4421,17 @@ function arquivarFicha(v) {
   badge.textContent = ESTADO.fichasArquivadas.length;
   badge.classList.add('show');
 }
+
+/* Contador de água do simulador do Pino 6 */
+setInterval(function() {
+  const el = document.getElementById('water-count');
+  if (!el) return;
+  const start = el.dataset.start || Date.now();
+  if (!el.dataset.start) el.dataset.start = start;
+  const elapsedSec = (Date.now() - start) / 1000;
+  const liters = (elapsedSec * 1.7 / 30).toFixed(2);
+  el.textContent = liters + ' L';
+}, 200);
 
 /* Dados dos actantes · entra na Parte 4 */
 /* ═══════════════════════════════════════════════
