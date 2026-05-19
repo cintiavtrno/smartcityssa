@@ -999,9 +999,418 @@ footer {
   .modal-body { padding: 16px 18px; }
   .legend-transp { font-size: 8px; padding: 7px 9px; }
 }
+/* ═══════════════════════════════════════════════
+   AUDITORIAS VISUAIS · DENTRO DA ABA "COMO FUNCIONA"
+═══════════════════════════════════════════════ */
+
+.audit-wrapper {
+  margin-bottom: 22px;
+  border: 2px solid var(--ink);
+  background: #1A1611;
+  overflow: hidden;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.audit-stamp {
+  background: var(--ink);
+  color: var(--mustard);
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  padding: 9px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid var(--mustard);
+}
+.audit-stamp .rec-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--brick);
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: rec-blink 1.4s infinite;
+  vertical-align: middle;
+}
+@keyframes rec-blink {
+  0%, 60%, 100% { opacity: 1; }
+  30% { opacity: 0.15; }
+}
+
+.audit-sim {
+  padding: 14px;
+  background: #1A1611;
+}
+
+.audit-lesson {
+  padding: 14px 18px;
+  background: var(--ink);
+  color: var(--bone);
+  font-size: 12px;
+  line-height: 1.6;
+  border-top: 1.5px solid var(--mustard);
+}
+.audit-lesson strong {
+  color: var(--mustard);
+  font-family: var(--font-black);
+  letter-spacing: 1px;
+  font-size: 11.5px;
+}
+.audit-lesson em {
+  color: var(--mustard);
+  font-style: italic;
+  font-family: var(--font-serif);
+  font-size: 13px;
+}
+
+/* PINO 1 · CCO · O PAINEL QUE RECORTA */
+.cco-screen {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 10px;
+}
+.cco-map-svg {
+  width: 100%;
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  display: block;
+}
+.cco-widgets {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cco-widget {
+  background: #2A241D;
+  border: 1px solid #3A2F22;
+  padding: 7px 9px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--paper);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cco-widget .led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mustard);
+  box-shadow: 0 0 6px var(--mustard);
+  flex-shrink: 0;
+}
+.cco-widget.w-brt .led { animation: pulse-fail 16s infinite; animation-delay: 0s; }
+.cco-widget.w-noa .led { animation: pulse-fail 16s infinite; animation-delay: 4s; }
+.cco-widget.w-sem .led { animation: pulse-fail 16s infinite; animation-delay: 8s; }
+.cco-widget.w-enc .led { animation: pulse-fail 16s infinite; animation-delay: 12s; }
+
+@keyframes pulse-fail {
+  0%, 12%, 100% { background: var(--mustard); box-shadow: 0 0 6px var(--mustard); }
+  15%, 22% { background: var(--brick); box-shadow: 0 0 8px var(--brick); }
+  25% { background: #3A2F22; box-shadow: none; }
+}
+
+.cco-note {
+  margin-top: 8px;
+  padding: 9px;
+  background: #2A241D;
+  border-left: 2px solid var(--mustard);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  line-height: 1.55;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+}
+
+.cco-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 10px;
+  padding: 12px;
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+}
+.cc-num {
+  font-family: var(--font-black);
+  font-size: 30px;
+  color: var(--mustard);
+  line-height: 1;
+  text-align: center;
+}
+.cc-num.dim { color: #5C4F3E; }
+.cc-label {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 1.5px;
+  color: var(--paper);
+  opacity: 0.65;
+  margin-top: 5px;
+  text-align: center;
+}
+.cc-slash {
+  font-family: var(--font-black);
+  font-size: 28px;
+  color: #3A2F22;
+}
+
+.bairro {
+  fill: #2A241D;
+  stroke: #1A1611;
+  stroke-width: 0.5;
+}
+.bairro.lit-brt { animation: lit-brt 16s infinite; }
+.bairro.lit-noa { animation: lit-noa 16s infinite; }
+.bairro.lit-sem { animation: lit-sem 16s infinite; }
+.bairro.lit-enc { animation: lit-enc 16s infinite; }
+
+@keyframes lit-brt {
+  0%, 12%, 31%, 100% { fill: #C89339; filter: drop-shadow(0 0 2px #C89339); }
+  18%, 25% { fill: #2A241D; filter: none; }
+}
+@keyframes lit-noa {
+  0%, 28%, 47%, 100% { fill: #577387; filter: drop-shadow(0 0 2px #577387); }
+  34%, 41% { fill: #2A241D; filter: none; }
+}
+@keyframes lit-sem {
+  0%, 47%, 66%, 100% { fill: #5B6B3F; filter: drop-shadow(0 0 2px #5B6B3F); }
+  53%, 60% { fill: #2A241D; filter: none; }
+}
+@keyframes lit-enc {
+  0%, 66%, 85%, 100% { fill: #A8412A; filter: drop-shadow(0 0 2px #A8412A); }
+  72%, 79% { fill: #2A241D; filter: none; }
+}
+
+/* PINO 2 · PELOURINHO · CÂMERA */
+.cam-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.cam-panel {
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 10px;
+}
+.cam-panel-label {
+  font-family: var(--font-black);
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--paper);
+  opacity: 0.65;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.cam-svg {
+  width: 100%;
+  display: block;
+  background: #0E0B07;
+  border: 1px solid #3A2F22;
+}
+.cam-status {
+  margin-top: 8px;
+  padding: 6px 9px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.cam-status.ok { background: #1F2818; border-left: 2px solid var(--mustard); color: var(--mustard); }
+.cam-status.fail { 
+  background: #3D1A12; 
+  border-left: 2px solid var(--brick); 
+  color: #F2C9C0;
+  animation: status-flash 1.4s infinite;
+}
+@keyframes status-flash {
+  0%, 70%, 100% { background: #3D1A12; }
+  35% { background: #6B2A1C; }
+}
+
+.cam-vector {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  padding: 5px 7px;
+  background: #0E0B07;
+  border: 1px solid #2A241D;
+}
+.cam-vector.stable { color: #C89339; }
+.cam-vector.unstable { 
+  color: #E08266; 
+  animation: vec-tremble 0.4s infinite;
+}
+@keyframes vec-tremble {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(0.6px); opacity: 0.6; }
+  50% { transform: translateX(-0.6px); opacity: 1; }
+  75% { transform: translateX(0.3px); opacity: 0.7; }
+}
+
+.cam-match {
+  margin-top: 12px;
+  background: #1A1611;
+  border: 1px solid #3A2F22;
+  padding: 12px;
+}
+.cam-match-title {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  color: var(--bone);
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 1.4;
+}
+.cam-bank-strip {
+  display: flex;
+  gap: 4px;
+  overflow: hidden;
+  height: 42px;
+  border: 1px solid #3A2F22;
+  background: #0E0B07;
+  padding: 5px;
+  margin-bottom: 8px;
+}
+.cam-bank-face {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  background: #2A241D;
+  border: 1px solid #3A2F22;
+  animation: bank-scroll 7s linear infinite;
+  position: relative;
+}
+.cam-bank-face::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3A2F22;
+}
+.cam-bank-face.target {
+  background: var(--brick);
+  border-color: var(--mustard);
+  animation: bank-scroll 7s linear infinite, target-pulse 1s infinite;
+}
+.cam-bank-face.target::after { background: #5C2415; }
+@keyframes bank-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-340px); }
+}
+@keyframes target-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168,65,42,0); }
+  50% { box-shadow: 0 0 0 4px rgba(200,147,57,0.6); }
+}
+
+.cam-bank-meta {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--paper);
+  opacity: 0.6;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.cam-alert {
+  background: var(--brick);
+  color: var(--bone);
+  padding: 10px 14px;
+  font-family: var(--font-black);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+  animation: alert-flash 1.2s infinite;
+  border: 2px solid var(--mustard);
+}
+@keyframes alert-flash {
+  0%, 100% { background: var(--brick); }
+  50% { background: #5C2415; }
+}
+
+/* PINO 3 · CIDACS · SALA-COFRE */
+.cid-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: #0E0B07;
+  border: 1.5px solid #3A2F22;
+  padding: 12px;
+}
+.cid-room {
+  background: #1A1611;
+  border: 1.5px solid var(--mustard);
+  padding: 11px;
+  position: relative;
+}
+.cid-room.unsafe {
+  border-color: var(--brick);
+  border-style: dashed;
+}
+.cid-room-label {
+  font-family: var(--font-black);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mustard);
+  margin-bottom: 8px;
+  border-bottom: 1px solid #3A2F22;
+  padding-bottom: 6px;
+}
+.cid-room.unsafe .cid-room-label { color: var(--brick); }
+
+.cid-svg {
+  width: 100%;
+  display: block;
+}
+
+.cid-checklist {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cid-check {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--paper);
+  opacity: 0.9;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+}
+.cid-check::before {
+  font-family: var(--font-black);
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.cid-check.ok::before { content: '✓'; color: var(--mustard); }
+.cid-check.no::before { content: '✗'; color: var(--brick); }
+
+@media (max-width: 640px) {
+  .cco-screen, .cam-screen, .cid-screen { grid-template-columns: 1fr; }
+  .cco-counter { gap: 12px; }
+  .cc-num { font-size: 22px; }
+}
+
    /* ═══════════════════════════════════════════════
    PARTE 4 · INSPEÇÃO DE ACTANTES E REAGREGAÇÃO
-═══════════════════════════════════════════════ */
 
 /* TEIA DE ACTANTES DENTRO DO MODAL ────────── */
 .teia-svg {
@@ -2384,13 +2793,102 @@ const VINHETAS = [
       bairro: 'BOA VISTA DO LOBATO · 6h12',
       titulo: 'A cidade que se vê de longe.',
       texto: [
-        'Antes do amanhecer, no Subúrbio Ferroviário, o prédio do Centro de Controle Operacional já está iluminado. As obras estão concluídas em mais da metade. Quando entrar em operação plena, o CCO integrará num único pavimento o despacho da Defesa Civil (Codesal), do SAMU 192, da Guarda Municipal, da Transalvador e, segundo o planejamento da SEMIT, da malha das dez mil câmeras previstas para integração com o COI estadual.',
-        'A escolha do bairro é simbólica: a prefeitura optou por instalar o centro de comando da cidade inteligente justamente no Subúrbio Ferroviário, uma das áreas com menor IDH municipal e historicamente menos atendida pela infraestrutura urbana. A justificativa oficial fala em interiorização do investimento. Na prática, o prédio do CCO concentra mais fibra óptica, mais energia redundante e mais sensores de monitoramento por metro quadrado do que a maioria das ruas do próprio bairro que o abriga.',
-        'O painel principal do CCO, quando ativo, mostra a cidade em séries temporais: pontualidade do BRT, tempo de resposta do SAMU, alertas geológicos, fluxo de pedestres em pontos turísticos. O que não aparece no painel não é gerido. As ruas sem sensor, os pontos de ônibus sem GPS, os bairros sem cobertura de câmera, esses ficam fora do real operacional.'
+        'O Centro de Controle Operacional (CCO) prepara-se para integrar o despacho de diversos serviços essenciais e a malha de dez mil câmeras de vigilância em um único pavimento no Subúrbio Ferroviário.',
+        'Embora a prefeitura justifique a instalação do centro de comando nessa região de baixo IDH como uma estratégia de interiorização do investimento, a iniciativa consolida uma grave assimetria estrutural, erguendo um edifício que concentra mais fibra óptica e energia redundante por metro quadrado do que as próprias ruas do bairro desassistido que o abriga. Uma vez em operação, o painel principal do sistema restringirá a complexidade urbana a séries temporais estritas, como a pontualidade do transporte e os alertas geológicos, condicionando a gestão pública exclusivamente aos eventos capturados pela máquina.',
+        'Consequentemente, ao transformar o dado na única realidade administrativa possível, o CCO impõe uma exclusão imediata às ruas sem sensores e aos bairros sem cobertura de câmeras, varrendo sumariamente essas dinâmicas sociais para fora da agenda operacional da cidade.'
       ]
     },
 
     func: {
+      simulator: `
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · DASHBOARD DO CCO</span>
+    <span>LIVE</span>
+  </div>
+  <div class="audit-sim">
+    <div class="cco-screen">
+      <svg class="cco-map-svg" viewBox="0 0 460 280" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 30 235 Q 50 180 80 140 Q 110 95 150 70 L 410 70 Q 432 105 432 155 L 425 225 Q 380 250 320 245 L 200 238 Q 80 245 30 235 Z" fill="none" stroke="#3A2F22" stroke-width="1" stroke-dasharray="2 3"/>
+        <text x="55" y="100" font-family="'Space Mono',monospace" font-size="7" fill="#5C4F3E" letter-spacing="1">SUBÚRBIO</text>
+        <text x="205" y="92" font-family="'Space Mono',monospace" font-size="7" fill="#5C4F3E" letter-spacing="1">MIOLO</text>
+        <text x="225" y="232" font-family="'Space Mono',monospace" font-size="7" fill="#5C4F3E" letter-spacing="1">ORLA</text>
+        <text x="55" y="225" font-family="'Space Mono',monospace" font-size="7" fill="#5C4F3E" letter-spacing="1">CENTRO</text>
+
+        <rect class="bairro lit-brt" x="195" y="195" width="20" height="12"/>
+        <rect class="bairro lit-brt" x="220" y="197" width="20" height="12"/>
+        <rect class="bairro lit-brt" x="245" y="200" width="20" height="12"/>
+        <rect class="bairro lit-brt" x="270" y="201" width="20" height="12"/>
+        <rect class="bairro lit-brt" x="295" y="202" width="20" height="12"/>
+
+        <rect class="bairro lit-noa" x="60" y="175" width="20" height="12"/>
+        <rect class="bairro lit-noa" x="85" y="177" width="20" height="12"/>
+        <rect class="bairro lit-noa" x="60" y="193" width="20" height="12"/>
+        <rect class="bairro lit-noa" x="85" y="195" width="20" height="12"/>
+
+        <rect class="bairro lit-sem" x="130" y="160" width="20" height="12"/>
+        <rect class="bairro lit-sem" x="155" y="155" width="20" height="12"/>
+        <rect class="bairro lit-sem" x="180" y="150" width="20" height="12"/>
+        <rect class="bairro lit-sem" x="205" y="144" width="20" height="12"/>
+        <rect class="bairro lit-sem" x="155" y="180" width="20" height="12"/>
+
+        <rect class="bairro lit-enc" x="240" y="140" width="20" height="12"/>
+        <rect class="bairro lit-enc" x="320" y="165" width="20" height="12"/>
+
+        <rect class="bairro" x="115" y="130" width="20" height="12"/>
+        <rect class="bairro" x="140" y="130" width="20" height="12"/>
+        <rect class="bairro" x="170" y="125" width="20" height="12"/>
+        <rect class="bairro" x="200" y="118" width="20" height="12"/>
+        <rect class="bairro" x="230" y="112" width="20" height="12"/>
+        <rect class="bairro" x="260" y="108" width="20" height="12"/>
+        <rect class="bairro" x="290" y="105" width="20" height="12"/>
+        <rect class="bairro" x="320" y="102" width="20" height="12"/>
+        <rect class="bairro" x="350" y="100" width="20" height="12"/>
+        <rect class="bairro" x="380" y="98" width="20" height="12"/>
+        <rect class="bairro" x="265" y="135" width="20" height="12"/>
+        <rect class="bairro" x="295" y="130" width="20" height="12"/>
+        <rect class="bairro" x="345" y="135" width="20" height="12"/>
+        <rect class="bairro" x="375" y="138" width="20" height="12"/>
+        <rect class="bairro" x="350" y="170" width="20" height="12"/>
+        <rect class="bairro" x="380" y="172" width="20" height="12"/>
+        <rect class="bairro" x="350" y="200" width="20" height="12"/>
+        <rect class="bairro" x="380" y="202" width="20" height="12"/>
+        <rect class="bairro" x="320" y="210" width="20" height="12"/>
+        <rect class="bairro" x="115" y="200" width="20" height="12"/>
+        <rect class="bairro" x="140" y="205" width="20" height="12"/>
+        <rect class="bairro" x="115" y="155" width="20" height="12"/>
+        <rect class="bairro" x="100" y="115" width="20" height="12"/>
+
+        <text x="20" y="265" font-family="'Space Mono',monospace" font-size="7" fill="#5C4F3E" letter-spacing="1">■ COM WIDGET</text>
+        <text x="170" y="265" font-family="'Space Mono',monospace" font-size="7" fill="#5C4F3E" letter-spacing="1">▢ SEM SENSOR · INVISÍVEL AO PAINEL</text>
+      </svg>
+
+      <div class="cco-widgets">
+        <div class="cco-widget w-brt"><span class="led"></span>BRT · TELEMETRIA</div>
+        <div class="cco-widget w-noa"><span class="led"></span>CÂMERAS NOA</div>
+        <div class="cco-widget w-sem"><span class="led"></span>SEMÁFOROS ONDA VERDE</div>
+        <div class="cco-widget w-enc"><span class="led"></span>SENSORES DE ENCOSTA</div>
+        <div class="cco-note">Cada widget = uma cláusula contratual. Sem cláusula, sem sensor. Sem sensor, sem bairro no painel.</div>
+      </div>
+    </div>
+
+    <div class="cco-counter">
+      <div>
+        <div class="cc-num">16</div>
+        <div class="cc-label">BAIRROS NO PAINEL</div>
+      </div>
+      <div class="cc-slash">/</div>
+      <div>
+        <div class="cc-num dim">163</div>
+        <div class="cc-label">BAIRROS REAIS DE SALVADOR</div>
+      </div>
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>O QUE O CCO NÃO VÊ NÃO É POLÍTICA PÚBLICA.</strong> A cada widget contratado pela prefeitura, um conjunto de bairros aparece no painel. Os bairros sem sensor — a maioria — operam permanentemente fora do campo de visão da gestão. Quando o LED de um widget pisca em vermelho (falha de comunicação), as áreas correspondentes saem do mapa do operador. <em>O recorte do que é gerível foi decidido em cláusula contratual, não em audiência pública.</em>
+  </div>
+</div>
+      `,
       titulo: 'COMO O CCO ENXERGA A CIDADE',
       steps: [
         {
@@ -2426,7 +2924,7 @@ const VINHETAS = [
       titulo: 'Art. 5º · Princípios e diretrizes',
       quote: 'Constituem princípios e diretrizes deste Plano: I — promover uma cidade orientada por dados (data-driven) para a formulação precisa de políticas públicas, com base em evidências geradas pela integração de sistemas; (...) XI — ampliar progressivamente e atribuir inteligência e resiliência aos sistemas de videomonitoramento de vias e espaços públicos.',
       fonte: 'Lei Complementar nº 92/2025 (PDTCI), Art. 5º, incisos I e XI · Município de Salvador.',
-      comentario: 'A lei estabelece a cidade data-driven como princípio. O que ela não disciplina é quem decide quais dados são coletados, sob qual critério de prioridade, com qual mecanismo de auditoria independente, e quem responde quando o algoritmo erra. Esses pontos ficam delegados aos contratos de operação e aos termos técnicos da Companhia SMART, que não passaram por audiência pública vinculante.'
+      comentario: 'Embora a legislação estabeleça a cidade data-driven como princípio diretor, o texto abdica de disciplinar os critérios de coleta de dados, a definição de prioridades, os mecanismos de auditoria independente e a responsabilização legal por falhas algorítmicas. Consequentemente, o poder de decidir sobre esses aspectos críticos é transferido de forma opaca para os contratos de operação e termos técnicos da Companhia SMART, que passam a governar a infraestrutura urbana sem nunca terem sido submetidos a qualquer audiência pública vinculante.'
     },
 
     ficha: {
@@ -2448,9 +2946,9 @@ const VINHETAS = [
       bairro: 'PELOURINHO · 14h22',
       titulo: 'A câmera nunca diz "não sei".',
       texto: [
-        'Marcus tem dezesseis anos. Atravessa o Largo do Pelourinho a caminho da escola. Câmera 0834-B captura o rosto dele às 14h22. O sensor da câmera foi calibrado, ainda na fábrica, segundo a curva de reflectância estabelecida pelas cartelas Shirley, a faixa de luz refletida pela pele branca usada como ponto zero da exposição fotográfica desde 1950.',
-        'Sob essa calibração, a pele escura de Marcus reflete menos luz do que o sensor espera. A imagem chega ao processador com baixo contraste. O algoritmo extrai um vetor de 512 dimensões e o compara com os rostos armazenados no banco de identificação criminal da Secretaria de Segurança Pública do Estado, banco esse acessado pelo sistema Vídeo Policiamento via convênio técnico de cooperação.',
-        'A rede neural não foi treinada para reportar incerteza. Foi treinada para sempre devolver um número. Diante de baixo contraste, ela completa a leitura com o padrão mais frequente no banco. O resultado é uma similaridade de 92,4% com um rosto qualquer arquivado em prisão anterior. Em dois minutos, uma viatura chega ao Largo. A mãe de Marcus mora a quatro quadras dali.'
+        'Ao atravessar o Largo do Pelourinho a caminho da escola às 14h22, o jovem Marcus, de dezesseis anos, tem seu rosto capturado pela Câmera 0834-B, cujo sensor opera sob uma limitação técnica originada ainda na fábrica. O equipamento foi calibrado segundo a curva de reflectância das cartelas Shirley, uma métrica que estabelece a faixa de luz refletida pela pele branca como o ponto zero da exposição fotográfica desde 1950.',
+        'Como consequência dessa calibração, a pele escura de Marcus reflete menos luz do que o sensor espera, fazendo com que a imagem chegue ao processador com um contraste tão baixo que, ao extrair um vetor de 512 dimensões a partir dessa captura imprecisa, o algoritmo busca compensar a falha comparando a biometria diretamente com os rostos armazenados no banco de identificação criminal da Secretaria de Segurança Pública do Estado, um acervo acessado pelo sistema de Vídeo Policiamento por meio de convênio técnico de cooperação.',
+        'Como o modelo computacional não foi projetado para reportar incerteza técnica, sendo forçada matematicamente a sempre devolver um resultado numérico absoluto, o algoritmo compensa a captura de baixo contraste preenchendo a leitura com o padrão morfológico mais frequente do seu banco de dados . Consequentemente, ao fabricar uma similaridade artificial de 92,4% com o rosto de um indivíduo aleatório previamente encarcerado, o sistema converte o próprio erro computacional em uma ameaça tática imediata, desencadeando o envio de uma viatura policial em apenas dois minutos e interceptando compulsoriamente o trajeto cotidiano do jovem a meras quatro quadras de sua casa.'
       ]
     },
 
@@ -2512,13 +3010,154 @@ const VINHETAS = [
       bairro: 'AV. LUÍS VIANA · PARQUE TECNOLÓGICO',
       titulo: 'Onde os dados moram em Salvador.',
       texto: [
-        'O Parque Tecnológico da Bahia, na Avenida Paralela, é um equipamento do Governo do Estado que abriga, entre outros laboratórios, o CIDACS, o Centro de Integração de Dados e Conhecimento para a Saúde, vinculado à Fundação Oswaldo Cruz. O CIDACS opera um datacenter que cruza, em ambiente controlado, registros do CadÚnico, do SUS, do Bolsa Família, da Previdência e de outras bases federais e estaduais para construir coortes populacionais.',
-        'A pesquisa que sai do CIDACS é pública, peer-reviewed, publicada em revistas internacionais, e já demonstrou efeitos de programas sociais sobre mortalidade infantil, tuberculose, hanseníase. É ciência de qualidade. É também concentração: poucos lugares no mundo combinam tantas bases sensíveis num único ponto físico.',
-        'A ambiguidade importa. O Parque Tecnológico não é o vilão da história. É o pino onde a pergunta política fica mais difícil. O que acontece quando o mesmo modelo de concentração de dados, justificado pela pesquisa em saúde pública, é replicado para outras finalidades sem o mesmo rito ético, sem o mesmo comitê de pesquisa, sem o mesmo escrutínio acadêmico?'
+        'O Parque Tecnológico da Bahia abriga o Centro de Integração de Dados e Conhecimento para a Saúde (CIDACS), um laboratório vinculado à Fiocruz que opera um datacenter dedicado ao cruzamento, em ambiente rigorosamente controlado, de registros do CadÚnico, do SUS e da Previdência . Essa infraestrutura possibilita a construção de coortes populacionais que embasam pesquisas de excelência sobre os impactos dos programas sociais na saúde pública, todas submetidas a validações éticas e revisões internacionais por pares.',
+        'Essa infraestrutura possibilita a construção de coortes populacionais que embasam pesquisas de excelência sobre os impactos dos programas sociais na saúde pública, todas submetidas a validações éticas e revisões internacionais por pares.No entanto, embora essa concentração massiva de dados sensíveis em um único ponto físico seja plenamente justificada pelo rigor do método científico, ela consolida um modelo arquitetônico de integração que a governança da cidade inteligente busca replicar.',
+        'Consequentemente, o desafio político central reside em analisar os riscos de se transferir essa mesma capacidade técnica de cruzamento de informações para instâncias de gestão urbana que operam de forma opaca, à revelia de comitês de ética independentes ou de qualquer escrutínio acadêmico.'
       ]
     },
 
     func: {
+      simulator: `
+<div class="audit-wrapper">
+  <div class="audit-stamp">
+    <span><span class="rec-dot"></span>AUDITORIA VISUAL · A MESMA INFORMAÇÃO · DOIS AMBIENTES</span>
+    <span>COMPARATIVO MATERIAL</span>
+  </div>
+  <div class="audit-sim">
+    <div class="cid-screen">
+
+      <div class="cid-room">
+        <div class="cid-room-label">SALA-COFRE · CIDACS / FIOCRUZ</div>
+        <svg class="cid-svg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="220" height="180" fill="#0E0B07"/>
+          <rect x="12" y="22" width="196" height="136" fill="none" stroke="#C89339" stroke-width="2"/>
+          <rect x="12" y="22" width="196" height="136" fill="none" stroke="#C89339" stroke-width="1" stroke-dasharray="2 2" opacity="0.4"/>
+
+          <g transform="translate(110 32)">
+            <rect x="-9" y="-3" width="18" height="6" fill="#A8412A"/>
+            <circle cx="0" cy="6" r="2.8" fill="#1A1611" stroke="#A8412A" stroke-width="0.6">
+              <animate attributeName="fill" values="#1A1611;#A8412A;#1A1611" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <text x="0" y="-6" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#C89339" letter-spacing="0.5">CAM TETO</text>
+          </g>
+
+          <g transform="translate(195 90)">
+            <rect x="-9" y="-13" width="14" height="26" fill="#1A1611" stroke="#C89339" stroke-width="0.8"/>
+            <circle cx="-2" cy="0" r="3" fill="none" stroke="#C89339" stroke-width="0.8">
+              <animate attributeName="r" values="2;5.5;2" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="1;0;1" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="-2" cy="0" r="1.5" fill="#C89339"/>
+          </g>
+          <text x="195" y="126" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#C89339" letter-spacing="0.5">BIOMETRIA</text>
+
+          <g transform="translate(70 108)">
+            <circle cx="0" cy="-9" r="6.5" fill="#D8C4A3"/>
+            <path d="M -11 5 Q 0 -4 11 5 L 15 27 L -15 27 Z" fill="#577387"/>
+            <rect x="-6" y="-1" width="3.5" height="3.5" fill="#1A1611"/>
+            <text x="0" y="40" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#C89339" letter-spacing="0.5">CRACHÁ #4729</text>
+          </g>
+
+          <g transform="translate(135 100)">
+            <rect x="-20" y="-13" width="40" height="24" fill="#1A1611" stroke="#C89339" stroke-width="0.8"/>
+            <rect x="-17" y="-10" width="34" height="18" fill="#0E0B07"/>
+            <line x1="-14" y1="-6" x2="14" y2="-6" stroke="#C89339" stroke-width="0.4" opacity="0.6"/>
+            <line x1="-14" y1="-3" x2="9" y2="-3" stroke="#C89339" stroke-width="0.4" opacity="0.6"/>
+            <line x1="-14" y1="0" x2="12" y2="0" stroke="#C89339" stroke-width="0.4" opacity="0.6"/>
+            <line x1="-14" y1="3" x2="7" y2="3" stroke="#C89339" stroke-width="0.4" opacity="0.6"/>
+            <rect x="-3" y="11" width="6" height="6" fill="#1A1611" stroke="#C89339" stroke-width="0.6"/>
+            <rect x="-11" y="17" width="22" height="3" fill="#1A1611" stroke="#C89339" stroke-width="0.6"/>
+            <text x="0" y="36" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#A8412A" letter-spacing="0.5">SEM PORTA USB</text>
+          </g>
+
+          <g transform="translate(20 132)">
+            <rect x="0" y="0" width="64" height="24" fill="#1A1611" stroke="#C89339" stroke-width="0.6"/>
+            <text x="3" y="6" font-family="'Space Mono',monospace" font-size="4.5" fill="#C89339">14:23:11 SELECT</text>
+            <text x="3" y="11" font-family="'Space Mono',monospace" font-size="4.5" fill="#C89339">14:23:18 FROM coorte</text>
+            <text x="3" y="16" font-family="'Space Mono',monospace" font-size="4.5" fill="#C89339">14:23:24 WHERE...</text>
+            <text x="3" y="21" font-family="'Space Mono',monospace" font-size="4.5" fill="#C89339" opacity="0.7">
+              [LOG ATIVO ●]
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.4s" repeatCount="indefinite"/>
+            </text>
+          </g>
+        </svg>
+        <div class="cid-checklist">
+          <div class="cid-check ok">Comitê de ética público</div>
+          <div class="cid-check ok">Protocolo de pesquisa publicado</div>
+          <div class="cid-check ok">Terminal sem porta USB</div>
+          <div class="cid-check ok">Log de cada tecla digitada</div>
+          <div class="cid-check ok">Acesso vinculado a prazo</div>
+          <div class="cid-check ok">Câmera + biometria de entrada</div>
+        </div>
+      </div>
+
+      <div class="cid-room unsafe">
+        <div class="cid-room-label">NUVEM COMERCIAL · OPERADOR EM CASA</div>
+        <svg class="cid-svg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="220" height="180" fill="#0E0B07"/>
+          <rect x="15" y="22" width="190" height="136" fill="none" stroke="#5C4F3E" stroke-width="0.7" stroke-dasharray="4 4"/>
+
+          <rect x="170" y="32" width="28" height="22" fill="none" stroke="#5C4F3E" stroke-width="0.6"/>
+          <line x1="184" y1="32" x2="184" y2="54" stroke="#5C4F3E" stroke-width="0.4"/>
+          <line x1="170" y1="43" x2="198" y2="43" stroke="#5C4F3E" stroke-width="0.4"/>
+          <text x="184" y="62" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4.5" fill="#5C4F3E">JANELA</text>
+
+          <rect x="40" y="118" width="140" height="5" fill="#5C4F3E"/>
+          <rect x="44" y="123" width="5" height="22" fill="#5C4F3E"/>
+          <rect x="171" y="123" width="5" height="22" fill="#5C4F3E"/>
+
+          <g transform="translate(105 95)">
+            <polygon points="-24,22 24,22 19,0 -19,0" fill="#1A1611" stroke="#5C4F3E" stroke-width="0.6"/>
+            <polygon points="-19,0 19,0 24,-20 -24,-20" fill="#0E0B07" stroke="#5C4F3E" stroke-width="0.6"/>
+            <rect x="-19" y="-18" width="38" height="3" fill="#577387" opacity="0.7"/>
+            <rect x="-17" y="-12" width="14" height="2" fill="#5C4F3E"/>
+            <rect x="-17" y="-8" width="20" height="2" fill="#5C4F3E"/>
+            <rect x="-17" y="-4" width="12" height="2" fill="#5C4F3E"/>
+            <rect x="2" y="-12" width="14" height="9" fill="#3A2F22"/>
+            <circle cx="15" cy="-16" r="1.6" fill="#A8412A">
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="1s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <g transform="translate(58 112)">
+            <ellipse cx="0" cy="0" rx="5" ry="2" fill="#3A2F22"/>
+            <path d="M -4 0 L -3 8 L 3 8 L 4 0 Z" fill="#5C4F3E"/>
+            <path d="M 4 2 Q 8 2 8 5 Q 8 7 4 7" fill="none" stroke="#5C4F3E" stroke-width="0.8"/>
+          </g>
+
+          <g transform="translate(155 92)">
+            <circle cx="0" cy="-9" r="6.5" fill="#D8C4A3"/>
+            <path d="M -11 5 Q 0 -4 11 5 L 15 27 L -15 27 Z" fill="#A8412A"/>
+            <text x="0" y="40" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E" letter-spacing="0.5">SEM CRACHÁ</text>
+          </g>
+
+          <g transform="translate(40 60)">
+            <rect x="0" y="0" width="64" height="16" fill="#1A1611" stroke="#5C4F3E" stroke-width="0.5"/>
+            <text x="4" y="6.5" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E">login: admin</text>
+            <text x="4" y="12" font-family="'Space Mono',monospace" font-size="5" fill="#5C4F3E">senha: ●●●●●●●●</text>
+          </g>
+
+          <g transform="translate(20 150)">
+            <text x="0" y="0" font-family="'Space Mono',monospace" font-size="6.5" fill="#A8412A" letter-spacing="0.8">[ SEM LOG DE ACESSO ]</text>
+          </g>
+        </svg>
+        <div class="cid-checklist">
+          <div class="cid-check no">Sem comitê de ética independente</div>
+          <div class="cid-check no">Sem protocolo público</div>
+          <div class="cid-check no">Acesso por senha · qualquer local</div>
+          <div class="cid-check no">Sem registro do que foi consultado</div>
+          <div class="cid-check no">Sem prazo vinculado ao acesso</div>
+          <div class="cid-check no">Sem barreira física entre operador e dado</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="audit-lesson">
+    <strong>A MESMA INFORMAÇÃO · DOIS REGIMES DE CUIDADO.</strong> O CIDACS e a Nuvem Urbana SMART operam tecnicamente sobre dados sensíveis equivalentes. A diferença não está no software, está na arquitetura física e institucional que cerca o acesso. <em>A sala-cofre é uma cláusula material: ela constrange antes de regular.</em> Quando o painel migra para um notebook em casa, com senha simples e sem comitê, a infraestrutura deixa de ser pesquisa e passa a ser vigilância — sem precisar mudar uma única linha de código.
+  </div>
+</div>
+      `,
       titulo: 'COMO O CIDACS OPERA E POR QUE ELE IMPORTA',
       steps: [
         {
@@ -2549,7 +3188,7 @@ const VINHETAS = [
       titulo: 'Delegação da operação à Companhia SMART',
       quote: 'O Município poderá delegar à companhia de propósito específico, vinculada à Administração Indireta, a operacionalização da Nuvem Urbana da Cidade Inteligente, centralizando dados produzidos pelos órgãos municipais com vistas à geração de soluções inovadoras de gestão pública.',
       fonte: 'Lei Complementar nº 92/2025 (PDTCI), Art. 21 · Companhia Salvador Cidade Inteligente (SMART), sucessora administrativa da antiga COGEL.',
-      comentario: 'O CIDACS opera sob marco legal de pesquisa científica (Resolução CNS 466/2012 e correlatas). A Nuvem Urbana opera sob marco legal de gestão pública municipal. São arcabouços jurídicos diferentes para arquiteturas técnicas semelhantes. A pesquisa em saúde tem trinta anos de tradição construindo proteções éticas. A gestão municipal data-driven começou ontem.'
+      comentario: 'Embora o CIDACS e a Nuvem Urbana compartilhem arquiteturas técnicas semelhantes, eles operam sob arcabouços jurídicos fundamentalmente distintos, uma vez que o primeiro é resguardado pelo marco legal da pesquisa científica (Resolução CNS 466/2012 e correlatas), enquanto a segunda submete-se à regulação da gestão pública municipal. Consequentemente, essa transposição cria um grave cenário de risco ao permitir que a recente e incipiente gestão urbana orientada a dados opere à revelia da robusta tradição de governança e das proteções éticas que a pesquisa em saúde demorou três décadas para consolidar.'
     },
 
     ficha: {
@@ -2571,9 +3210,9 @@ const VINHETAS = [
       bairro: 'CAJAZEIRAS · 17h45',
       titulo: 'O ônibus que nenhum painel registra.',
       texto: [
-        'Cajazeiras é um conjunto de bairros que abriga aproximadamente trezentas mil pessoas. Faz parte do Miolo, a Macroárea de Estruturação Urbana definida pelo PDDU. Daqui sai todos os dias um dos maiores fluxos de trabalhadores da cidade, em direção ao Centro, à Pituba, à Barra. As linhas de ônibus que servem Cajazeiras circulam por vias secundárias que não compõem o eixo de otimização do BRT.',
-        'Quando o algoritmo do CCO ativa a onda verde na Avenida ACM para recuperar o atraso de uma composição de BRT, ele otimiza um corredor que tem sensor de fluxo, contagem de embarques, GPS de veículo. Os ônibus que servem Cajazeiras, por sua vez, ficam retidos nos sinais transversais. Eles emitem sinais GPS estáticos enquanto esperam o verde que não vem.',
-        'Esses sinais GPS estáticos retornam ao dashboard do CCO como dado de congestionamento na via transversal, e esse dado, agregado em série temporal, aparece no relatório trimestral como evidência de que o BRT é o modal mais eficiente da cidade. A imobilidade forçada dos trabalhadores de Cajazeiras vira argumento técnico em favor do modal que os imobilizou.'
+        'Embora Cajazeiras consista em um complexo de bairros situado na Macroárea de Estruturação Urbana (o Miolo) que abriga cerca de trezentas mil pessoas e origina um dos maiores fluxos diários de trabalhadores em direção a polos como o Centro, a Pituba e a Barra, suas linhas de transporte coletivo foram relegadas a vias secundárias que operam totalmente à margem do eixo de otimização tecnológica do BRT.',
+        'Ao acionar a onda verde na Avenida ACM para recuperar o atraso de uma composição do BRT, o algoritmo do CCO otimiza exclusivamente um corredor equipado com sensores de fluxo e de telemetria veicular, o que resulta na retenção imediata das linhas de Cajazeiras nos sinais transversais, forçando esses ônibus a emitirem sinais estáticos de GPS enquanto aguardam indefinidamente por uma liberação semafórica.',
+        'Ao retornarem ao dashboard do CCO, esses sinais estáticos são interpretados como mero congestionamento na via transversal e agregados em séries temporais que, nos relatórios trimestrais, atestam a suposta superioridade do BRT. Consequentemente, o sistema engendra uma perversão analítica implacável: a imobilidade forçada dos trabalhadores de Cajazeiras é convertida na exata métrica de eficiência que legitima tecnicamente o modal responsável por paralisá-los.'
       ]
     },
 
@@ -2630,9 +3269,9 @@ const VINHETAS = [
       bairro: 'MATA ESCURA · MADRUGADA DE OUTONO',
       titulo: 'O alerta foi disparado. Ninguém recebeu.',
       texto: [
-        'Choveu cento e vinte milímetros nas últimas duas horas. O sensor geológico instalado na encosta da Mata Escura, ligado à Defesa Civil Municipal (Codesal) e ao CCO do Lobato, registra saturação crítica do solo. O algoritmo dispara o protocolo de alerta. No painel do CCO, o indicador acende em vermelho. Em segundos, o sistema envia notificações por aplicativo e SMS aos cadastrados na região de risco.',
-        'A taxa de entrega da notificação por aplicativo, segundo o registro do disparo, é de aproximadamente quatro por cento. A taxa de entrega por SMS é de cerca de vinte e oito por cento. As sirenes físicas que existiam até 2022 nas encostas foram desativadas porque a verba foi realocada para a contratação do novo sistema digital de alertas.',
-        'O sensor mediu. O algoritmo calculou. O protocolo foi cumprido. O dashboard registrou o disparo como ação executada. Cada elemento da cadeia técnica operou exatamente como foi projetado. A diferença entre o sistema operando como projetado e o alerta efetivamente chegando às pessoas é o paradoxo central da cidade inteligente no Sul Global.'
+        'Após uma precipitação de cento e vinte milímetros nas últimas duas horas, o sensor geológico instalado na encosta da Mata Escura — integrado à Defesa Civil Municipal (Codesal) e ao CCO do Lobato — detecta uma saturação crítica do solo, fazendo com que o algoritmo dispare imediatamente o protocolo de alerta. Consequentemente, ao mesmo tempo em que o indicador visual acende em vermelho no painel central, o sistema despacha, em questão de segundos, notificações via aplicativo e SMS para os celulares cadastrados na região de risco.',
+        'A ineficácia desse aparato tecnológico torna-se evidente nos próprios registros do sistema, que apontam taxas de entrega irrisórias de apenas quatro por cento via aplicativo e vinte e oito por cento via SMS. A gravidade dessa exclusão digital é aprofundada por uma escolha administrativa trágica: as antigas sirenes físicas, que garantiam o alerta universal nas encostas até 2022, foram deliberadamente desativadas para que sua verba financiasse a contratação desse exato sistema inoperante.',
+        'Embora cada elemento da cadeia técnica tenha operado exatamente como projetado — da medição do sensor e cálculo do algoritmo até a execução do protocolo e registro da ação no dashboard —, a abissal discrepância entre a eficácia virtual do software e a falha material em fazer o alerta alcançar as pessoas evidencia o paradoxo central da cidade inteligente no Sul Global.'
       ]
     },
 
@@ -2689,9 +3328,9 @@ const VINHETAS = [
       bairro: 'PRAIA DO FORTE · PONTO DE ATERRAGEM',
       titulo: 'Latência até a Virgínia: 89 milissegundos.',
       texto: [
-        'Os cabos submarinos que conectam o Brasil ao resto do mundo aterram em poucos pontos da costa. Um dos principais ramais nordestinos passa pela costa baiana e chega a estações de aterragem na região metropolitana de Salvador antes de seguir para o sistema internacional. Quando o aplicativo da prefeitura processa uma consulta, quando o algoritmo do COI compara um rosto com o banco policial, quando o dashboard do CCO atualiza um indicador, parte desse processamento acontece em servidores fora do território brasileiro.',
-        'A Nuvem Urbana prevista pelo PDTCI Art. 21 é operada pela Companhia SMART, mas a infraestrutura física da nuvem comercial (AWS, Azure, Google Cloud) tem seus principais nós em datacenters norte-americanos. A região AWS us-east-1, no estado da Virgínia, é uma das mais usadas por contratos governamentais brasileiros. A latência entre Salvador e a Virgínia é de aproximadamente oitenta e nove milissegundos.',
-        'Cada datacenter da Virgínia consome volumes massivos de água potável para resfriamento. Em outras regiões do mundo, comunidades em Aragón (Espanha), Querétaro (México) e na região do Atacama (Chile) já entraram em conflito com operadoras de datacenter por estresse hídrico. Os dados dos soteropolitanos são processados num lugar onde a água que resfria os processadores não é sua, e onde a lei aplicável (CLOUD Act dos EUA) permite que o governo federal norte-americano requisite acesso sem notificar a autoridade brasileira.'
+        'Embora um dos principais ramais de cabos submarinos que conectam o Brasil à rede global aterre estrategicamente na região metropolitana de Salvador, a arquitetura da cidade inteligente subverte essa soberania física, fazendo com que as rotinas críticas da infraestrutura urbana, como o processamento de consultas municipais, o cruzamento de biometrias com bases policiais e a atualização de painéis de controle, sejam compulsoriamente roteadas para servidores localizados fora do território brasileiro.',
+        'Embora a Nuvem Urbana prevista pelo Artigo 21 do PDTCI seja formalmente operada pela instituição municipal Companhia SMART, a infraestrutura física que a sustenta repousa sobre redes comerciais, como AWS, Azure e Google Cloud, cujos nós principais estão alocados em datacenters norte-americanos. Consequentemente, ao ancorar os contratos governamentais brasileiros em polos estrangeiros como a região AWS us-east-1, no estado da Virgínia, o sistema impõe uma latência de aproximadamente oitenta e nove milissegundos entre Salvador e os servidores que, muito além de um mero intervalo técnico, quantifica a exata distância geográfica e jurisdicional da perda de controle sobre as nossas informações.',
+        'Além do custo técnico, a operação de cada datacenter na Virgínia exige o consumo de volumes massivos de água potável para fins de resfriamento, um impacto material predatório que já deflagrou conflitos por estresse hídrico em comunidades de Aragón na Espanha, de Querétaro no México e da região do Atacama no Chile . Consequentemente, a infraestrutura da cidade inteligente consolida um cenário de dupla alienação, visto que os dados dos soteropolitanos são processados em um território estrangeiro onde não apenas a água consumida pelas máquinas lhes é alheia, mas cuja legislação aplicável, o CLOUD Act dos EUA, autoriza que o governo federal norte-americano requisite acesso irrestrito a essas informações sem qualquer obrigação de notificar a autoridade brasileira.'
       ]
     },
 
@@ -2753,9 +3392,9 @@ const VINHETAS = [
       bairro: 'FEIRA DE SÃO JOAQUIM · 11h00',
       titulo: 'O limite caiu. Ninguém explicou.',
       texto: [
-        'Dona Edna vende acarajé na Feira de São Joaquim há trinta e um anos. Tem a maquininha desde 2019. Aceita débito, crédito, PIX. A maquininha sabe quanto ela vendeu hoje, ontem, na semana passada. Sabe se a venda foi pela manhã ou à tarde. Sabe quem pagou no PIX e quem fugiu pro débito quando o sinal caiu.',
-        'O algoritmo de scoring, operado pela empresa fornecedora da maquininha, classifica Dona Edna como "risco médio". Ela não sabe o que é risco médio. Ela sabe que o limite de crédito da máquina dela caiu de três mil para mil e duzentos reais, sem aviso, no meio de uma semana de Iemanjá. Ela ligou no atendimento. O atendente disse que "o sistema é automático" e que a decisão é "baseada em análise de perfil".',
-        'A Cláusula 18-B do contrato de adesão da maquininha, que Edna assinou em 2019, autoriza a revisão automática do limite de crédito sem notificação prévia. O Art. 12 do mesmo contrato classifica o algoritmo de scoring como segredo industrial. A LGPD Art. 20 garante direito à revisão de decisões automatizadas, mas só se o titular souber que houve uma decisão automatizada. Edna nunca recebeu essa informação.'
+        'Embora atue como vendedora de acarajé na Feira de São Joaquim há trinta e um anos, a adoção de um terminal de pagamentos em 2019 inseriu Dona Edna em uma silenciosa e implacável infraestrutura de extração de dados . Consequentemente, ao processar transações via débito, crédito ou PIX, o equipamento rastreia e quantifica toda a sua rotina comercial, registrando desde o volume histórico e a sazonalidade diária das vendas até as mínimas variações comportamentais de sua clientela diante de oscilações no sinal de rede.',
+        'Ao ser categorizada como 'risco médio' pelo algoritmo de scoring operado pela fornecedora do equipamento, Dona Edna, embora alheia à abstração desse jargão técnico, sofre a consequência material imediata do cálculo com a redução abrupta de seu limite de crédito de três mil para mil e duzentos reais, executada sem qualquer aviso prévio em plena semana da festa de Iemanjá. Consequentemente, ao tentar buscar esclarecimentos junto ao suporte da empresa, ela se depara com a barreira intransponível da opacidade corporativa, recebendo como única resposta a justificativa de que o corte resultou de uma mera 'análise de perfil' de um sistema automático, o que consolida a tecnologia não como um recurso de eficiência, mas como um escudo elaborado para negar explicações inteligíveis à trabalhadora.',
+        'A ação no mundo real emana de uma rede complexa de elementos humanos e técnicos. Compreender essa distribuição é o primeiro passo para uma crítica sistêmica, que passa a responsabilizar simultaneamente as pessoas, os dispositivos, os contratos e as infraestruturas.'
       ]
     },
 
@@ -2790,7 +3429,7 @@ const VINHETAS = [
       titulo: 'Direito à revisão de decisões automatizadas',
       quote: 'LGPD Art. 20: O titular dos dados tem direito a solicitar a revisão de decisões tomadas unicamente com base em tratamento automatizado de dados pessoais que afetem seus interesses, incluídas as decisões destinadas a definir o seu perfil pessoal, profissional, de consumo e de crédito ou os aspectos de sua personalidade.',
       fonte: 'Lei nº 13.709/2018 (LGPD), Art. 20 · Estatuto da Igualdade Racial e de Combate à Intolerância Religiosa do Município de Salvador · PDDU 2016 sobre economia popular e feiras tradicionais.',
-      comentario: 'O direito à revisão existe na lei federal. A operacionalização desse direito, na vida real da feirante, esbarra em três obstáculos materiais: ela não foi informada de que houve decisão automatizada; o algoritmo é protegido por segredo industrial; e a defesa de consumidor não dispõe de quadro técnico para auditar embedding de comportamento financeiro. O município poderia, via legislação local, exigir que sistemas de scoring operando em feiras públicas municipais cumpram critérios mínimos de transparência. Não há ainda regulamentação municipal nesse sentido.'
+      comentario: 'Embora o Artigo 20 da LGPD assegure o direito à revisão de decisões automatizadas, essa garantia legal é esvaziada pela própria arquitetura do contrato de adesão assinado por Dona Edna em 2019, uma vez que a Cláusula 18-B autoriza a alteração do limite de crédito sem notificação prévia e o Artigo 12 blinda os critérios do algoritmo de scoring sob a justificativa inquestionável de segredo industrial . Consequentemente, esse arranjo corporativo consolida uma armadilha jurídica perfeita, inviabilizando qualquer possibilidade de contestação ao impedir que a trabalhadora exija seus direitos, simplesmente porque ela nunca recebeu a informação de que uma máquina tomou uma decisão contra ela.'
     },
 
     ficha: {
@@ -2812,9 +3451,9 @@ const VINHETAS = [
       bairro: 'CÂMARA MUNICIPAL · DIA DE SESSÃO',
       titulo: 'O que foi votado, e o que não foi.',
       texto: [
-        'A Câmara Municipal de Salvador aprovou, em 2025, a Lei Complementar 92, que institui o PDTCI. O texto da lei foi debatido em comissões, votado em plenário, sancionado pelo Executivo. Está disponível para consulta pública no portal da Câmara. É lei municipal vigente.',
-        'O que a lei autoriza, e o que efetivamente acontece sob essa autorização, não são a mesma coisa. A operacionalização da Nuvem Urbana, prevista pelo Art. 21, foi delegada à Companhia SMART, sucessora administrativa da antiga COGEL. Os contratos que a SMART celebra com fornecedores privados de software, hardware e serviços de nuvem, no entanto, não passam pelo mesmo rito da lei que os autoriza.',
-        'A diferença é estrutural. A Câmara legislou sobre princípios e diretrizes em quarenta e quatro incisos. A SMART contrata, em sigilo comercial, as cláusulas técnicas que decidem o que cada um desses princípios significa na prática. O preço, o prazo, a definição de SLA, a métrica de eficácia, a cláusula de saída, a proteção de dados, a definição de segredo industrial, tudo isso é decidido em instâncias técnicas, não legislativas.'
+        'Aprovada pela Câmara Municipal de Salvador em 2025, a Lei Complementar 92, que institui o PDTCI, cumpriu rigorosamente todo o rito democrático formal, sendo debatida em comissões, votada em plenário e sancionada pelo Executivo, o que a consolidou como uma legislação municipal vigente e de amplo acesso público.',
+        'Evidenciando a profunda discrepância entre o que a legislação autoriza e o que efetivamente se materializa sob sua tutela, a delegação da operacionalização da Nuvem Urbana à Companhia SMART, conforme previsto pelo Artigo 21, consolida um cenário em que os contratos firmados com fornecedores privados de infraestrutura tecnológica escapam por completo do rigoroso escrutínio democrático exigido pela lei originária.',
+        'Embora a Câmara Municipal tenha legislado sobre princípios e diretrizes gerais ao longo de quarenta e quatro incisos, a diferença estrutural desse modelo reside no fato de que a Companhia SMART contrata, sob estrito sigilo comercial, as cláusulas técnicas que definem o que cada um desses princípios significa na prática. Consequentemente, variáveis cruciais como o preço, o prazo, a métrica de eficácia, a cláusula de saída, a proteção de dados, a definição de segredo industrial e o próprio SLA, ou seja, o Acordo de Nível de Serviço que estabelece as metas e as garantias mínimas de qualidade exigidas do fornecedor de tecnologia, passam a ser decididas exclusivamente em instâncias técnicas e opacas, à revelia de qualquer deliberação legislativa.'
       ]
     },
 
@@ -2920,7 +3559,11 @@ function renderCena(cena) {
 }
 
 function renderFunc(func) {
-  let html = '<div class="func-titulo">' + func.titulo + '</div>';
+  let html = '';
+  if (func.simulator) {
+    html += func.simulator;
+  }
+  html += '<div class="func-titulo">' + func.titulo + '</div>';
   html += '<div class="func-steps">';
   func.steps.forEach(function(s) {
     html += '<div class="func-step">';
