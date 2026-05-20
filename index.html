@@ -2818,9 +2818,9 @@ footer {
   font-size: 8.5px;
   margin-bottom: 3px;
 }
-   /* ════════════════════════════════════════════════
+/* ════════════════════════════════════════════════
    MAPA SATELITAL · DISTRIBUIÇÃO TECNOLÓGICA REAL
-   (bloco isolado)
+   (bloco isolado · pode ser removido sem afetar o resto)
 ════════════════════════════════════════════════ */
 
 #mapa-satelital {
@@ -2875,7 +2875,6 @@ footer {
   letter-spacing: 0.5px;
 }
 
-/* Filtros de categoria */
 .sat-filtros {
   display: flex;
   flex-wrap: wrap;
@@ -2910,7 +2909,6 @@ footer {
 }
 .sat-filtro.active .sat-dot { border-color: var(--bone); }
 
-/* Container do mapa satelital */
 .sat-mapa-wrap {
   position: relative;
   background: #0E1818;
@@ -2925,7 +2923,6 @@ footer {
   display: block;
 }
 
-/* Cartouche de coordenadas */
 .sat-cartouche {
   position: absolute;
   top: 12px;
@@ -2947,7 +2944,6 @@ footer {
   letter-spacing: 2px;
 }
 
-/* Tooltip dos pontos */
 .sat-tip {
   position: absolute;
   background: var(--ink);
@@ -2987,7 +2983,6 @@ footer {
   line-height: 1.5;
 }
 
-/* Estilos dos pontos no SVG */
 .sat-ponto {
   cursor: pointer;
   transition: opacity .25s;
@@ -3010,7 +3005,6 @@ footer {
   stroke: var(--mustard);
 }
 
-/* Síntese inferior */
 .sat-sintese {
   margin-top: 14px;
   display: grid;
@@ -3064,206 +3058,345 @@ footer {
       <p>Este artefato não é um relatório nem uma denúncia. É um <strong>mapa de inspeção</strong>. Ele reúne, num único território navegável, as infraestruturas técnicas que já operam em Salvador, as leis que as autorizam, e os efeitos materiais que produzem sobre o cotidiano da população.</p>
       <p>A premissa é simples: a cidade física, governada pelo PDDU de 2016 e por décadas de luta urbana, está hoje sobreposta por uma segunda cidade, técnica, governada por contratos de longo prazo com fornecedores privados de tecnologia, por algoritmos cuja lógica é segredo comercial, e por infraestruturas físicas cuja decisão de localização não passou por audiência pública vinculante. Essa segunda cidade não foi votada na Câmara. Ela foi instalada.</p>
     </div>
-     <!-- ════════════════════════════════════════════════
+    <!-- ════════════════════════════════════════════════
      INÍCIO MAPA SATELITAL · BLOCO REMOVÍVEL
-     Use Ctrl+F com este marcador para localizar
 ════════════════════════════════════════════════ -->
-<div id="mapa-satelital">
+<section id="mapa-overview" class="hidden">
+  <div class="ov-grid-bg"></div>
 
-  <div class="sat-stamp">PRANCHA II · DISTRIBUIÇÃO TECNOLÓGICA</div>
-  <h2 class="sat-title">ONDE A SMART CITY EFETIVAMENTE ESTÁ</h2>
-  <div class="sat-sub">Vista satelital · seis camadas de tecnologia urbana ativa em Salvador</div>
+  <div class="ov-container">
 
-  <div class="sat-intro">
-    A hipótese de que a tecnologia urbana se concentra apenas nas áreas ricas é <strong>parcialmente verdadeira</strong>. Os totens publicitários da JCDecaux e os MUPIs digitais seguem o mapa do consumo (Barra, Iguatemi, Pituba). Mas a iluminação LED telegerenciada começou pelo Subúrbio Ferroviário, as sirenes de alerta de deslizamento existem <em>exclusivamente</em> em encostas pobres do Miolo, o CCO de R$ 120 milhões foi plantado no Alto do Cabrito, e os semáforos com IA priorizaram corredores operários como a General San Martin. Cada camada abaixo tem uma lógica de localização própria — clique nos filtros para isolar.
+    <header class="ov-header">
+      <div class="ov-stamp">PRANCHA II · DISTRIBUIÇÃO TECNOLÓGICA</div>
+      <h1 class="ov-title">A SMART CITY DE SALVADOR</h1>
+      <div class="ov-sub">Onde estão as tecnologias e a quem elas servem</div>
+    </header>
+
+    <div class="ov-intro">
+      A hipótese de que a tecnologia urbana se concentra apenas nas áreas ricas é <strong>parcialmente verdadeira</strong>. A questão mais útil não é onde a smart city <em>está</em>, mas qual versão dela está em cada lugar e a quem ela serve. A mesma câmera com reconhecimento facial é descrita como guardiã do patrimônio mundial no Pelourinho e como ferramenta de busca por foragidos no metrô, no ferry e nas rodoviárias. Cada zona abaixo concentra uma combinação específica de tecnologias com um propósito político específico. Clique numa zona ou num filtro para ler o detalhamento.
+    </div>
+
+    <div class="zonas-filtros" id="zonas-filtros">
+      <button class="zonas-filtro active" data-zona="all">
+        <span class="zf-dot" style="background:#1A1611"></span>VISÃO GERAL
+      </button>
+      <button class="zonas-filtro" data-zona="A">
+        <span class="zf-dot" style="background:#5B7C3F"></span>A · SUBÚRBIO
+      </button>
+      <button class="zonas-filtro" data-zona="B">
+        <span class="zf-dot" style="background:#C8362D"></span>B · MIOLO
+      </button>
+      <button class="zonas-filtro" data-zona="C">
+        <span class="zf-dot" style="background:#C89339"></span>C · CENTRO HISTÓRICO
+      </button>
+      <button class="zonas-filtro" data-zona="D">
+        <span class="zf-dot" style="background:#7B5EA7"></span>D · PARALELA/PARQUE TEC
+      </button>
+      <button class="zonas-filtro" data-zona="E">
+        <span class="zf-dot" style="background:#D67E1F"></span>E · ORLA ATLÂNTICA
+      </button>
+    </div>
+
+    <div class="ov-corpo">
+
+      <div class="ov-mapa-wrap">
+        <svg id="zonas-svg" viewBox="0 0 800 950" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+          <defs>
+            <pattern id="ov-grid" patternUnits="userSpaceOnUse" width="20" height="20">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1A1611" stroke-width=".3" opacity=".08"/>
+            </pattern>
+            <pattern id="ov-water" patternUnits="userSpaceOnUse" width="10" height="10">
+              <path d="M 0 5 Q 2.5 2 5 5 T 10 5" fill="none" stroke="#577387" stroke-width=".4" opacity=".4"/>
+            </pattern>
+          </defs>
+
+          <!-- FUNDO PAPEL -->
+          <rect width="800" height="950" fill="#F7EFD9"/>
+          <rect width="800" height="950" fill="url(#ov-grid)"/>
+
+          <!-- BAÍA (oeste) -->
+          <rect x="0" y="0" width="200" height="950" fill="#A8C4D0" opacity="0.55"/>
+          <rect x="0" y="0" width="200" height="950" fill="url(#ov-water)"/>
+
+          <!-- OCEANO (leste) -->
+          <rect x="660" y="0" width="140" height="950" fill="#8BA4B0" opacity="0.6"/>
+          <rect x="660" y="0" width="140" height="950" fill="url(#ov-water)"/>
+
+          <!-- MAR estilo desenho -->
+          <text x="95" y="380" text-anchor="middle" font-family="'Archivo Black',sans-serif"
+                font-size="38" fill="#577387" opacity="0.6" letter-spacing="6">MAR</text>
+          <text x="730" y="380" text-anchor="middle" font-family="'Archivo Black',sans-serif"
+                font-size="38" fill="#577387" opacity="0.6" letter-spacing="6">MAR</text>
+          <text x="95" y="410" text-anchor="middle" font-family="'Space Mono',monospace"
+                font-size="9" fill="#1A1611" opacity="0.5" letter-spacing="2">(BAÍA)</text>
+          <text x="730" y="410" text-anchor="middle" font-family="'Space Mono',monospace"
+                font-size="9" fill="#1A1611" opacity="0.5" letter-spacing="2">(ATLÂNTICO)</text>
+
+          <!-- PENÍNSULA DE SALVADOR -->
+          <path d="M 200 0 L 660 0
+                   L 660 280 Q 640 340 615 400 Q 590 470 580 540
+                   Q 575 620 580 690 Q 585 760 570 810
+                   Q 540 845 480 855 Q 410 862 350 855
+                   Q 295 845 270 815 Q 245 780 230 730
+                   Q 215 670 215 600 Q 220 510 230 430
+                   Q 245 340 260 250 Q 270 160 240 80
+                   Q 220 30 200 0 Z"
+                fill="#EFE5CE" stroke="#1A1611" stroke-width="1.5"/>
+
+          <!-- Saliência Itapagipe -->
+          <path d="M 230 380 Q 200 365 175 370 Q 165 385 175 405 Q 195 420 230 415 Z"
+                fill="#EFE5CE" stroke="#1A1611" stroke-width="1.2"/>
+
+          <!-- ═══════════════════════════════════════
+               ZONAS TECNOLÓGICAS
+          ═══════════════════════════════════════ -->
+
+          <!-- ZONA A · SUBÚRBIO FERROVIÁRIO (vertical oeste) -->
+          <g class="zona-bloco" data-zona="A">
+            <ellipse class="zona-shape" cx="245" cy="450" rx="55" ry="280"
+                     fill="#5B7C3F" stroke="#1A1611" stroke-width="2" opacity="0.7"/>
+            <text class="zona-letra" x="245" y="280" text-anchor="middle">A</text>
+
+            <!-- Ícones representando tecnologias da zona A -->
+            <!-- Lâmpada LED -->
+            <g class="zona-icone" transform="translate(245 350)">
+              <rect x="-8" y="-10" width="16" height="14" rx="2" fill="#F7EFD9" stroke="#1A1611" stroke-width="1"/>
+              <line x1="-5" y1="-10" x2="-5" y2="-13" stroke="#F7EFD9" stroke-width="1.5"/>
+              <line x1="0" y1="-10" x2="0" y2="-14" stroke="#F7EFD9" stroke-width="1.5"/>
+              <line x1="5" y1="-10" x2="5" y2="-13" stroke="#F7EFD9" stroke-width="1.5"/>
+              <text x="0" y="14" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">LED</text>
+            </g>
+
+            <!-- CCO (cubo/torre) -->
+            <g class="zona-icone" transform="translate(245 430)">
+              <rect x="-10" y="-10" width="20" height="14" fill="#F7EFD9" stroke="#1A1611" stroke-width="1"/>
+              <rect x="-7" y="-7" width="3" height="3" fill="#1A1611"/>
+              <rect x="-2" y="-7" width="3" height="3" fill="#1A1611"/>
+              <rect x="3" y="-7" width="3" height="3" fill="#1A1611"/>
+              <rect x="-7" y="-2" width="3" height="3" fill="#1A1611"/>
+              <text x="0" y="14" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">CCO</text>
+            </g>
+
+            <!-- Wi-Fi -->
+            <g class="zona-icone" transform="translate(245 510)">
+              <path d="M -10 -2 Q 0 -12 10 -2" fill="none" stroke="#F7EFD9" stroke-width="1.5"/>
+              <path d="M -7 1 Q 0 -7 7 1" fill="none" stroke="#F7EFD9" stroke-width="1.5"/>
+              <path d="M -4 4 Q 0 -1 4 4" fill="none" stroke="#F7EFD9" stroke-width="1.5"/>
+              <circle cx="0" cy="6" r="1.5" fill="#F7EFD9"/>
+              <text x="0" y="20" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">WIFI</text>
+            </g>
+
+            <!-- Teleférico/VLT -->
+            <g class="zona-icone" transform="translate(245 590)">
+              <line x1="-12" y1="-5" x2="12" y2="-5" stroke="#F7EFD9" stroke-width="0.8"/>
+              <rect x="-7" y="-3" width="14" height="9" rx="1" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <rect x="-5" y="-1" width="3" height="3" fill="#1A1611"/>
+              <rect x="2" y="-1" width="3" height="3" fill="#1A1611"/>
+              <text x="0" y="18" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">VLT</text>
+            </g>
+
+            <text class="zona-rotulo" x="245" y="690" text-anchor="middle" fill="#F7EFD9">SUBÚRBIO</text>
+            <text class="zona-rotulo" x="245" y="702" text-anchor="middle" fill="#F7EFD9" font-size="7">FERROVIÁRIO</text>
+          </g>
+
+          <!-- ZONA B · MIOLO (Cajazeiras, Mata Escura, etc) -->
+          <g class="zona-bloco" data-zona="B">
+            <ellipse class="zona-shape" cx="470" cy="200" rx="150" ry="105"
+                     fill="#C8362D" stroke="#1A1611" stroke-width="2" opacity="0.7"/>
+            <text class="zona-letra" x="470" y="160" text-anchor="middle">B</text>
+
+            <!-- Sirene -->
+            <g class="zona-icone" transform="translate(390 220)">
+              <rect x="-3" y="-8" width="6" height="12" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <ellipse cx="0" cy="-8" rx="5" ry="3" fill="#1A1611"/>
+              <path d="M -8 -6 Q -12 -8 -12 -4" fill="none" stroke="#F7EFD9" stroke-width="1"/>
+              <path d="M 8 -6 Q 12 -8 12 -4" fill="none" stroke="#F7EFD9" stroke-width="1"/>
+              <text x="0" y="14" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">SIRENE</text>
+            </g>
+
+            <!-- Gota/Sensor pluviométrico -->
+            <g class="zona-icone" transform="translate(470 230)">
+              <path d="M 0 -8 Q -5 -2 -5 3 Q -5 8 0 8 Q 5 8 5 3 Q 5 -2 0 -8 Z"
+                    fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <text x="0" y="20" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">PLUVIÔM.</text>
+            </g>
+
+            <!-- Semáforo IA -->
+            <g class="zona-icone" transform="translate(550 220)">
+              <rect x="-4" y="-9" width="8" height="14" rx="1" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <circle cx="0" cy="-6" r="1.5" fill="#1A1611"/>
+              <circle cx="0" cy="-2" r="1.5" fill="#1A1611"/>
+              <circle cx="0" cy="2" r="1.5" fill="#1A1611"/>
+              <text x="0" y="15" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">IA</text>
+            </g>
+
+            <text class="zona-rotulo" x="470" y="270" text-anchor="middle" fill="#F7EFD9">MIOLO · CAJAZEIRAS</text>
+            <text class="zona-rotulo" x="470" y="282" text-anchor="middle" fill="#F7EFD9" font-size="7">ENCOSTAS DE RISCO</text>
+          </g>
+
+          <!-- ZONA C · CENTRO HISTÓRICO -->
+          <g class="zona-bloco" data-zona="C">
+            <ellipse class="zona-shape" cx="295" cy="700" rx="80" ry="55"
+                     fill="#C89339" stroke="#1A1611" stroke-width="2" opacity="0.75"/>
+            <text class="zona-letra" x="295" y="690" text-anchor="middle" fill="#1A1611">C</text>
+
+            <!-- Câmera -->
+            <g class="zona-icone" transform="translate(255 720)">
+              <rect x="-7" y="-4" width="12" height="7" fill="#1A1611"/>
+              <circle cx="6" cy="-0.5" r="3" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <circle cx="6" cy="-0.5" r="1.2" fill="#1A1611"/>
+              <text x="0" y="13" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#1A1611">RF</text>
+            </g>
+
+            <!-- Hub Salvador -->
+            <g class="zona-icone" transform="translate(335 720)">
+              <polygon points="0,-8 6,-2 6,6 -6,6 -6,-2" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <rect x="-2" y="-2" width="4" height="6" fill="#1A1611"/>
+              <text x="0" y="14" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#1A1611">HUB</text>
+            </g>
+
+            <text class="zona-rotulo" x="295" y="755" text-anchor="middle" fill="#1A1611">PELOURINHO · COMÉRCIO</text>
+          </g>
+
+          <!-- ZONA D · AVENIDA PARALELA / PARQUE TECNOLÓGICO -->
+          <g class="zona-bloco" data-zona="D">
+            <ellipse class="zona-shape" cx="555" cy="430" rx="80" ry="170"
+                     fill="#7B5EA7" stroke="#1A1611" stroke-width="2" opacity="0.7"
+                     transform="rotate(-15 555 430)"/>
+            <text class="zona-letra" x="555" y="370" text-anchor="middle">D</text>
+
+            <!-- Metrô -->
+            <g class="zona-icone" transform="translate(555 420)">
+              <rect x="-10" y="-5" width="20" height="10" rx="2" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <rect x="-8" y="-3" width="4" height="4" fill="#1A1611"/>
+              <rect x="-2" y="-3" width="4" height="4" fill="#1A1611"/>
+              <rect x="4" y="-3" width="4" height="4" fill="#1A1611"/>
+              <text x="0" y="16" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">METRÔ L2</text>
+            </g>
+
+            <!-- Datacenter CIDACS -->
+            <g class="zona-icone" transform="translate(555 480)">
+              <rect x="-8" y="-8" width="16" height="16" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <line x1="-6" y1="-5" x2="6" y2="-5" stroke="#1A1611" stroke-width="0.5"/>
+              <line x1="-6" y1="-1" x2="6" y2="-1" stroke="#1A1611" stroke-width="0.5"/>
+              <line x1="-6" y1="3" x2="6" y2="3" stroke="#1A1611" stroke-width="0.5"/>
+              <circle cx="-4" cy="-5" r="0.8" fill="#1A1611"/>
+              <circle cx="-4" cy="-1" r="0.8" fill="#1A1611"/>
+              <circle cx="-4" cy="3" r="0.8" fill="#1A1611"/>
+              <text x="0" y="19" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#F7EFD9">CIDACS</text>
+            </g>
+
+            <text class="zona-rotulo" x="555" y="540" text-anchor="middle" fill="#F7EFD9">PARALELA · PQ. TEC</text>
+          </g>
+
+          <!-- ZONA E · ORLA ATLÂNTICA RICA -->
+          <g class="zona-bloco" data-zona="E">
+            <ellipse class="zona-shape" cx="490" cy="770" rx="160" ry="50"
+                     fill="#D67E1F" stroke="#1A1611" stroke-width="2" opacity="0.75"/>
+            <text class="zona-letra" x="490" y="785" text-anchor="middle" fill="#1A1611">E</text>
+
+            <!-- MUPI publicitário -->
+            <g class="zona-icone" transform="translate(400 770)">
+              <rect x="-6" y="-10" width="12" height="16" rx="1" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <rect x="-4" y="-8" width="8" height="11" fill="#1A1611"/>
+              <text x="0" y="-2" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4" fill="#F7EFD9">AD</text>
+              <line x1="0" y1="6" x2="0" y2="11" stroke="#1A1611" stroke-width="0.8"/>
+              <text x="0" y="20" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#1A1611">MUPI</text>
+            </g>
+
+            <!-- Abrigo Amigo -->
+            <g class="zona-icone" transform="translate(580 770)">
+              <rect x="-9" y="-7" width="18" height="11" rx="1" fill="#F7EFD9" stroke="#1A1611" stroke-width="0.8"/>
+              <circle cx="0" cy="-1" r="2.5" fill="#C8362D" stroke="#1A1611" stroke-width="0.6"/>
+              <text x="0" y="0.5" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="4" fill="#F7EFD9">!</text>
+              <text x="0" y="17" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#1A1611">ABRIGO</text>
+            </g>
+
+            <text class="zona-rotulo" x="490" y="820" text-anchor="middle" fill="#1A1611">BARRA · PITUBA · R. VERMELHO</text>
+          </g>
+
+          <!-- ═══ CAMADA TRANSVERSAL: PONTOS DE VIGILÂNCIA EM TERMINAIS ═══ -->
+          <g id="vig-pontos">
+            <!-- Aeroporto -->
+            <g class="vig-ponto" data-tipo="vig">
+              <circle class="bg" cx="640" cy="100" r="6"/>
+              <text x="640" y="103" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="#F7EFD9">RF</text>
+              <text x="640" y="85" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#1A1611" opacity="0.7">AEROPORTO</text>
+            </g>
+            <!-- Acesso Norte (metrô) -->
+            <g class="vig-ponto" data-tipo="vig">
+              <circle class="bg" cx="380" cy="360" r="6"/>
+              <text x="380" y="363" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="#F7EFD9">RF</text>
+              <text x="380" y="345" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#1A1611" opacity="0.7">METRÔ A. NORTE</text>
+            </g>
+            <!-- Lapa (metrô) -->
+            <g class="vig-ponto" data-tipo="vig">
+              <circle class="bg" cx="345" cy="630" r="6"/>
+              <text x="345" y="633" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="#F7EFD9">RF</text>
+              <text x="345" y="615" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#1A1611" opacity="0.7">EST. LAPA</text>
+            </g>
+            <!-- Terminal Aquaviário / Ferry -->
+            <g class="vig-ponto" data-tipo="vig">
+              <circle class="bg" cx="220" cy="610" r="6"/>
+              <text x="220" y="613" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="#F7EFD9">RF</text>
+              <text x="170" y="613" text-anchor="end" font-family="'Space Mono',monospace" font-size="7" fill="#1A1611" opacity="0.7">FERRY</text>
+            </g>
+            <!-- Rodoviária -->
+            <g class="vig-ponto" data-tipo="vig">
+              <circle class="bg" cx="500" cy="620" r="6"/>
+              <text x="500" y="623" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="#F7EFD9">RF</text>
+              <text x="500" y="605" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#1A1611" opacity="0.7">RODOVIÁRIA</text>
+            </g>
+          </g>
+
+          <!-- Legenda dos pontos pretos -->
+          <g transform="translate(40 880)">
+            <circle cx="0" cy="0" r="6" fill="#3A2818" stroke="#1A1611" stroke-width="1"/>
+            <text x="3" y="3" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="7" fill="#F7EFD9">RF</text>
+            <text x="14" y="3" font-family="'Space Mono',monospace" font-size="9" fill="#1A1611" letter-spacing="1">RECONHECIMENTO FACIAL · 5.300+ PRISÕES NO ESTADO (SSP-BA)</text>
+          </g>
+
+          <!-- Rosa-dos-ventos -->
+          <g transform="translate(720 880)" opacity="0.7">
+            <circle r="18" fill="none" stroke="#1A1611" stroke-width=".6"/>
+            <line x1="0" y1="-18" x2="0" y2="18" stroke="#1A1611" stroke-width=".5"/>
+            <line x1="-18" y1="0" x2="18" y2="0" stroke="#1A1611" stroke-width=".5"/>
+            <polygon points="0,-18 -3,-3 0,0 3,-3" fill="#A8412A"/>
+            <text x="0" y="-22" text-anchor="middle" font-family="'Archivo Black',sans-serif" font-size="8" fill="#1A1611">N</text>
+          </g>
+
+        </svg>
+
+        <div class="ov-mapa-rodape">
+          <span>SALVADOR · BA · 12°58'S · 38°30'W</span>
+          <span>VISTA SATELITAL · ESC. INDET.</span>
+        </div>
+      </div>
+
+      <!-- ═══ PAINEL LATERAL DE DETALHES ═══ -->
+      <aside class="ov-painel" id="ov-painel">
+        <!-- Conteúdo preenchido por JS · ver SAT_PAINEL no script -->
+      </aside>
+
+    </div>
+
+    <!-- RODAPÉ COM BOTÃO PARA O ARTEFATO PRINCIPAL -->
+    <div class="ov-rodape">
+      <div class="ov-rodape-texto">
+        Você acabou de ver <strong>onde</strong> está a smart city de Salvador e <strong>quem ela serve</strong> em cada zona. O artefato a seguir desce do mapa para a rua: oito pinos georreferenciados destrincham, um a um, como cada infraestrutura técnica opera, sob qual lei, e com que efeito material sobre o cotidiano.
+      </div>
+      <button class="ov-btn-inspecao" id="overview-start">
+        ABRIR MAPA DE INSPEÇÃO →
+      </button>
+    </div>
+
   </div>
-
-  <div class="sat-filtros" id="sat-filtros">
-    <button class="sat-filtro active" data-cat="all">
-      <span class="sat-dot" style="background:#1A1611"></span>TODAS
-    </button>
-    <button class="sat-filtro active" data-cat="merc">
-      <span class="sat-dot" style="background:#C89339"></span>MERCADO/PUBLICIDADE
-    </button>
-    <button class="sat-filtro active" data-cat="prot">
-      <span class="sat-dot" style="background:#A8412A"></span>PROTEÇÃO CLIMÁTICA
-    </button>
-    <button class="sat-filtro active" data-cat="conn">
-      <span class="sat-dot" style="background:#577387"></span>CONECTIVIDADE PÚBLICA
-    </button>
-    <button class="sat-filtro active" data-cat="mob">
-      <span class="sat-dot" style="background:#5B6B3F"></span>MOBILIDADE INTELIGENTE
-    </button>
-    <button class="sat-filtro active" data-cat="vig">
-      <span class="sat-dot" style="background:#7B3F3F"></span>VIGILÂNCIA
-    </button>
-    <button class="sat-filtro active" data-cat="cmd">
-      <span class="sat-dot" style="background:#9B7AB8"></span>COMANDO/HUB
-    </button>
-  </div>
-
-  <div class="sat-mapa-wrap">
-    <svg id="sat-svg" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-
-      <defs>
-        <linearGradient id="agua-baia" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#0A1820"/>
-          <stop offset="100%" stop-color="#1A3540"/>
-        </linearGradient>
-        <linearGradient id="agua-atl" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#1A3540"/>
-          <stop offset="100%" stop-color="#0A1A24"/>
-        </linearGradient>
-        <radialGradient id="terra-urb" cx="0.5" cy="0.5" r="0.7">
-          <stop offset="0%" stop-color="#3A3528"/>
-          <stop offset="60%" stop-color="#2D2A20"/>
-          <stop offset="100%" stop-color="#1F1D18"/>
-        </radialGradient>
-        <radialGradient id="verde-mata" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0%" stop-color="#2E4028"/>
-          <stop offset="100%" stop-color="#1E2A18"/>
-        </radialGradient>
-        <pattern id="tex-urb" patternUnits="userSpaceOnUse" width="3" height="3">
-          <rect width="3" height="3" fill="none"/>
-          <circle cx="1.5" cy="1.5" r="0.3" fill="#5C4F3E" opacity="0.4"/>
-        </pattern>
-        <pattern id="ondas" patternUnits="userSpaceOnUse" width="40" height="20">
-          <path d="M 0 10 Q 10 6 20 10 T 40 10" fill="none" stroke="#2A4C5A" stroke-width="0.5" opacity="0.4"/>
-        </pattern>
-      </defs>
-
-      <!-- FUNDO OCEÂNICO -->
-      <rect width="1200" height="900" fill="url(#agua-atl)"/>
-      <rect width="1200" height="900" fill="url(#ondas)" opacity="0.6"/>
-
-      <!-- BAÍA DE TODOS OS SANTOS -->
-      <path d="M 0 0 L 380 0
-               Q 360 100 320 200 Q 280 290 240 380
-               Q 215 470 210 560 Q 205 680 215 800
-               Q 235 870 280 900 L 0 900 Z"
-            fill="url(#agua-baia)"/>
-
-      <!-- Ilhas da Baía -->
-      <g opacity="0.85">
-        <ellipse cx="125" cy="135" rx="48" ry="32" fill="url(#verde-mata)"/>
-        <ellipse cx="125" cy="135" rx="48" ry="32" fill="url(#tex-urb)" opacity="0.6"/>
-        <text x="125" y="139" text-anchor="middle" font-family="'Space Mono',monospace"
-              font-size="8" fill="#A8B595" letter-spacing="1.5" opacity="0.7">I. DE MARÉ</text>
-
-        <ellipse cx="155" cy="420" rx="24" ry="15" fill="url(#verde-mata)"/>
-        <text x="155" y="423" text-anchor="middle" font-family="'Space Mono',monospace"
-              font-size="6" fill="#A8B595" letter-spacing="1" opacity="0.65">BOM JESUS</text>
-
-        <ellipse cx="90" cy="280" rx="30" ry="18" fill="url(#verde-mata)" opacity="0.85"/>
-        <text x="90" y="283" text-anchor="middle" font-family="'Space Mono',monospace"
-              font-size="6" fill="#A8B595" letter-spacing="1" opacity="0.6">FRADES</text>
-      </g>
-
-      <!-- MASSA TERRESTRE DE SALVADOR -->
-      <path id="terra-sat"
-            d="M 380 0
-               Q 470 30 580 50 Q 700 70 830 90 Q 960 110 1080 145 Q 1170 175 1200 220
-               L 1200 280
-               Q 1170 320 1130 365 Q 1085 415 1050 470 Q 1020 530 1005 595
-               Q 995 660 1000 710 Q 1005 760 990 800
-               Q 960 830 900 845 Q 820 858 730 862 Q 630 865 540 858
-               Q 450 848 380 820 Q 330 790 295 750
-               Q 260 700 245 640 Q 230 570 230 500
-               Q 232 420 245 350 Q 260 280 285 215
-               Q 315 145 350 80 Q 365 35 380 0 Z"
-            fill="url(#terra-urb)"/>
-
-      <path d="M 380 0
-               Q 470 30 580 50 Q 700 70 830 90 Q 960 110 1080 145 Q 1170 175 1200 220
-               L 1200 280
-               Q 1170 320 1130 365 Q 1085 415 1050 470 Q 1020 530 1005 595
-               Q 995 660 1000 710 Q 1005 760 990 800
-               Q 960 830 900 845 Q 820 858 730 862 Q 630 865 540 858
-               Q 450 848 380 820 Q 330 790 295 750
-               Q 260 700 245 640 Q 230 570 230 500
-               Q 232 420 245 350 Q 260 280 285 215
-               Q 315 145 350 80 Q 365 35 380 0 Z"
-            fill="url(#tex-urb)" opacity="0.55"/>
-
-      <!-- Faixa costeira -->
-      <path d="M 1200 280 Q 1170 320 1130 365 Q 1085 415 1050 470 Q 1020 530 1005 595
-               Q 995 660 1000 710 Q 1005 760 990 800
-               L 1075 815 Q 1080 760 1075 700 Q 1075 630 1085 555
-               Q 1100 480 1130 415 Q 1165 350 1200 310 Z"
-            fill="#5C4A30" opacity="0.55"/>
-
-      <!-- Península de Itapagipe -->
-      <path d="M 245 380 Q 225 360 200 358 Q 175 365 175 390 Q 180 415 215 420 Q 245 420 260 405 Z"
-            fill="#3A3528" opacity="0.85"/>
-
-      <!-- MANCHAS VERDES -->
-      <g opacity="0.85">
-        <ellipse cx="380" cy="265" rx="42" ry="28" fill="url(#verde-mata)"/>
-        <text x="380" y="269" text-anchor="middle" font-family="'Space Mono',monospace"
-              font-size="6" fill="#A8B595" letter-spacing="1" opacity="0.65">PQ. S. BARTOLOMEU</text>
-
-        <ellipse cx="635" cy="510" rx="38" ry="25" fill="url(#verde-mata)"/>
-        <text x="635" y="514" text-anchor="middle" font-family="'Space Mono',monospace"
-              font-size="6" fill="#A8B595" letter-spacing="1" opacity="0.7">MATA ESCURA</text>
-
-        <ellipse cx="780" cy="615" rx="32" ry="20" fill="url(#verde-mata)"/>
-        <text x="780" y="619" text-anchor="middle" font-family="'Space Mono',monospace"
-              font-size="6" fill="#A8B595" letter-spacing="1" opacity="0.7">PQ. CIDADE</text>
-
-        <ellipse cx="935" cy="685" rx="36" ry="22" fill="url(#verde-mata)"/>
-        <text x="935" y="689" text-anchor="middle" font-family="'Space Mono',monospace"
-              font-size="6" fill="#A8B595" letter-spacing="1" opacity="0.7">PQ. PITUAÇU</text>
-
-        <ellipse cx="555" cy="595" rx="22" ry="12" fill="#1A3540"/>
-        <text x="555" y="598" text-anchor="middle" font-family="'Space Mono',monospace"
-              font-size="6" fill="#7BA0B0" letter-spacing="1" opacity="0.7">DIQUE TORORÓ</text>
-
-        <circle cx="700" cy="380" r="9" fill="url(#verde-mata)"/>
-        <circle cx="820" cy="450" r="7" fill="url(#verde-mata)"/>
-        <circle cx="510" cy="430" r="6" fill="url(#verde-mata)"/>
-        <circle cx="900" cy="380" r="8" fill="url(#verde-mata)"/>
-        <circle cx="660" cy="290" r="7" fill="url(#verde-mata)"/>
-        <circle cx="480" cy="700" r="6" fill="url(#verde-mata)"/>
-      </g>
-
-      <!-- NOMES DE REFERÊNCIA -->
-      <g font-family="'Space Mono',monospace" fill="#8FA08F" opacity="0.6" letter-spacing="1.5">
-        <text x="100" y="500" font-size="11" transform="rotate(-78 100 500)">BAÍA DE TODOS OS SANTOS</text>
-        <text x="1145" y="550" font-size="11" transform="rotate(90 1145 550)">OCEANO ATLÂNTICO</text>
-
-        <text x="295" y="450" font-size="8" font-weight="700" fill="#A8412A" opacity="0.55">SUBÚRBIO FERROVIÁRIO</text>
-        <text x="710" y="225" font-size="8" font-weight="700" fill="#C89339" opacity="0.55">MIOLO · MUB</text>
-        <text x="490" y="610" font-size="7" fill="#A8B595" opacity="0.55">CENTRO HISTÓRICO</text>
-        <text x="900" y="750" font-size="7" fill="#A8B595" opacity="0.55">ORLA ATLÂNTICA</text>
-        <text x="1015" y="195" font-size="7" fill="#A8B595" opacity="0.55">AEROPORTO</text>
-      </g>
-
-      <!-- INFOVIA · FIBRA EM FUNDO -->
-      <g opacity="0.25" stroke="#577387" stroke-width="0.6" fill="none" stroke-dasharray="2 4">
-        <path d="M 285 800 Q 380 720 470 650 Q 580 580 700 540 Q 820 510 940 510 Q 1020 530 1075 580"/>
-        <path d="M 245 700 Q 350 620 460 560 Q 580 510 700 490 Q 820 480 920 500 Q 1010 530 1070 600"/>
-        <path d="M 300 580 Q 400 530 520 510 Q 640 500 760 510 Q 870 530 970 560 Q 1040 600 1070 650"/>
-        <path d="M 280 380 Q 380 350 480 350 Q 600 360 720 380 Q 840 400 950 430 Q 1030 470 1075 520"/>
-      </g>
-
-      <!-- EIXOS VIÁRIOS -->
-      <g opacity="0.35" stroke="#5C4F3E" stroke-width="1.2" fill="none">
-        <path d="M 430 800 Q 480 720 520 640 Q 555 560 590 470 Q 625 380 665 290 Q 710 200 760 140 Q 830 110 920 95 Q 1020 95 1100 110"/>
-        <path d="M 620 400 Q 720 405 820 400 Q 920 385 1010 360 Q 1080 330 1130 290"/>
-        <path d="M 590 470 Q 680 510 770 550 Q 850 590 920 620 Q 980 660 1010 690"/>
-      </g>
-
-      <!-- PONTOS TECNOLÓGICOS (renderizados via JS) -->
-      <g id="sat-pontos"></g>
-
-      <!-- Rosa-dos-ventos -->
-      <g transform="translate(60 830)" opacity="0.6">
-        <circle r="22" fill="none" stroke="#C89339" stroke-width="0.8"/>
-        <line x1="0" y1="-22" x2="0" y2="22" stroke="#C89339" stroke-width="0.5"/>
-        <line x1="-22" y1="0" x2="22" y2="0" stroke="#C89339" stroke-width="0.5"/>
-        <polygon points="0,-22 -4,-4 0,
-
-    <div class="brief-divider"></div>
+</section>
+<!-- ════════════════════════════════════════════════
+     FIM MAPA SATELITAL · BLOCO REMOVÍVEL
+════════════════════════════════════════════════ -->
+     <div class="brief-divider"></div>
 
     <div class="brief-blocks">
       <div class="brief-block">
@@ -6542,276 +6675,332 @@ abrirVinheta = function(id) {
   _abrirVinhetaOriginal(id);
   checarReagregacao();
 };
-   /* ═══════════════════════════════════════════════
-   MAPA SATELITAL · LÓGICA DOS PONTOS E FILTROS
-═══════════════════════════════════════════════ */
+  /* ════════════════════════════════════════════════
+   INÍCIO MAPA SATELITAL · BLOCO REMOVÍVEL
+   Versão 2 · zonas + filtros isolantes + painel crítico
+════════════════════════════════════════════════ */
 
-const SAT_CATS = {
-  merc: { nome: 'MERCADO/PUBLICIDADE', cor: '#C89339' },
-  prot: { nome: 'PROTEÇÃO CLIMÁTICA',  cor: '#A8412A' },
-  conn: { nome: 'CONECTIVIDADE PÚBLICA', cor: '#577387' },
-  mob:  { nome: 'MOBILIDADE INTELIGENTE', cor: '#5B6B3F' },
-  vig:  { nome: 'VIGILÂNCIA', cor: '#7B3F3F' },
-  cmd:  { nome: 'COMANDO/HUB', cor: '#9B7AB8' }
+const SAT_PAINEL = {
+  default: {
+    cor: 'zDefault',
+    letra: 'PRANCHA II',
+    nome: 'COMO LER ESTE MAPA',
+    bairros: '5 zonas · 1 camada transversal de vigilância',
+    body: `
+      <div class="painel-tese">
+        "A smart city não falhou em chegar à periferia. Ela chegou — mas com função diferente. A pergunta política é: para servir a quem?"
+      </div>
+      <div class="painel-default-texto">
+        Cinco zonas geográficas concentram cinco combinações distintas de tecnologia urbana em Salvador. Cada zona aparece colorida no mapa, com ícones representando os sistemas instalados ali.
+      </div>
+      <div class="painel-default-texto">
+        Os <strong>pontos pretos com "RF"</strong> são uma camada transversal: o reconhecimento facial da SSP-BA está em <em>todos</em> os grandes terminais por onde o trabalhador soteropolitano passa diariamente — metrô, ferry, rodoviária, aeroporto. Já produziu mais de 5.300 prisões no estado.
+      </div>
+      <div class="painel-instrucoes">CLIQUE NUMA ZONA OU NUM FILTRO PARA ISOLAR</div>
+    `
+  },
+
+  A: {
+    cor: 'zA',
+    letra: 'ZONA A',
+    nome: 'SUBÚRBIO FERROVIÁRIO',
+    bairros: 'Lobato · Coutos · Paripe · Periperi · Alto do Cabrito',
+    body: `
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Propósito declarado</div>
+        <div class="painel-secao-texto">
+          <strong>Reverter o histórico de marginalização.</strong> A prefeitura justifica a interiorização do investimento tecnológico como reparação a uma região historicamente desassistida.
+        </div>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Tecnologias presentes</div>
+        <ul class="painel-tec-lista">
+          <li><strong>CCO Lobato</strong> · Centro de Controle Operacional · R$ 120 milhões · 12.000 m² · integra Codesal, Transalvador, GCM e SAMU</li>
+          <li><strong>Hub de Tecnologia do Subúrbio</strong> · 5.000 m² · incubadora pública para reter talentos periféricos</li>
+          <li><strong>Iluminação LED 100%</strong> · 16.616 pontos · 2.192 ruas · primeira macrorregião totalmente modernizada (R$ 19mi)</li>
+          <li><strong>Telegestão NB-IoT</strong> · controle remoto da iluminação por tablet/smartphone</li>
+          <li><strong>Wi-Fi Conecta Salvador</strong> · Paripe, Periperi, Coutos, Subúrbio 360</li>
+          <li><strong>Infovia Salvador</strong> · 1.500 km de fibra · 1.173 unidades públicas conectadas</li>
+          <li><strong>VLT em construção</strong> · Trecho Paripe ↔ Águas Claras (60% das obras concluídas)</li>
+          <li><strong>Teleférico</strong> · R$ 700 mi · 4,3 km · modelo Medellín · 4 estações em bairros periféricos</li>
+          <li><strong>Sirenes Codesal</strong> · Mamede (Alto da Terezinha), Voluntários da Pátria (Lobato)</li>
+        </ul>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Contraponto</div>
+        <div class="painel-contraponto">
+          O Subúrbio recebe tecnologia, mas o CCO de R$ 120 milhões instalado nele monitora o <em>resto</em> da cidade. A periferia hospeda o cérebro da smart city sem ser sua principal usuária. <em>O LED ilumina o asfalto; a fibra conecta o posto de saúde, não a casa.</em> A interiorização é real, mas a localização do equipamento principal converte o bairro em laboratório, não em sujeito político da decisão.
+        </div>
+      </div>
+    `
+  },
+
+  B: {
+    cor: 'zB',
+    letra: 'ZONA B',
+    nome: 'MIOLO · ENCOSTAS DE RISCO',
+    bairros: 'Cajazeiras · Mata Escura · Sete de Abril · Castelo Branco · São Caetano · Liberdade · Calabetão',
+    body: `
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Propósito declarado</div>
+        <div class="painel-secao-texto">
+          <strong>Salvar vidas em áreas de risco.</strong> Sensores e alertas para mitigar deslizamentos durante chuvas torrenciais nas encostas ocupadas pela população de baixa renda.
+        </div>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Tecnologias presentes</div>
+        <ul class="painel-tec-lista">
+          <li><strong>11 sirenes acústicas Codesal</strong> · Cajazeiras 7 e 8, Sete de Abril, Castelo Branco, Mata Escura, Liberdade, Calabetão, São Caetano, Bom Juá</li>
+          <li><strong>69 pluviômetros automáticos</strong> · telemetria em tempo real para o Cemadec</li>
+          <li><strong>4 estações hidrológicas + 2 meteorológicas</strong></li>
+          <li><strong>App "Defesa Civil Salvador"</strong> · notificação push + SMS (alcance real: 4-28% dos cadastros)</li>
+          <li><strong>Iluminação LED 100%</strong> · Cajazeiras, Pau da Lima, Cabula completaram modernização nas fases iniciais</li>
+          <li><strong>31 semáforos com IA</strong> · corredor operário Largo do Tanque ↔ Retiro ↔ San Martin (R$ 5 mi · ABDI/Prefeitura)</li>
+          <li><strong>Wi-Fi gratuito</strong> · Rótula da Feirinha de Cajazeiras</li>
+        </ul>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Contraponto</div>
+        <div class="painel-contraponto">
+          A sirene física funcionava para todos; o app exige smartphone, dados ativos, sinal 4G estável e permissão de notificação. A "modernização" do alerta substituiu, em muitos lugares, o aparato físico universal por software que alcança uma fração da população em risco. <em>Os semáforos inteligentes fluidificam o ônibus operário rumo ao Centro e à Pituba — não investem na estrutura local que reteria o trabalhador no próprio bairro.</em> A tecnologia chega à periferia para acelerar a saída dela.
+        </div>
+      </div>
+    `
+  },
+
+  C: {
+    cor: 'zC',
+    letra: 'ZONA C',
+    nome: 'PELOURINHO · COMÉRCIO',
+    bairros: 'Centro Histórico · Cidade Baixa · Praça Tomé de Souza',
+    body: `
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Propósito declarado</div>
+        <div class="painel-secao-texto">
+          <strong>Proteger o patrimônio histórico e o turismo.</strong> O investimento inicial em reconhecimento facial foi justificado pela necessidade de "blindar" o conjunto arquitetônico mundial e os fluxos de visitantes estrangeiros (R$ 14 mi nos pórticos iniciais).
+        </div>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Tecnologias presentes</div>
+        <ul class="painel-tec-lista">
+          <li><strong>Câmeras com reconhecimento facial</strong> · enquadradas como "guardiãs do patrimônio mundial"</li>
+          <li><strong>Câmeras NOA Transalvador</strong> · ~300 câmeras · 10 anos de videomonitoramento de vias</li>
+          <li><strong>Wi-Fi Praça Tomé de Souza · Mercado Modelo · Pelourinho</strong></li>
+          <li><strong>Conecta Justiça</strong> · QR Code em Prefeituras-Bairro dá acesso a serviços do TJ-BA</li>
+          <li><strong>Hub Salvador</strong> · polo de inovação aberta no Comércio (desde 2018)</li>
+          <li><strong>Sandbox Salvador</strong> · marco regulatório para testar IoT em ambiente real</li>
+          <li><strong>Totens digitais turísticos</strong> · Mercado Modelo, Beco da Off, Casa do Carnaval</li>
+        </ul>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Contraponto</div>
+        <div class="painel-contraponto">
+          A mesma câmera de RF que aqui é vendida como "proteção patrimonial" aparece em terminais (ver pontos pretos) como ferramenta de "busca por foragidos". O turista é <em>protegido</em> pela tecnologia; o trabalhador é <em>monitorado</em> por ela. O equipamento é o mesmo, a SSP-BA é a mesma, o banco de dados é o mesmo. <em>A diferença é discursiva e racial.</em> Pesquisa CESeC/LAPIN (2024) documentou viés conhecido em algoritmos de RF treinados com bases de matriz fenotípica majoritariamente caucasiana.
+        </div>
+      </div>
+    `
+  },
+
+  D: {
+    cor: 'zD',
+    letra: 'ZONA D',
+    nome: 'PARALELA · PARQUE TECNOLÓGICO',
+    bairros: 'Av. Luís Viana · Centro Administrativo · Aeroporto · Iguatemi',
+    body: `
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Propósito declarado</div>
+        <div class="painel-secao-texto">
+          <strong>Polo de inovação e mobilidade corporativa.</strong> Conexão tecnocrática entre aeroporto, Centro Administrativo Estadual, polos universitários (UNEB, Faculdade Ruy Barbosa, Estácio) e os grandes centros corporativos da zona leste.
+        </div>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Tecnologias presentes</div>
+        <ul class="painel-tec-lista">
+          <li><strong>Metrô Linha 2</strong> · Acesso Norte → Aeroporto · pagamento por aproximação NFC (cartão, celular, smartwatch)</li>
+          <li><strong>CIDACS/Fiocruz</strong> · datacenter de dados sociais e de saúde · sala-cofre com protocolo ético</li>
+          <li><strong>COI/SSP-BA no CAB</strong> · Centro de Operações e Inteligência · integra reconhecimento facial estadual</li>
+          <li><strong>Semáforos com IA</strong> · Iguatemi, Shopping da Bahia, ACM x Universal, ligação Iguatemi-Paralela</li>
+          <li><strong>Wi-Fi Parque da Cidade · Largo de Santana</strong></li>
+          <li><strong>BRT corredor leste</strong> · faixas exclusivas · ônibus articulados elétricos · GPS em tempo real</li>
+          <li><strong>Hub de Tecnologia</strong> · ecossistema corporativo (Hub Salvador tem unidade aqui)</li>
+        </ul>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Contraponto</div>
+        <div class="painel-contraponto">
+          A Av. Paralela atravessa Salvador conectando aeroporto, Centro Administrativo e shoppings sem cruzar áreas de moradia popular. O CIDACS processa dados sensíveis sob protocolo de pesquisa científica auditável; a <em>Nuvem Urbana</em> prevista pelo Art. 21 da LC 92/2025 replica a infraestrutura técnica do CIDACS sem replicar o aparato ético. <em>A "inovação" tem CEP.</em> O datacenter de saúde pública e o algoritmo de fiscalização biométrica compartilham fibra, mas operam sob regimes de governança radicalmente distintos.
+        </div>
+      </div>
+    `
+  },
+
+  E: {
+    cor: 'zE',
+    letra: 'ZONA E',
+    nome: 'ORLA ATLÂNTICA RICA',
+    bairros: 'Barra · Ondina · Rio Vermelho · Pituba · Iguatemi · Caminho das Árvores',
+    body: `
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Propósito declarado</div>
+        <div class="painel-secao-texto">
+          <strong>Conforto urbano, turismo e segurança feminina.</strong> Mobiliário urbano "inteligente" como contrapartida de concessão publicitária de longo prazo (modelo OOH · Out-of-Home).
+        </div>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Tecnologias presentes</div>
+        <ul class="painel-tec-lista">
+          <li><strong>MUPIs JCDecaux</strong> · Mobiliário Urbano Para Informação · telas digitais alta resolução · concessão exclusiva</li>
+          <li><strong>Totens publicitários iluminados</strong> · Caminho das Árvores, Iguatemi, Pituba</li>
+          <li><strong>Abrigo Amigo</strong> · 50+ pontos · botão de pânico + videochamada 24h com central feminina (parceria Eletromidia + Claro · 20h às 5h)</li>
+          <li><strong>Wi-Fi gratuito</strong> · Farol da Barra, Morro do Cristo, Largo da Mariquita, Quadra do Rio Vermelho, Jardim de Alah</li>
+          <li><strong>Semáforos com IA</strong> · Av. Oceânica, Av. Vasco da Gama, Rio Vermelho, Garibaldi</li>
+          <li><strong>Câmeras de videomonitoramento</strong> · enquadradas como segurança turística</li>
+        </ul>
+      </div>
+      <div class="painel-secao">
+        <div class="painel-secao-titulo">Contraponto</div>
+        <div class="painel-contraponto">
+          Os MUPIs e os Abrigos Amigos são pagos pela concessão de mídia exterior — <em>quanto maior o PIB da rua, mais alta a densidade de "smart city".</em> A tecnologia segue o anunciante, não a necessidade. O Abrigo Amigo na Barra protege; em pontos do Subúrbio onde o retorno publicitário é baixo, a mesma mulher fica desprotegida porque não há incentivo comercial para instalar ali. A segurança feminina via tecnologia é distribuída segundo a lógica da venda de anúncio, não segundo o mapa real da violência de gênero.
+        </div>
+      </div>
+    `
+  }
 };
 
-const SAT_PONTOS = [
-  // ═══ COMANDO E HUB (decisão política da gestão pública) ═══
-  { x: 280, y: 460, cat: 'cmd', nome: 'CCO Lobato / Alto do Cabrito',
-    desc: 'Centro de Controle Operacional · R$ 120 milhões · 12.000 m² · integra Codesal, Transalvador, GCM e SAMU em pleno Subúrbio.' },
-  { x: 305, y: 480, cat: 'cmd', nome: 'Hub de Tecnologia do Subúrbio',
-    desc: 'Incubadora pública de 5.000 m² para reter talentos de base tecnológica das periferias. Conexão direta com a Infovia.' },
-  { x: 770, y: 660, cat: 'cmd', nome: 'Parque Tecnológico · CIDACS',
-    desc: 'Centro de Integração de Dados e Conhecimento para a Saúde (Fiocruz). Sandbox Salvador para testar IoT em ambiente real.' },
-  { x: 440, y: 540, cat: 'cmd', nome: 'Hub Salvador · Comércio',
-    desc: 'Polo de inovação aberta com dezenas de startups desde 2018. Cidade Baixa.' },
+function renderPainel(zonaKey) {
+  const data = SAT_PAINEL[zonaKey] || SAT_PAINEL.default;
+  const painel = document.getElementById('ov-painel');
+  if (!painel) return;
 
-  // ═══ PROTEÇÃO CLIMÁTICA (sirenes Codesal · exclusivamente em encostas pobres) ═══
-  { x: 295, y: 415, cat: 'prot', nome: 'Sirene Mamede · Alto da Terezinha',
-    desc: 'Sirene acústica integrada · Subúrbio · disparo automático ao atingir 150mm/72h de chuva acumulada.' },
-  { x: 285, y: 445, cat: 'prot', nome: 'Sirene Voluntários da Pátria · Lobato',
-    desc: 'Encosta da Av. Suburbana · pluviômetro telemetrizado integrado ao Cemadec.' },
-  { x: 780, y: 230, cat: 'prot', nome: 'Sirene Irmã Dulce · Cajazeiras 7',
-    desc: 'Miolo urbano profundo · alta densidade habitacional em topografia de risco.' },
-  { x: 810, y: 250, cat: 'prot', nome: 'Sirene Mangabeira · Cajazeiras 8',
-    desc: 'Encostas acidentadas do Miolo · cobertura sonora de evacuação.' },
-  { x: 720, y: 305, cat: 'prot', nome: 'Sirene Bosque Real · Sete de Abril',
-    desc: 'Coração do Miolo · proximidade da Av. Aliomar Baleeiro.' },
-  { x: 680, y: 350, cat: 'prot', nome: 'Sirene Creche · Castelo Branco',
-    desc: 'Bairro tradicional do Miolo · vulnerabilidade geológica.' },
-  { x: 600, y: 470, cat: 'prot', nome: 'Sirene Mata Escura · encostas',
-    desc: 'Sensor de saturação de solo · alerta via app Defesa Civil + SMS (alcance real: 4-28%).' },
-  { x: 555, y: 510, cat: 'prot', nome: 'Sirene Vila Sabiá · Liberdade',
-    desc: 'Encosta íngreme no Miolo central popular.' },
-  { x: 530, y: 555, cat: 'prot', nome: 'Sirene Calabetão',
-    desc: 'Margem da BR-324 · contorno do Miolo · pluviômetro dedicado.' },
-  { x: 470, y: 575, cat: 'prot', nome: 'Sirene Bom Juá / Arraial do Retiro',
-    desc: 'Vale topográfico conectando Miolo ao acesso da BR-324.' },
-  { x: 615, y: 545, cat: 'prot', nome: 'Sirene Baixa do Cacau · São Caetano',
-    desc: 'Região histórica de deslizamentos · vales do Miolo/Encostas.' },
+  painel.innerHTML =
+    '<div class="painel-head ' + data.cor + '">' +
+      '<div class="painel-letra">' + data.letra + '</div>' +
+      '<div class="painel-nome">' + data.nome + '</div>' +
+      '<div class="painel-bairros">' + data.bairros + '</div>' +
+    '</div>' +
+    '<div class="painel-body">' + data.body + '</div>';
 
-  // ═══ ILUMINAÇÃO LED INTELIGENTE (cobertura quase total · começou pelo Subúrbio) ═══
-  { x: 260, y: 380, cat: 'conn', nome: 'LED Subúrbio Ferroviário · 100%',
-    desc: '16.616 pontos de luz · 2.192 ruas · primeira macrorregião 100% modernizada · R$ 19 milhões. Telegestão NB-IoT.' },
-  { x: 750, y: 270, cat: 'conn', nome: 'LED Cajazeiras · 100%',
-    desc: 'Substituição integral nas fases iniciais do programa "Iluminando Nosso Bairro".' },
-  { x: 660, y: 380, cat: 'conn', nome: 'LED Pau da Lima · 100%',
-    desc: 'Alto adensamento comercial popular · cobertura total nas fases iniciais.' },
-  { x: 540, y: 525, cat: 'conn', nome: 'LED Liberdade · 100%',
-    desc: 'Maior bairro de população negra do Brasil · iluminação telegerenciada.' },
-
-  // ═══ CONECTIVIDADE PÚBLICA (Wi-Fi · capilaridade política) ═══
-  { x: 245, y: 220, cat: 'conn', nome: 'Wi-Fi Paripe · Subúrbio 360',
-    desc: 'Praça João Martins · Mercado do GE · acesso gratuito ao CadÚnico e serviços digitais.' },
-  { x: 260, y: 305, cat: 'conn', nome: 'Wi-Fi Periperi',
-    desc: 'Praça e Mercado de Periperi · transações via PIX para feirantes.' },
-  { x: 280, y: 360, cat: 'conn', nome: 'Wi-Fi Coutos · Subúrbio 360',
-    desc: 'Conecta Salvador · rede municipal gratuita.' },
-  { x: 820, y: 220, cat: 'conn', nome: 'Wi-Fi Cajazeiras · Rótula da Feirinha',
-    desc: 'Wi-Fi gratuito no Miolo · operacional pela Infovia municipal.' },
-  { x: 950, y: 800, cat: 'conn', nome: 'Wi-Fi Farol da Barra',
-    desc: 'Ponto turístico com Wi-Fi gratuito · Conecta Salvador.' },
-  { x: 460, y: 600, cat: 'conn', nome: 'Wi-Fi Praça Tomé de Souza',
-    desc: 'Centro Histórico · acesso ao "Conecta Justiça" via QR Code.' },
-  { x: 870, y: 720, cat: 'conn', nome: 'Wi-Fi Largo da Mariquita · R. Vermelho',
-    desc: 'Praça com cobertura gratuita · ponto noturno de alta circulação.' },
-  { x: 760, y: 730, cat: 'conn', nome: 'Wi-Fi Amaralina · Largo das Baianas',
-    desc: 'Periferia litorânea · acesso público à rede municipal.' },
-  { x: 935, y: 690, cat: 'conn', nome: 'Wi-Fi Parque da Cidade',
-    desc: 'Itaigara · um dos primeiros pontos a receber rede gratuita.' },
-
-  // ═══ MOBILIDADE INTELIGENTE ═══
-  { x: 470, y: 590, cat: 'mob', nome: 'Estação Lapa · Metrô Linha 1',
-    desc: 'Terminal intermodal · pagamento por aproximação (NFC) · integração com BRT.' },
-  { x: 580, y: 330, cat: 'mob', nome: 'Acesso Norte · Metrô L1+L2',
-    desc: 'Hub de integração das duas linhas · catracas com pagamento contactless.' },
-  { x: 560, y: 265, cat: 'mob', nome: 'Estação Águas Claras · L1 final',
-    desc: 'Linha 1 final · futura integração com VLT do Subúrbio.' },
-  { x: 1075, y: 230, cat: 'mob', nome: 'Estação Aeroporto · Linha 2',
-    desc: 'Terminal final da Linha 2 do Metrô.' },
-  { x: 510, y: 540, cat: 'mob', nome: 'Estação Campo da Pólvora',
-    desc: 'Linha 1 · Wi-Fi gratuito + pagamento por aproximação.' },
-  { x: 525, y: 470, cat: 'mob', nome: 'Semáforos IA · Largo do Tanque',
-    desc: '31 semáforos inteligentes · corredor operário · controle dinâmico via visão computacional.' },
-  { x: 480, y: 510, cat: 'mob', nome: 'Semáforos IA · Largo do Retiro',
-    desc: 'Eixo do Miolo operário · onda verde dinâmica acoplada à BR-324.' },
-  { x: 700, y: 600, cat: 'mob', nome: 'Semáforos IA · ACM x Universal',
-    desc: 'Entroncamento comercial · análise volumétrica em tempo real.' },
-  { x: 820, y: 620, cat: 'mob', nome: 'Semáforos IA · Shopping da Bahia',
-    desc: 'Maior cruzamento corporativo · 88 semáforos inteligentes na zona leste.' },
-  { x: 765, y: 600, cat: 'mob', nome: 'Corredor BRT · ACM/Pituba',
-    desc: 'Faixas exclusivas · ônibus articulados elétricos · GPS em tempo real.' },
-  { x: 615, y: 580, cat: 'mob', nome: 'BRT Estação Rodoviária',
-    desc: 'Linha B3 · integração com Iguatemi e Pituba.' },
-  { x: 300, y: 580, cat: 'mob', nome: 'VLT Trecho 2 · Subúrbio',
-    desc: 'Conexão Paripe x Águas Claras · 60% das obras civis concluídas · tração elétrica.' },
-  { x: 245, y: 700, cat: 'mob', nome: 'Teleférico Estação Praia Grande',
-    desc: 'R$ 700 milhões · 4,3 km · modelo Medellín/La Paz · embarque exclusivo em bairros periféricos.' },
-  { x: 360, y: 510, cat: 'mob', nome: 'Teleférico Estação Pirajá',
-    desc: 'Vencendo encostas em segundos · integração com Metrô L1.' },
-  { x: 290, y: 555, cat: 'mob', nome: 'Teleférico Mané Dendê',
-    desc: 'Estação no vale do Subúrbio · subúrbio litorâneo profundo.' },
-  { x: 600, y: 650, cat: 'mob', nome: 'Totem SalvadorCard · Cabula',
-    desc: 'Prefeitura-Bairro · primeiro totem de autoatendimento integrado da capital.' },
-
-  // ═══ VIGILÂNCIA ═══
-  { x: 460, y: 555, cat: 'vig', nome: 'Pelourinho · Reconhecimento Facial',
-    desc: 'Pioneiro do sistema estadual · investimento inicial de R$ 14 milhões em pórticos.' },
-  { x: 470, y: 615, cat: 'vig', nome: 'Câmeras NOA · Centro Histórico',
-    desc: 'Núcleo de Operação Assistida da Transalvador · 10 anos de operação · 300 câmeras urbanas.' },
-  { x: 800, y: 365, cat: 'vig', nome: 'COI · Centro de Operações SSP-BA',
-    desc: 'Centro Administrativo da Bahia · integra Vídeo Policiamento em metrô, ferry, rodoviária. 5.300+ prisões via reconhecimento facial.' },
-  { x: 380, y: 510, cat: 'vig', nome: 'Câmeras Ferry · Terminal Aquaviário',
-    desc: 'Vídeo Policiamento estadual com reconhecimento facial ativo.' },
-  { x: 580, y: 305, cat: 'vig', nome: 'Câmeras Metrô Acesso Norte',
-    desc: 'Reconhecimento facial integrado ao banco de dados estadual.' },
-  { x: 1070, y: 235, cat: 'vig', nome: 'Câmeras Aeroporto',
-    desc: 'Vídeo Policiamento + reconhecimento facial · integração federal.' },
-
-  // ═══ MERCADO / PUBLICIDADE (lógica do consumo · MUPIs JCDecaux) ═══
-  { x: 920, y: 800, cat: 'merc', nome: 'MUPIs Barra · JCDecaux',
-    desc: 'Mobiliário Urbano Para Informação · telas digitais de alta resolução · concessão publicitária OOH.' },
-  { x: 750, y: 720, cat: 'merc', nome: 'Totens publicitários Pituba',
-    desc: 'Eixo Caminho das Árvores / Iguatemi · alta densidade de mídia digital.' },
-  { x: 820, y: 700, cat: 'merc', nome: 'MUPIs Rio Vermelho',
-    desc: 'Largo da Mariquita · vida noturna e turismo · concessão de longo prazo.' },
-  { x: 870, y: 730, cat: 'merc', nome: 'Abrigo Amigo · Rio Vermelho',
-    desc: 'Botão de pânico + videochamada 24h com central feminina · projeto Eletromidia/Claro.' },
-  { x: 615, y: 590, cat: 'merc', nome: 'Abrigo Amigo · Rodoviária',
-    desc: 'Atendimento das 20h às 5h · foco em segurança feminina · rota mapeada por vulnerabilidade.' },
-  { x: 480, y: 610, cat: 'merc', nome: 'Totens Centro Histórico',
-    desc: 'Pelourinho · Mercado Modelo · displays digitais turísticos.' },
-  { x: 770, y: 645, cat: 'merc', nome: 'MUPIs Iguatemi · corporativo',
-    desc: 'Mídia OOH em eixo de máximo PIB qualificado da cidade.' }
-];
-
-function renderSatPontos() {
-  const layer = document.getElementById('sat-pontos');
-  if (!layer) return;
-  const ns = 'http://www.w3.org/2000/svg';
-  layer.innerHTML = '';
-
-  SAT_PONTOS.forEach(function(p, idx) {
-    const cor = SAT_CATS[p.cat].cor;
-    const g = document.createElementNS(ns, 'g');
-    g.setAttribute('class', 'sat-ponto');
-    g.setAttribute('data-cat', p.cat);
-    g.setAttribute('data-idx', idx);
-    g.setAttribute('transform', 'translate(' + p.x + ',' + p.y + ')');
-
-    // pulse externo
-    const pulse = document.createElementNS(ns, 'circle');
-    pulse.setAttribute('class', 'sat-ponto-pulse');
-    pulse.setAttribute('r', '5');
-    pulse.setAttribute('stroke', cor);
-    pulse.innerHTML =
-      '<animate attributeName="r" values="5;13;5" dur="' + (2 + (idx % 5) * 0.3) + 's" repeatCount="indefinite"/>' +
-      '<animate attributeName="opacity" values="0.6;0;0.6" dur="' + (2 + (idx % 5) * 0.3) + 's" repeatCount="indefinite"/>';
-    g.appendChild(pulse);
-
-    // ponto principal
-    const c = document.createElementNS(ns, 'circle');
-    c.setAttribute('class', 'sat-ponto-bg');
-    c.setAttribute('r', '5');
-    c.setAttribute('fill', cor);
-    g.appendChild(c);
-
-    // núcleo brilhante
-    const core = document.createElementNS(ns, 'circle');
-    core.setAttribute('r', '2');
-    core.setAttribute('fill', '#F7EFD9');
-    core.setAttribute('opacity', '0.9');
-    g.appendChild(core);
-
-    // hover events
-    g.addEventListener('mouseenter', function(e) {
-      const tip = document.getElementById('sat-tip');
-      document.getElementById('sat-tip-cat').textContent = SAT_CATS[p.cat].nome;
-      document.getElementById('sat-tip-cat').style.color = cor;
-      document.getElementById('sat-tip-nome').textContent = p.nome;
-      document.getElementById('sat-tip-desc').textContent = p.desc;
-      tip.style.borderColor = cor;
-      tip.classList.add('show');
-    });
-    g.addEventListener('mousemove', function(e) {
-      const tip = document.getElementById('sat-tip');
-      const wrap = document.querySelector('.sat-mapa-wrap');
-      const rect = wrap.getBoundingClientRect();
-      let x = e.clientX - rect.left + 14;
-      let y = e.clientY - rect.top + 14;
-      // evita sair da tela
-      if (x + 250 > rect.width) x = e.clientX - rect.left - 260;
-      tip.style.left = x + 'px';
-      tip.style.top = y + 'px';
-    });
-    g.addEventListener('mouseleave', function() {
-      document.getElementById('sat-tip').classList.remove('show');
-    });
-
-    layer.appendChild(g);
-  });
+  painel.scrollTop = 0;
 }
 
-function aplicarFiltrosSat() {
-  const ativos = new Set();
-  document.querySelectorAll('.sat-filtro').forEach(function(btn) {
-    if (btn.classList.contains('active')) {
-      ativos.add(btn.getAttribute('data-cat'));
-    }
-  });
-
-  document.querySelectorAll('.sat-ponto').forEach(function(p) {
-    const cat = p.getAttribute('data-cat');
-    if (ativos.has('all') || ativos.has(cat)) {
-      p.classList.remove('hidden');
+function aplicarFiltroZona(zonaKey) {
+  // marca o botão correto como ativo (radio behavior · só um por vez)
+  document.querySelectorAll('.zonas-filtro').forEach(function(b) {
+    if (b.getAttribute('data-zona') === zonaKey) {
+      b.classList.add('active');
     } else {
-      p.classList.add('hidden');
+      b.classList.remove('active');
     }
   });
+
+  // aplica fade nas zonas não selecionadas
+  document.querySelectorAll('.zona-bloco').forEach(function(z) {
+    const zid = z.getAttribute('data-zona');
+    if (zonaKey === 'all') {
+      z.classList.remove('fade');
+      z.classList.remove('active');
+    } else if (zid === zonaKey) {
+      z.classList.remove('fade');
+      z.classList.add('active');
+    } else {
+      z.classList.add('fade');
+      z.classList.remove('active');
+    }
+  });
+
+  // pontos de vigilância
+  document.querySelectorAll('.vig-ponto').forEach(function(p) {
+    if (zonaKey === 'all') {
+      p.classList.remove('fade');
+    } else {
+      p.classList.add('fade');
+    }
+  });
+
+  // atualiza painel
+  if (zonaKey === 'all') {
+    renderPainel('default');
+  } else {
+    renderPainel(zonaKey);
+  }
 }
 
-function initMapaSatelital() {
-  renderSatPontos();
+function initMapaOverview() {
+  // estado inicial · visão geral
+  renderPainel('default');
 
-  document.querySelectorAll('.sat-filtro').forEach(function(btn) {
+  // filtros
+  document.querySelectorAll('.zonas-filtro').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      const cat = btn.getAttribute('data-cat');
-      if (cat === 'all') {
-        // ativa todas
-        document.querySelectorAll('.sat-filtro').forEach(function(b) {
-          b.classList.add('active');
-        });
-      } else {
-        // toggle individual; se "all" estava ativo e clicou em uma categoria, isola
-        const allBtn = document.querySelector('.sat-filtro[data-cat="all"]');
-        if (allBtn.classList.contains('active')) {
-          document.querySelectorAll('.sat-filtro').forEach(function(b) {
-            b.classList.remove('active');
-          });
-          btn.classList.add('active');
-        } else {
-          btn.classList.toggle('active');
-          // se nenhuma ficou ativa, religa todas
-          const algumaAtiva = Array.from(document.querySelectorAll('.sat-filtro'))
-            .some(function(b) { return b.classList.contains('active'); });
-          if (!algumaAtiva) {
-            document.querySelectorAll('.sat-filtro').forEach(function(b) {
-              b.classList.add('active');
-            });
-          }
-        }
-      }
-      aplicarFiltrosSat();
+      const zona = btn.getAttribute('data-zona');
+      aplicarFiltroZona(zona);
+    });
+  });
+
+  // clique nas zonas do mapa
+  document.querySelectorAll('.zona-bloco').forEach(function(z) {
+    z.addEventListener('click', function() {
+      const zona = z.getAttribute('data-zona');
+      aplicarFiltroZona(zona);
     });
   });
 }
 
-// inicializa assim que o DOM estiver pronto (o briefing já está visível)
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initMapaSatelital);
-} else {
-  initMapaSatelital();
+/* ════════════════════════════════════════════════
+   TRANSIÇÃO DE PÁGINAS
+   Sobrescreve o handler original do botão "brief-start"
+════════════════════════════════════════════════ */
+
+function setupOverviewTransicoes() {
+  // 1. Substitui o handler do botão "ABRIR O MAPA" do briefing
+  //    Antes ia direto pro #app; agora vai pro #mapa-overview
+  const oldBriefBtn = document.getElementById('brief-start');
+  if (oldBriefBtn) {
+    const newBriefBtn = oldBriefBtn.cloneNode(true);
+    oldBriefBtn.parentNode.replaceChild(newBriefBtn, oldBriefBtn);
+    newBriefBtn.addEventListener('click', function() {
+      const brief = document.getElementById('briefing');
+      brief.style.opacity = '0';
+      brief.style.transition = 'opacity .5s';
+      setTimeout(function() {
+        brief.style.display = 'none';
+        const ov = document.getElementById('mapa-overview');
+        ov.classList.remove('hidden');
+        window.scrollTo(0, 0);
+        initMapaOverview();
+      }, 500);
+    });
+  }
+
+  // 2. Handler do botão "ABRIR MAPA DE INSPEÇÃO" do overview
+  //    Esconde overview, mostra #app e inicializa o mapa principal
+  const ovStartBtn = document.getElementById('overview-start');
+  if (ovStartBtn) {
+    ovStartBtn.addEventListener('click', function() {
+      const ov = document.getElementById('mapa-overview');
+      ov.style.opacity = '0';
+      ov.style.transition = 'opacity .5s';
+      setTimeout(function() {
+        ov.classList.add('hidden');
+        ov.style.opacity = '1';
+        document.getElementById('app').classList.remove('hidden');
+        window.scrollTo(0, 0);
+        if (typeof initMapa === 'function') initMapa();
+        if (typeof renderFooterPins === 'function') renderFooterPins();
+      }, 500);
+    });
+  }
 }
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupOverviewTransicoes);
+} else {
+  setupOverviewTransicoes();
+}
+
+/* ════════════════════════════════════════════════
+   FIM MAPA SATELITAL · BLOCO REMOVÍVEL
+════════════════════════════════════════════════ */
 
 </script>
 </body>
