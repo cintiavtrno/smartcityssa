@@ -3040,6 +3040,77 @@ footer {
   .sat-filtros { gap: 4px; }
   .sat-filtro { font-size: 8px; padding: 6px 9px; }
 }
+/* ═══════════════════════════════════════════════
+   AJUSTES FINAIS DE RESPONSIVIDADE (MOBILE)
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* 1. Mapas com scroll (pan) em vez de encolherem e ficarem ilegíveis */
+  .map-wrap, .ov-mapa-wrap, .sat-mapa-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /* Suavidade extra no iOS */
+    padding-bottom: 10px;
+  }
+  
+  /* Força uma largura mínima para os SVGs. Assim eles continuam grandes e clicáveis */
+  #map-svg {
+    min-width: 800px; 
+  }
+  #ov-svg, #sat-svg {
+    min-width: 700px;
+  }
+
+  /* 2. Cabeçalho empilhado para não quebrar botões */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hdr-right {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  /* 3. Abas do Modal da Vinheta (2 por linha para o texto caber) */
+  .modal-tabs {
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1 1 50%;
+    border-bottom: 1px solid rgba(26,22,17,.15);
+  }
+  .tab-btn:nth-child(2) {
+    border-right: none;
+  }
+
+  /* 4. Desativar tooltips baseados em mouse no touch (evita duplo clique para abrir vinhetas) */
+  .pino-tooltip, .ov-tooltip, .sat-tip {
+    display: none !important;
+  }
+
+  /* 5. Respiros (paddings) e limites de Modais e Telas de Briefing */
+  .brief-card, .modal-card, .reagreg-box {
+    padding: 20px 16px;
+    margin: 10px;
+    width: auto; /* Permite margem funcionar */
+  }
+  .reagreg-stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Ajuste de grids da auditoria visual para celular */
+  .edna-machine, .shadow-compare, .totem-anatomy {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ajuste extra para telas muito estreitas (ex: iPhone SE) */
+@media (max-width: 400px) {
+  .hdr-title { font-size: 11px; letter-spacing: 1.5px; }
+  .camada-btn { padding: 6px 8px; font-size: 8px; }
+  .brief-h1 { font-size: 18px; }
+}
 </style>
 </head>
 <body>
